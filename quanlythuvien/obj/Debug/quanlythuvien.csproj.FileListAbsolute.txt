@@ -190,3 +190,86 @@ D:\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.csproj.GenerateReso
 D:\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.csproj.CoreCompileInputs.cache
 D:\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.exe
 D:\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.pdb
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\bin\Debug\quanlythuvien.exe.config
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\bin\Debug\quanlythuvien.exe
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\bin\Debug\quanlythuvien.pdb
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.csproj.AssemblyReference.cache
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.exe.config
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.baocao.resources
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.dangki.resources
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.dangnhap.resources
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.docgia.resources
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.muontra.resources
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.NhaXuatBan.resources
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.TacGia.resources
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.TheLoai.resources
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.thongtindocgia.resources
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.Properties.Resources.resources
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.quanlysach.resources
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.quenmatkhau.resources
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.thongtinthuthu.resources
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.trangchu.resources
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.csproj.GenerateResource.cache
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.exe
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.pdb
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\bin\Debug\log4net.dll
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\bin\Debug\log4net.pdb
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\bin\Debug\log4net.xml
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlyth.F1FB591B.Up2Date
+C:\Users\ADMIN\source\repos\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.GiaHanSachDG.resources
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\bin\Debug\quanlythuvien.exe.config
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\bin\Debug\quanlythuvien.exe
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\bin\Debug\quanlythuvien.pdb
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\bin\Debug\log4net.dll
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\bin\Debug\log4net.pdb
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\bin\Debug\log4net.xml
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.csproj.AssemblyReference.cache
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.baocao.resources
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.dangki.resources
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.dangnhap.resources
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.docgia.resources
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.GiaHanSachDG.resources
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.muontra.resources
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.NhaXuatBan.resources
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.TacGia.resources
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.TheLoai.resources
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.thongtindocgia.resources
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.Properties.Resources.resources
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.quanlysach.resources
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.quenmatkhau.resources
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.thongtinthuthu.resources
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.trangchu.resources
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.csproj.GenerateResource.cache
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.csproj.CoreCompileInputs.cache
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlyth.F1FB591B.Up2Date
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.exe
+C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.pdb
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.csproj.AssemblyReference.cache
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.exe.config
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.baocao.resources
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.dangki.resources
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.dangnhap.resources
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.docgia.resources
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.muontra.resources
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.NhaXuatBan.resources
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.TacGia.resources
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.TheLoai.resources
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.thongtindocgia.resources
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.Properties.Resources.resources
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.quanlysach.resources
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.quenmatkhau.resources
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.thongtinthuthu.resources
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.trangchu.resources
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.csproj.GenerateResource.cache
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.csproj.CoreCompileInputs.cache
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.exe
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.pdb
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\bin\Debug\quanlythuvien.exe.config
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\bin\Debug\quanlythuvien.exe
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\bin\Debug\quanlythuvien.pdb
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\bin\Debug\log4net.dll
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\bin\Debug\log4net.pdb
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\bin\Debug\log4net.xml
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.GiaHanSachDG.resources
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlyth.F1FB591B.Up2Date

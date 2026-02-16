@@ -17,21 +17,27 @@ namespace quanlythuvien
             InitializeComponent();
             checkdangmuon.Checked = true;
         }
-
-        private void baocao_Load(object sender, EventArgs e)
-        {
-
-        }
-
+       
         private void btnThongKe_Click(object sender, EventArgs e)
         {
             string sql = "";
             DataTable dt;
 
-
-            if (checkdangmuon.Checked)
+            if (checkyeuthich.Checked)
             {
-
+                sql = @"
+            SELECT 
+                s.MaSach,
+                s.TieuDe,
+                COUNT(mt.MaSach) AS SoLanMuon
+            FROM MuonTra mt
+            INNER JOIN Sach s ON mt.MaSach = s.MaSach
+            GROUP BY s.MaSach, s.TieuDe
+            HAVING COUNT(mt.MaSach) >= 3  
+            ORDER BY SoLanMuon DESC";
+            }
+            else if (checkdangmuon.Checked)
+            {
                 sql = "SELECT * FROM MuonTra WHERE TrangThai = N'Đang Mượn'";
             }
             else
@@ -48,54 +54,59 @@ namespace quanlythuvien
                 MessageBox.Show("Không tìm thấy dữ liệu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
-        private void trangChủToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btntrangchu_Click(object sender, EventArgs e)
         {
             this.Hide();
             new trangchu().ShowDialog();
             this.Show();
         }
 
-        private void quảnLýSáchToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btndangxuat_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new dangnhap().ShowDialog();
+            this.Close();
+        }
+
+        private void btnsach_Click(object sender, EventArgs e)
         {
             this.Hide();
             new quanlysach().ShowDialog();
             this.Show();
         }
 
-        private void độcGiảToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btndocgia_Click(object sender, EventArgs e)
         {
             this.Hide();
             new docgia().ShowDialog();
             this.Show();
         }
 
-        private void mượnTrảSáchToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnmuontra_Click(object sender, EventArgs e)
         {
             this.Hide();
             new muontra().ShowDialog();
             this.Show();
         }
 
-        private void báoCáoThốngKêToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnbaocao_Click(object sender, EventArgs e)
         {
             this.Hide();
             new baocao().ShowDialog();
             this.Show();
         }
 
-        private void tàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btntaikhoan_Click(object sender, EventArgs e)
         {
             this.Hide();
             new thongtinthuthu().ShowDialog();
             this.Show();
         }
+        
 
-        private void dangxuat_Click(object sender, EventArgs e)
+        private void btnThoat_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            new dangnhap().ShowDialog();
-            this.Close();
+
         }
     }
 }

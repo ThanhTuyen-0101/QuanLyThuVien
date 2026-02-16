@@ -35,9 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=3.2.0.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.3.2.0\lib\net462\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -73,6 +78,13 @@
     <Compile Include="docgia.Designer.cs">
       <DependentUpon>docgia.cs</DependentUpon>
     </Compile>
+    <Compile Include="GiaHanSachDG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include=".Designer.cs">
+      <DependentUpon>GiaHanSachDG.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="muontra.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,17 +97,40 @@
     <Compile Include="NhaXuatBan.Designer.cs">
       <DependentUpon>NhaXuatBan.cs</DependentUpon>
     </Compile>
+    <Compile Include="quenmatkhau.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="quenmatkhau.Designer.cs">
+      <DependentUpon>quenmatkhau.cs</DependentUpon>
+    </Compile>
+    <Compile Include="quanlysach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="quanlysach.Designer.cs">
+      <DependentUpon>quanlysach.cs</DependentUpon>
+    </Compile>
     <Compile Include="TacGia.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TacGia.Designer.cs">
       <DependentUpon>TacGia.cs</DependentUpon>
     </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="qltt.cs" />
+    <Compile Include="thongtindangnhap.cs" />
+    <Compile Include="TinhTienPhat.cs" />
     <Compile Include="TheLoai.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TheLoai.Designer.cs">
       <DependentUpon>TheLoai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="trangchu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="trangchu.Designer.cs">
+      <DependentUpon>trangchu.cs</DependentUpon>
     </Compile>
     <Compile Include="thongtindocgia.cs">
       <SubType>Form</SubType>
@@ -103,34 +138,11 @@
     <Compile Include="thongtindocgia.Designer.cs">
       <DependentUpon>thongtindocgia.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="qltt.cs" />
-    <Compile Include="quanlysach.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="quanlysach.Designer.cs">
-      <DependentUpon>quanlysach.cs</DependentUpon>
-    </Compile>
-    <Compile Include="quenmatkhau.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="quenmatkhau.Designer.cs">
-      <DependentUpon>quenmatkhau.cs</DependentUpon>
-    </Compile>
-    <Compile Include="thongtindangnhap.cs" />
     <Compile Include="thongtinthuthu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="thongtinthuthu.Designer.cs">
       <DependentUpon>thongtinthuthu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TinhTienPhat.cs" />
-    <Compile Include="trangchu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="trangchu.Designer.cs">
-      <DependentUpon>trangchu.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="baocao.resx">
       <DependentUpon>baocao.cs</DependentUpon>
@@ -144,20 +156,23 @@
     <EmbeddedResource Include="docgia.resx">
       <DependentUpon>docgia.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GiaHanSachDG.resx">
+      <DependentUpon>GiaHanSachDG.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="muontra.resx">
       <DependentUpon>muontra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NhaXuatBan.resx">
       <DependentUpon>NhaXuatBan.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="quenmatkhau.resx">
+      <DependentUpon>quenmatkhau.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="quanlysach.resx">
+      <DependentUpon>quanlysach.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TacGia.resx">
       <DependentUpon>TacGia.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TheLoai.resx">
-      <DependentUpon>TheLoai.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="thongtindocgia.resx">
-      <DependentUpon>thongtindocgia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -169,18 +184,20 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="quanlysach.resx">
-      <DependentUpon>quanlysach.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="quenmatkhau.resx">
-      <DependentUpon>quenmatkhau.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="thongtinthuthu.resx">
-      <DependentUpon>thongtinthuthu.cs</DependentUpon>
+    <EmbeddedResource Include="TheLoai.resx">
+      <DependentUpon>TheLoai.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="trangchu.resx">
       <DependentUpon>trangchu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="thongtindocgia.resx">
+      <DependentUpon>thongtindocgia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="thongtinthuthu.resx">
+      <DependentUpon>thongtinthuthu.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="log4net.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -214,6 +231,69 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\tải xuống.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_16470232.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Screenshot_2026-01-25_104349-removebg-preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\house-lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\house-lock %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\house-lock %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\house-lock %283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-brain %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\department %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\onboarding.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trading %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\people-roof.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-brain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book-bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\woman-head.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\department %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\onboarding %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trading %282%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,69 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\tuyen\\Downloads\\N1\\N1\\N1\\quanlythuvien\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8FCC883F-2F36-4023-85BD-9E70C4F8FC33}|quanlythuvien\\quanlythuvien.csproj|c:\\users\\tuyen\\downloads\\n1\\n1\\n1\\quanlythuvien\\quanlythuvien\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8FCC883F-2F36-4023-85BD-9E70C4F8FC33}|quanlythuvien\\quanlythuvien.csproj|solutionrelative:quanlythuvien\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FCC883F-2F36-4023-85BD-9E70C4F8FC33}|quanlythuvien\\quanlythuvien.csproj|c:\\users\\tuyen\\downloads\\n1\\n1\\n1\\quanlythuvien\\quanlythuvien\\trangchu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8FCC883F-2F36-4023-85BD-9E70C4F8FC33}|quanlythuvien\\quanlythuvien.csproj|solutionrelative:quanlythuvien\\trangchu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FCC883F-2F36-4023-85BD-9E70C4F8FC33}|quanlythuvien\\quanlythuvien.csproj|C:\\Users\\tuyen\\Downloads\\N1\\N1\\N1\\quanlythuvien\\quanlythuvien\\trangchu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8FCC883F-2F36-4023-85BD-9E70C4F8FC33}|quanlythuvien\\quanlythuvien.csproj|solutionrelative:quanlythuvien\\trangchu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\tuyen\\Downloads\\N1\\N1\\N1\\quanlythuvien\\quanlythuvien\\Program.cs",
+              "RelativeDocumentMoniker": "quanlythuvien\\Program.cs",
+              "ToolTip": "C:\\Users\\tuyen\\Downloads\\N1\\N1\\N1\\quanlythuvien\\quanlythuvien\\Program.cs*",
+              "RelativeToolTip": "quanlythuvien\\Program.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T06:09:12.401Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "trangchu.cs",
+              "DocumentMoniker": "C:\\Users\\tuyen\\Downloads\\N1\\N1\\N1\\quanlythuvien\\quanlythuvien\\trangchu.cs",
+              "RelativeDocumentMoniker": "quanlythuvien\\trangchu.cs",
+              "ToolTip": "C:\\Users\\tuyen\\Downloads\\N1\\N1\\N1\\quanlythuvien\\quanlythuvien\\trangchu.cs",
+              "RelativeToolTip": "quanlythuvien\\trangchu.cs",
+              "ViewState": "AgIAAGEAAAAAAAAAAAArwHgAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-27T08:50:19.811Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "trangchu.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\tuyen\\Downloads\\N1\\N1\\N1\\quanlythuvien\\quanlythuvien\\trangchu.cs",
+              "RelativeDocumentMoniker": "quanlythuvien\\trangchu.cs",
+              "ToolTip": "C:\\Users\\tuyen\\Downloads\\N1\\N1\\N1\\quanlythuvien\\quanlythuvien\\trangchu.cs [Design]",
+              "RelativeToolTip": "quanlythuvien\\trangchu.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-27T08:48:03.739Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

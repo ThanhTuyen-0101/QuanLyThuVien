@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +36,6 @@ namespace quanlythuvien
             Checktra.Checked = false;
             txtGhiChu.Text = string.Empty;
         }
-
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
@@ -115,7 +113,7 @@ namespace quanlythuvien
                     NgayTraSQL = $"'{DateTime.Now:yyyy-MM-dd}'";
                 }
 
-                string GhiChu = txtGhiChu.Text.Replace("'", "''"); 
+                string GhiChu = txtGhiChu.Text.Replace("'", "''");
 
                 string sql = $"INSERT INTO MuonTra (MaDocGia, MaSach, NgayMuon, NgayTra, TrangThai, GhiChu) " +
                              $"VALUES (N'{MaDocGia}', {MaSach}, '{NgayMuonSQL}', {NgayTraSQL}, N'{TrangThai}', N'{GhiChu}')";
@@ -196,7 +194,7 @@ namespace quanlythuvien
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)// xóa 
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
@@ -232,12 +230,12 @@ namespace quanlythuvien
         {
             if (Checktra.Checked)
             {
-               /* DateTime ngayMuon = DateTime.Parse(txtDateMuon.Text);
+                DateTime ngayMuon = DateTime.Parse(txtDateMuon.Text);
                 DateTime ngayTra = DateTime.Now;
                 TienPhatCalculator calc = new TienPhatCalculator();
-                 double tienPhat = calc.TinhTienPhat(ngayMuon, ngayTra);
-                 txtTienPhat.Text = tienPhat.ToString("N0");*/
-                TinhTienPhat();
+                double tienPhat = calc.TinhTienPhat(ngayMuon, ngayTra);
+                txtTienPhat.Text = tienPhat.ToString("N0");
+
             }
             else
             {
@@ -245,64 +243,17 @@ namespace quanlythuvien
             }
         }
 
-        private void trangChủToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new trangchu().ShowDialog();
-            this.Show();
-        }
 
-        private void quảnLýSáchToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new quanlysach().ShowDialog();
-            this.Show();
-        }
-
-        private void độcGiảToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new docgia().ShowDialog();
-            this.Show();
-        }
-
-        private void mượnTrảSáchToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new muontra().ShowDialog();
-            this.Show();
-        }
-
-        private void báoCáoThốngKêToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new baocao().ShowDialog();
-            this.Show();
-        }
-
-        private void tàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new thongtinthuthu().ShowDialog();
-            this.Show();
-        }
-
-        private void dangxuat_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new dangnhap().ShowDialog();
-            this.Close();
-        }
 
         private void txtTienPhat_TextChanged(object sender, EventArgs e)
         {
 
         }
-        private void TinhTienPhat() //Chưa refactor
+        private void TinhTienPhat()
         {
             try
             {
-                
+
 
                 DateTime ngayMuon = DateTime.Parse(txtDateMuon.Text);
                 DateTime ngayTra = DateTime.Parse(txtDateTra.Text);
@@ -314,7 +265,7 @@ namespace quanlythuvien
                 if (soNgayMuon > 7)
                 {
                     int soNgayTre = soNgayMuon - 7;
-                    tienPhat = soNgayTre * 5000; 
+                    tienPhat = soNgayTre * 5000;
                 }
 
                 txtTienPhat.Text = tienPhat.ToString("N0");
@@ -334,5 +285,60 @@ namespace quanlythuvien
         {
 
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btntrangchu_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new trangchu().ShowDialog();
+            this.Show();
+        }
+
+        private void btnsach_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new quanlysach().ShowDialog();
+            this.Show();
+        }
+
+        private void btndocgia_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new docgia().ShowDialog();
+            this.Show();
+        }
+
+        private void btnmuontra_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new muontra().ShowDialog();
+            this.Show();
+        }
+
+        private void btnbaocao_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new baocao().ShowDialog();
+            this.Show();
+        }
+
+        private void btbntaikhoan_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new thongtinthuthu().ShowDialog();
+            this.Show();
+        }
+
+        private void btndangxuat_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new dangnhap().ShowDialog();
+            this.Close();
+        }
+        
     }
 }

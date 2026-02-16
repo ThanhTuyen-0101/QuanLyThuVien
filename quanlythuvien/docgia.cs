@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace quanlythuvien
 {
     public partial class docgia : Form
     {
+       
         public docgia()
         {
             InitializeComponent();
@@ -48,21 +50,40 @@ namespace quanlythuvien
         {
             try
             {
-                String sql = "INSERT INTO DocGia(MaDocGia, HoTen, NgaySinh, GioiTinh, DiaChi, SoDienThoai, Email) VALUES('";
-                sql += txtmadg.Text + "', N'" + txttendg.Text + "', '" + txtngaysinh.Text + "', N'" + txtgioitinh.Text + "', N'" + txtdiachi.Text + "', '" + txtsdt.Text + "', '" + txtemail.Text + "')";
-                qltt.ExecuteNonQuery(sql);
-                MessageBox.Show("Thêm Thành Công");
-                taidocgia();
+                string sql = @"
+        INSERT INTO DocGia
+        (MaDocGia, HoTen, NgaySinh, GioiTinh, DiaChi, SoDienThoai, Email)
+        VALUES (@MaDocGia, @HoTen, @NgaySinh, @GioiTinh, @DiaChi, @SoDienThoai, @Email)
+    ";
+
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+        new SqlParameter("@MaDocGia", txtmadg.Text.Trim()),
+        new SqlParameter("@HoTen", txttendg.Text.Trim()),
+        new SqlParameter("@NgaySinh", txtngaysinh.Text.Trim()),
+        new SqlParameter("@GioiTinh", txtgioitinh.Text.Trim()),
+        new SqlParameter("@DiaChi", txtdiachi.Text.Trim()),
+        new SqlParameter("@SoDienThoai", txtsdt.Text.Trim()),
+        new SqlParameter("@Email", txtemail.Text.Trim())
+                };
+
+                qltt.ExecuteNonQuery(sql, parameters);
+
+                MessageBox.Show("Thêm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Thêm Thất Bại", "Lỗi");
+                MessageBox.Show("Thêm thất bại!\n" + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                taidocgia();
             }
         }
 
         private void capnhat_Click(object sender, EventArgs e)
         {
-            if (txtmadg.Text != "")
+            /*if (txtmadg.Text != "")
             {
                 String sql = "UPDATE DocGia SET ";
                 sql += "HoTen = N'" + txttendg.Text + "', ";
@@ -79,6 +100,49 @@ namespace quanlythuvien
             else
             {
                 MessageBox.Show("Bạn chưa chọn...");
+            }*/
+            if (string.IsNullOrWhiteSpace(txtmadg.Text))
+            {
+                MessageBox.Show("Bạn chưa chọn độc giả để cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string sql = @"UPDATE DocGia
+                   SET HoTen = @HoTen,
+                       NgaySinh = @NgaySinh,
+                       GioiTinh = @GioiTinh,
+                       DiaChi = @DiaChi,
+                       SoDienThoai = @SoDienThoai,
+                       Email = @Email
+                   WHERE MaDocGia = @MaDocGia";
+
+            SqlParameter[] parameters =
+            {
+        new SqlParameter("@HoTen", SqlDbType.NVarChar) { Value = txttendg.Text.Trim() },
+        new SqlParameter("@NgaySinh", SqlDbType.Date) { Value = txtngaysinh.Text.Trim() },
+        new SqlParameter("@GioiTinh", SqlDbType.NVarChar) { Value = txtgioitinh.Text.Trim() },
+        new SqlParameter("@DiaChi", SqlDbType.NVarChar) { Value = txtdiachi.Text.Trim() },
+        new SqlParameter("@SoDienThoai", SqlDbType.VarChar) { Value = txtsdt.Text.Trim() },
+        new SqlParameter("@Email", SqlDbType.VarChar) { Value = txtemail.Text.Trim() },
+        new SqlParameter("@MaDocGia", SqlDbType.VarChar) { Value = txtmadg.Text.Trim() }
+    };
+
+            try
+            {
+                int result = qltt.ExecuteNonQuery(sql, parameters);
+                if (result > 0)
+                {
+                    MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    taidocgia();
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy độc giả cần cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi cập nhật: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void btnxoa_Click(object sender, EventArgs e)
@@ -116,60 +180,6 @@ namespace quanlythuvien
                 }
             }
         }
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void trangChủToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new trangchu().ShowDialog();
-            this.Show();
-        }
-
-        private void quảnLýSáchToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new quanlysach().ShowDialog();
-            this.Show();
-        }
-
-        private void độcGiảToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new docgia().ShowDialog();
-            this.Show();
-        }
-
-        private void mượnTrảSáchToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new muontra().ShowDialog();
-            this.Show();
-        }
-
-        private void báoCáoThốngKêToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new baocao().ShowDialog();
-            this.Show();
-        }
-
-        private void tàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new thongtinthuthu().ShowDialog();
-            this.Show();
-        }
-
-        private void dangxuat_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new dangnhap().ShowDialog();
-            this.Close();
-        }
-
         private void timkiem_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -179,5 +189,54 @@ namespace quanlythuvien
                 e.SuppressKeyPress = true;
             }
         }
+        private void btntrangchu_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new trangchu().ShowDialog();
+            this.Show();
+        }
+
+        private void btnsach_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new quanlysach().ShowDialog();
+            this.Show();
+        }
+
+        private void btndocgia_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new docgia().ShowDialog();
+            this.Show();
+        }
+
+        private void btnmuontra_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new muontra().ShowDialog();
+            this.Show();
+        }
+
+        private void btnbaocao_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new baocao().ShowDialog();
+            this.Show();
+        }
+
+        private void btntaikhoan_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new thongtinthuthu().ShowDialog();
+            this.Show();
+        }
+
+        private void btndangxuat_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new dangnhap().ShowDialog();
+            this.Close();
+        }
+       
     }
 }

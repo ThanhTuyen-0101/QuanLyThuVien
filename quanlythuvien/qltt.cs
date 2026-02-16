@@ -9,46 +9,54 @@ namespace quanlythuvien
 {
     public class qltt
     {
-        protected static String _connectString = "server=.;database=QuanLyThuVien;integrated security=SSPI";
-        public static DataTable ExecuteQuery(String sql, params SqlParameter[] parameters)
+        protected static string _connectString =
+            "server=.;database=QuanLyThuVien;integrated security=SSPI";
+
+        // SELECT
+        public static DataTable ExecuteQuery(string sql, params SqlParameter[] parameters)
         {
             DataTable dt = new DataTable();
-            SqlConnection connect = new SqlConnection(_connectString);
-            connect.Open();
-            SqlCommand command = connect.CreateCommand();
-            command.CommandText = sql;
-            if (parameters != null && parameters.Length > 0)
+
+            using (SqlConnection connect = new SqlConnection(_connectString))
+            using (SqlCommand command = new SqlCommand(sql, connect))
             {
-                command.Parameters.AddRange(parameters);
+                if (parameters != null && parameters.Length > 0)
+                    command.Parameters.AddRange(parameters);
+
+                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                {
+                    connect.Open();
+                    adapter.Fill(dt);
+                }
             }
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.SelectCommand = command;
-            adapter.Fill(dt);
+
             return dt;
         }
-        public static void ExecuteNonQuery(String sql)
-        {
-            SqlConnection connect = new SqlConnection(_connectString);
-            connect.Open();
-            SqlCommand command = connect.CreateCommand();
-            command.CommandText = sql;
-            command.ExecuteNonQuery();
-        }
-        public static int ExecuteNonQuery(String sql, params SqlParameter[] parameters)
+
+        // INSERT, UPDATE, DELETE (không tham số)
+        public static void ExecuteNonQuery(string sql)
         {
             using (SqlConnection connect = new SqlConnection(_connectString))
+            using (SqlCommand command = new SqlCommand(sql, connect))
             {
                 connect.Open();
-                using (SqlCommand command = connect.CreateCommand())
-                {
-                    command.CommandText = sql;
-                    if (parameters != null && parameters.Length > 0)
-                    {
-                        command.Parameters.AddRange(parameters);
-                    }
-                    return command.ExecuteNonQuery();
-                }
+                command.ExecuteNonQuery();
+            }
+        }
+
+        // INSERT, UPDATE, DELETE (có tham số)
+        public static int ExecuteNonQuery(string sql, params SqlParameter[] parameters)
+        {
+            using (SqlConnection connect = new SqlConnection(_connectString))
+            using (SqlCommand command = new SqlCommand(sql, connect))
+            {
+                if (parameters != null && parameters.Length > 0)
+                    command.Parameters.AddRange(parameters);
+
+                connect.Open();
+                return command.ExecuteNonQuery();
             }
         }
     }
+
 }

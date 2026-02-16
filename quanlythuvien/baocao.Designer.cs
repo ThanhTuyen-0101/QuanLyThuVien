@@ -1,5 +1,4 @@
-﻿
-namespace quanlythuvien
+﻿namespace quanlythuvien
 {
     partial class baocao
     {
@@ -29,88 +28,79 @@ namespace quanlythuvien
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(baocao));
-            this.lbTong = new System.Windows.Forms.Label();
-            this.GridBaoCao = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnThoat = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btndangxuat = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnThongKe = new System.Windows.Forms.Button();
             this.checkdatra = new System.Windows.Forms.RadioButton();
+            this.checkyeuthich = new System.Windows.Forms.RadioButton();
+            this.btnThoat = new System.Windows.Forms.Button();
+            this.GridBaoCao = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbTong = new System.Windows.Forms.Label();
             this.checkdangmuon = new System.Windows.Forms.RadioButton();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.trangChủToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.quảnLýSáchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.độcGiảToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mượnTrảSáchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.báoCáoThốngKêToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tàiKhoảnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.dangxuat = new System.Windows.Forms.ToolStripButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.btntrangchu = new System.Windows.Forms.Button();
+            this.btnsach = new System.Windows.Forms.Button();
+            this.btndocgia = new System.Windows.Forms.Button();
+            this.btnmuontra = new System.Windows.Forms.Button();
+            this.btnbaocao = new System.Windows.Forms.Button();
+            this.btntaikhoan = new System.Windows.Forms.Button();
+            this.panel3.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridBaoCao)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
-            // lbTong
+            // panel3
             // 
-            this.lbTong.AutoSize = true;
-            this.lbTong.Font = new System.Drawing.Font("Showcard Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTong.Location = new System.Drawing.Point(860, 115);
-            this.lbTong.Name = "lbTong";
-            this.lbTong.Size = new System.Drawing.Size(51, 18);
-            this.lbTong.TabIndex = 7;
-            this.lbTong.Text = "Tổng:";
+            this.panel3.BackColor = System.Drawing.Color.Black;
+            this.panel3.Controls.Add(this.pictureBox1);
+            this.panel3.Controls.Add(this.btndangxuat);
+            this.panel3.Controls.Add(this.pictureBox3);
+            this.panel3.Controls.Add(this.flowLayoutPanel1);
+            this.panel3.ForeColor = System.Drawing.Color.Black;
+            this.panel3.Location = new System.Drawing.Point(0, -2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(401, 1086);
+            this.panel3.TabIndex = 13;
             // 
-            // GridBaoCao
+            // btndangxuat
             // 
-            this.GridBaoCao.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(218)))));
-            this.GridBaoCao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridBaoCao.Location = new System.Drawing.Point(-2, 272);
-            this.GridBaoCao.Name = "GridBaoCao";
-            this.GridBaoCao.RowHeadersWidth = 51;
-            this.GridBaoCao.RowTemplate.Height = 24;
-            this.GridBaoCao.Size = new System.Drawing.Size(1092, 319);
-            this.GridBaoCao.TabIndex = 6;
+            this.btndangxuat.Font = new System.Drawing.Font("Times New Roman", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btndangxuat.Location = new System.Drawing.Point(186, 983);
+            this.btndangxuat.Name = "btndangxuat";
+            this.btndangxuat.Size = new System.Drawing.Size(160, 61);
+            this.btndangxuat.TabIndex = 30;
+            this.btndangxuat.Text = "Đăng xuất ";
+            this.btndangxuat.UseVisualStyleBackColor = true;
+            this.btndangxuat.Click += new System.EventHandler(this.btndangxuat_Click);
             // 
-            // groupBox1
+            // flowLayoutPanel1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(218)))));
-            this.groupBox1.Controls.Add(this.btnThoat);
-            this.groupBox1.Controls.Add(this.btnThongKe);
-            this.groupBox1.Controls.Add(this.lbTong);
-            this.groupBox1.Controls.Add(this.checkdatra);
-            this.groupBox1.Controls.Add(this.checkdangmuon);
-            this.groupBox1.Font = new System.Drawing.Font("Showcard Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(112)))), ((int)(((byte)(122)))));
-            this.groupBox1.Location = new System.Drawing.Point(-2, 105);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1092, 162);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Tùy chọn thống kê";
-            // 
-            // btnThoat
-            // 
-            this.btnThoat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(112)))), ((int)(((byte)(122)))));
-            this.btnThoat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(218)))));
-            this.btnThoat.Location = new System.Drawing.Point(855, 45);
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(75, 45);
-            this.btnThoat.TabIndex = 2;
-            this.btnThoat.Text = "Thoát";
-            this.btnThoat.UseVisualStyleBackColor = false;
+            this.flowLayoutPanel1.Controls.Add(this.btntrangchu);
+            this.flowLayoutPanel1.Controls.Add(this.btnsach);
+            this.flowLayoutPanel1.Controls.Add(this.btndocgia);
+            this.flowLayoutPanel1.Controls.Add(this.btnmuontra);
+            this.flowLayoutPanel1.Controls.Add(this.btnbaocao);
+            this.flowLayoutPanel1.Controls.Add(this.btntaikhoan);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(35, 289);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(311, 594);
+            this.flowLayoutPanel1.TabIndex = 0;
             // 
             // btnThongKe
             // 
-            this.btnThongKe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(112)))), ((int)(((byte)(122)))));
+            this.btnThongKe.BackColor = System.Drawing.Color.Black;
+            this.btnThongKe.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThongKe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(218)))));
-            this.btnThongKe.Location = new System.Drawing.Point(587, 44);
+            this.btnThongKe.Location = new System.Drawing.Point(540, 54);
             this.btnThongKe.Name = "btnThongKe";
-            this.btnThongKe.Size = new System.Drawing.Size(96, 46);
+            this.btnThongKe.Size = new System.Drawing.Size(184, 46);
             this.btnThongKe.TabIndex = 1;
             this.btnThongKe.Text = "Thống kê";
             this.btnThongKe.UseVisualStyleBackColor = false;
@@ -119,187 +109,244 @@ namespace quanlythuvien
             // checkdatra
             // 
             this.checkdatra.AutoSize = true;
-            this.checkdatra.Location = new System.Drawing.Point(200, 77);
+            this.checkdatra.BackColor = System.Drawing.Color.Transparent;
+            this.checkdatra.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkdatra.Location = new System.Drawing.Point(88, 120);
             this.checkdatra.Name = "checkdatra";
-            this.checkdatra.Size = new System.Drawing.Size(117, 22);
+            this.checkdatra.Size = new System.Drawing.Size(202, 40);
             this.checkdatra.TabIndex = 0;
             this.checkdatra.TabStop = true;
-            this.checkdatra.Text = "Sách đã trả";
-            this.checkdatra.UseVisualStyleBackColor = true;
+            this.checkdatra.Text = "Sách Đã Trả";
+            this.checkdatra.UseVisualStyleBackColor = false;
+            // 
+            // checkyeuthich
+            // 
+            this.checkyeuthich.AutoSize = true;
+            this.checkyeuthich.BackColor = System.Drawing.Color.Transparent;
+            this.checkyeuthich.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkyeuthich.Location = new System.Drawing.Point(88, 187);
+            this.checkyeuthich.Name = "checkyeuthich";
+            this.checkyeuthich.Size = new System.Drawing.Size(229, 40);
+            this.checkyeuthich.TabIndex = 8;
+            this.checkyeuthich.TabStop = true;
+            this.checkyeuthich.Text = "Sách yêu thích";
+            this.checkyeuthich.UseVisualStyleBackColor = false;
+            // 
+            // btnThoat
+            // 
+            this.btnThoat.BackColor = System.Drawing.Color.Black;
+            this.btnThoat.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThoat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(218)))));
+            this.btnThoat.Location = new System.Drawing.Point(808, 54);
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.Size = new System.Drawing.Size(163, 45);
+            this.btnThoat.TabIndex = 2;
+            this.btnThoat.Text = "Thoát";
+            this.btnThoat.UseVisualStyleBackColor = false;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
+            // 
+            // GridBaoCao
+            // 
+            this.GridBaoCao.BackgroundColor = System.Drawing.Color.Black;
+            this.GridBaoCao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridBaoCao.GridColor = System.Drawing.Color.White;
+            this.GridBaoCao.Location = new System.Drawing.Point(428, 317);
+            this.GridBaoCao.Name = "GridBaoCao";
+            this.GridBaoCao.RowHeadersWidth = 51;
+            this.GridBaoCao.RowTemplate.Height = 24;
+            this.GridBaoCao.Size = new System.Drawing.Size(1060, 767);
+            this.GridBaoCao.TabIndex = 12;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.checkyeuthich);
+            this.groupBox1.Controls.Add(this.btnThoat);
+            this.groupBox1.Controls.Add(this.btnThongKe);
+            this.groupBox1.Controls.Add(this.lbTong);
+            this.groupBox1.Controls.Add(this.checkdatra);
+            this.groupBox1.Controls.Add(this.checkdangmuon);
+            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.ForeColor = System.Drawing.Color.Black;
+            this.groupBox1.Location = new System.Drawing.Point(428, 31);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1060, 252);
+            this.groupBox1.TabIndex = 11;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Tùy chọn thống kê";
+            // 
+            // lbTong
+            // 
+            this.lbTong.AutoSize = true;
+            this.lbTong.BackColor = System.Drawing.Color.Transparent;
+            this.lbTong.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTong.Location = new System.Drawing.Point(802, 191);
+            this.lbTong.Name = "lbTong";
+            this.lbTong.Size = new System.Drawing.Size(89, 36);
+            this.lbTong.TabIndex = 7;
+            this.lbTong.Text = "Tổng:";
             // 
             // checkdangmuon
             // 
             this.checkdangmuon.AutoSize = true;
-            this.checkdangmuon.Location = new System.Drawing.Point(200, 29);
+            this.checkdangmuon.BackColor = System.Drawing.Color.Transparent;
+            this.checkdangmuon.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkdangmuon.Location = new System.Drawing.Point(88, 60);
             this.checkdangmuon.Name = "checkdangmuon";
-            this.checkdangmuon.Size = new System.Drawing.Size(150, 22);
+            this.checkdangmuon.Size = new System.Drawing.Size(267, 40);
             this.checkdangmuon.TabIndex = 0;
             this.checkdangmuon.TabStop = true;
-            this.checkdangmuon.Text = "Sách đang mượn";
-            this.checkdangmuon.UseVisualStyleBackColor = true;
+            this.checkdangmuon.Text = "Sách Đang Mượn";
+            this.checkdangmuon.UseVisualStyleBackColor = false;
             // 
-            // panel1
+            // pictureBox1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(112)))), ((int)(((byte)(122)))));
-            this.panel1.Controls.Add(this.menuStrip1);
-            this.panel1.Location = new System.Drawing.Point(-2, 38);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1165, 64);
-            this.panel1.TabIndex = 13;
+            this.pictureBox1.Image = global::quanlythuvien.Properties.Resources.user1;
+            this.pictureBox1.Location = new System.Drawing.Point(38, 968);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(83, 76);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 31;
+            this.pictureBox1.TabStop = false;
             // 
-            // menuStrip1
+            // pictureBox3
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(112)))), ((int)(((byte)(122)))));
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.menuStrip1.Font = new System.Drawing.Font("Showcard Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.trangChủToolStripMenuItem,
-            this.quảnLýSáchToolStripMenuItem,
-            this.độcGiảToolStripMenuItem,
-            this.mượnTrảSáchToolStripMenuItem,
-            this.báoCáoThốngKêToolStripMenuItem,
-            this.tàiKhoảnToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(81, 18);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(861, 31);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.Image = global::quanlythuvien.Properties.Resources.Screenshot_2026_01_25_104349_removebg_preview;
+            this.pictureBox3.Location = new System.Drawing.Point(35, 33);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(311, 218);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 28;
+            this.pictureBox3.TabStop = false;
             // 
-            // trangChủToolStripMenuItem
+            // btntrangchu
             // 
-            this.trangChủToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(112)))), ((int)(((byte)(122)))));
-            this.trangChủToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(218)))));
-            this.trangChủToolStripMenuItem.Name = "trangChủToolStripMenuItem";
-            this.trangChủToolStripMenuItem.Size = new System.Drawing.Size(126, 27);
-            this.trangChủToolStripMenuItem.Text = "Trang chủ";
-            this.trangChủToolStripMenuItem.Click += new System.EventHandler(this.trangChủToolStripMenuItem_Click);
+            this.btntrangchu.BackColor = System.Drawing.Color.White;
+            this.btntrangchu.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btntrangchu.ForeColor = System.Drawing.Color.Black;
+            this.btntrangchu.Image = global::quanlythuvien.Properties.Resources.house_lock__3_;
+            this.btntrangchu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btntrangchu.Location = new System.Drawing.Point(3, 3);
+            this.btntrangchu.Name = "btntrangchu";
+            this.btntrangchu.Size = new System.Drawing.Size(308, 67);
+            this.btntrangchu.TabIndex = 0;
+            this.btntrangchu.Text = "TRANG CHỦ";
+            this.btntrangchu.UseVisualStyleBackColor = false;
+            this.btntrangchu.Click += new System.EventHandler(this.btntrangchu_Click);
             // 
-            // quảnLýSáchToolStripMenuItem
+            // btnsach
             // 
-            this.quảnLýSáchToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(112)))), ((int)(((byte)(122)))));
-            this.quảnLýSáchToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(218)))));
-            this.quảnLýSáchToolStripMenuItem.Name = "quảnLýSáchToolStripMenuItem";
-            this.quảnLýSáchToolStripMenuItem.Size = new System.Drawing.Size(151, 27);
-            this.quảnLýSáchToolStripMenuItem.Text = "Quản lý sách";
-            this.quảnLýSáchToolStripMenuItem.Click += new System.EventHandler(this.quảnLýSáchToolStripMenuItem_Click);
+            this.btnsach.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnsach.Image = global::quanlythuvien.Properties.Resources.book_brain__1_;
+            this.btnsach.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnsach.Location = new System.Drawing.Point(3, 103);
+            this.btnsach.Margin = new System.Windows.Forms.Padding(3, 30, 3, 3);
+            this.btnsach.Name = "btnsach";
+            this.btnsach.Size = new System.Drawing.Size(308, 72);
+            this.btnsach.TabIndex = 1;
+            this.btnsach.Text = "SÁCH";
+            this.btnsach.UseVisualStyleBackColor = true;
+            this.btnsach.Click += new System.EventHandler(this.btnsach_Click);
             // 
-            // độcGiảToolStripMenuItem
+            // btndocgia
             // 
-            this.độcGiảToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(218)))));
-            this.độcGiảToolStripMenuItem.Name = "độcGiảToolStripMenuItem";
-            this.độcGiảToolStripMenuItem.Size = new System.Drawing.Size(89, 27);
-            this.độcGiảToolStripMenuItem.Text = "Độc giả";
-            this.độcGiảToolStripMenuItem.Click += new System.EventHandler(this.độcGiảToolStripMenuItem_Click);
+            this.btndocgia.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btndocgia.Image = global::quanlythuvien.Properties.Resources.department__1_;
+            this.btndocgia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btndocgia.Location = new System.Drawing.Point(3, 208);
+            this.btndocgia.Margin = new System.Windows.Forms.Padding(3, 30, 3, 3);
+            this.btndocgia.Name = "btndocgia";
+            this.btndocgia.Size = new System.Drawing.Size(308, 72);
+            this.btndocgia.TabIndex = 2;
+            this.btndocgia.Text = "ĐỘC GIẢ";
+            this.btndocgia.UseVisualStyleBackColor = true;
+            this.btndocgia.Click += new System.EventHandler(this.btndocgia_Click);
             // 
-            // mượnTrảSáchToolStripMenuItem
+            // btnmuontra
             // 
-            this.mượnTrảSáchToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(218)))));
-            this.mượnTrảSáchToolStripMenuItem.Name = "mượnTrảSáchToolStripMenuItem";
-            this.mượnTrảSáchToolStripMenuItem.Size = new System.Drawing.Size(160, 27);
-            this.mượnTrảSáchToolStripMenuItem.Text = "Mượn trả sách";
-            this.mượnTrảSáchToolStripMenuItem.Click += new System.EventHandler(this.mượnTrảSáchToolStripMenuItem_Click);
+            this.btnmuontra.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnmuontra.Image = global::quanlythuvien.Properties.Resources.onboarding;
+            this.btnmuontra.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnmuontra.Location = new System.Drawing.Point(3, 313);
+            this.btnmuontra.Margin = new System.Windows.Forms.Padding(3, 30, 3, 3);
+            this.btnmuontra.Name = "btnmuontra";
+            this.btnmuontra.Size = new System.Drawing.Size(308, 72);
+            this.btnmuontra.TabIndex = 3;
+            this.btnmuontra.Text = "MƯỢN TRẢ";
+            this.btnmuontra.UseVisualStyleBackColor = true;
+            this.btnmuontra.Click += new System.EventHandler(this.btnmuontra_Click);
             // 
-            // báoCáoThốngKêToolStripMenuItem
+            // btnbaocao
             // 
-            this.báoCáoThốngKêToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(218)))));
-            this.báoCáoThốngKêToolStripMenuItem.Name = "báoCáoThốngKêToolStripMenuItem";
-            this.báoCáoThốngKêToolStripMenuItem.Size = new System.Drawing.Size(203, 27);
-            this.báoCáoThốngKêToolStripMenuItem.Text = "Báo cáo & Thống kê";
-            this.báoCáoThốngKêToolStripMenuItem.Click += new System.EventHandler(this.báoCáoThốngKêToolStripMenuItem_Click);
+            this.btnbaocao.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnbaocao.Image = global::quanlythuvien.Properties.Resources.trading__1_;
+            this.btnbaocao.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnbaocao.Location = new System.Drawing.Point(3, 418);
+            this.btnbaocao.Margin = new System.Windows.Forms.Padding(3, 30, 3, 3);
+            this.btnbaocao.Name = "btnbaocao";
+            this.btnbaocao.Size = new System.Drawing.Size(308, 72);
+            this.btnbaocao.TabIndex = 4;
+            this.btnbaocao.Text = "BÁO CÁO";
+            this.btnbaocao.UseVisualStyleBackColor = true;
+            this.btnbaocao.Click += new System.EventHandler(this.btnbaocao_Click);
             // 
-            // tàiKhoảnToolStripMenuItem
+            // btntaikhoan
             // 
-            this.tàiKhoảnToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(218)))));
-            this.tàiKhoảnToolStripMenuItem.Name = "tàiKhoảnToolStripMenuItem";
-            this.tàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(124, 27);
-            this.tàiKhoảnToolStripMenuItem.Text = "Tài khoản";
-            this.tàiKhoảnToolStripMenuItem.Click += new System.EventHandler(this.tàiKhoảnToolStripMenuItem_Click);
+            this.btntaikhoan.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btntaikhoan.Image = global::quanlythuvien.Properties.Resources.people_roof;
+            this.btntaikhoan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btntaikhoan.Location = new System.Drawing.Point(3, 523);
+            this.btntaikhoan.Margin = new System.Windows.Forms.Padding(3, 30, 3, 3);
+            this.btntaikhoan.Name = "btntaikhoan";
+            this.btntaikhoan.Size = new System.Drawing.Size(308, 72);
+            this.btntaikhoan.TabIndex = 5;
+            this.btntaikhoan.Text = "TÀI KHOẢN";
+            this.btntaikhoan.UseVisualStyleBackColor = true;
+            this.btntaikhoan.Click += new System.EventHandler(this.btntaikhoan_Click);
             // 
-            // toolStrip1
+            // BC
             // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.dangxuat});
-            this.toolStrip1.Location = new System.Drawing.Point(-2, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(376, 33);
-            this.toolStrip1.TabIndex = 12;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(112)))), ((int)(((byte)(122)))));
-            this.toolStripButton1.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(218)))));
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(218, 30);
-            this.toolStripButton1.Text = "Xin chào thủ thư";
-            // 
-            // dangxuat
-            // 
-            this.dangxuat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(112)))), ((int)(((byte)(122)))));
-            this.dangxuat.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dangxuat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(218)))));
-            this.dangxuat.Image = ((System.Drawing.Image)(resources.GetObject("dangxuat.Image")));
-            this.dangxuat.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.dangxuat.Name = "dangxuat";
-            this.dangxuat.Size = new System.Drawing.Size(145, 30);
-            this.dangxuat.Text = "Đăng xuất";
-            this.dangxuat.Click += new System.EventHandler(this.dangxuat_Click);
-            // 
-            // baocao
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1086, 608);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.toolStrip1);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(206)))), ((int)(((byte)(109)))));
+            this.ClientSize = new System.Drawing.Size(1560, 1173);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.GridBaoCao);
             this.Controls.Add(this.groupBox1);
-            this.Font = new System.Drawing.Font("Palatino Linotype", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(112)))), ((int)(((byte)(122)))));
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "baocao";
-            this.Text = "Báo cáo Thống kê";
-            this.Load += new System.EventHandler(this.baocao_Load);
+            this.Name = "BC";
+            this.Text = "BC";
+            this.panel3.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridBaoCao)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label lbTong;
-        private System.Windows.Forms.DataGridView GridBaoCao;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnThoat;
+        private System.Windows.Forms.Button btntrangchu;
+        private System.Windows.Forms.Button btnsach;
+        private System.Windows.Forms.Button btndocgia;
+        private System.Windows.Forms.Button btnmuontra;
+        private System.Windows.Forms.Button btnbaocao;
+        private System.Windows.Forms.Button btntaikhoan;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btndangxuat;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btnThongKe;
         private System.Windows.Forms.RadioButton checkdatra;
+        private System.Windows.Forms.RadioButton checkyeuthich;
+        private System.Windows.Forms.Button btnThoat;
+        private System.Windows.Forms.DataGridView GridBaoCao;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lbTong;
         private System.Windows.Forms.RadioButton checkdangmuon;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem trangChủToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem quảnLýSáchToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem độcGiảToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mượnTrảSáchToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem báoCáoThốngKêToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tàiKhoảnToolStripMenuItem;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton dangxuat;
     }
 }

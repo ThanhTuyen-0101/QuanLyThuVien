@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 namespace quanlythuvien
 {
     public partial class thongtindocgia : Form
@@ -16,7 +17,7 @@ namespace quanlythuvien
         {
             InitializeComponent();
         }
-         private void Form2_Load(object sender, EventArgs e)
+        private void thongtindocgia_Load(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(thongtindangnhap.MaDocGia))
             {
@@ -93,30 +94,44 @@ namespace quanlythuvien
         }
         private void btncapnhat_Click(object sender, EventArgs e)
         {
-            if (txtmadocgia1.Text != "")
-            {
-                try
-                {
-                    string sql = "UPDATE DocGia SET "
-                        + "HoTen = N'" + txttendocgia1.Text + "', "
-                        + "DiaChi = N'" + txtdiachi1.Text + "', "
-                        + "SoDienThoai = '" + txtsodienthoai1.Text + "', "
-                        + "Email = '" + txtemail1.Text + "', "
-                        + "GioiTinh = N'" + txtgioitinh1.Text + "' "
-                        + "WHERE MaDocGia = '" + txtmadocgia1.Text + "'";
-
-                    qltt.ExecuteNonQuery(sql);
-                    MessageBox.Show("Cập Nhật Thành Công");
-                    TaiThongTinCaNhan();
-                }
-                catch
-                {
-                    MessageBox.Show("Lỗi khi cập nhật. Kiểm tra lại dữ liệu.");
-                }
-            }
-            else
+            if (string.IsNullOrWhiteSpace(txtmadocgia1.Text))
             {
                 MessageBox.Show("Bạn chưa chọn dòng cần sửa.");
+                return;
+            }
+
+            try
+            {
+                string sql = @"
+            UPDATE DocGia 
+            SET HoTen = @HoTen,
+                DiaChi = @DiaChi,
+                NgaySinh = @NgaySinh,   
+                SoDienThoai = @SoDienThoai,
+                Email = @Email,
+                GioiTinh = @GioiTinh
+            WHERE MaDocGia = @MaDocGia";
+
+                SqlParameter[] parameters =
+                {
+            new SqlParameter("@HoTen", txttendocgia1.Text),
+            new SqlParameter("@NgaySinh", DateTime.ParseExact(txtngaysinh1.Text, "dd/MM/yyyy", null)),
+            new SqlParameter("@DiaChi", txtdiachi1.Text),
+            new SqlParameter("@SoDienThoai", txtsodienthoai1.Text),
+            new SqlParameter("@Email", txtemail1.Text),
+            new SqlParameter("@GioiTinh", txtgioitinh1.Text),
+            new SqlParameter("@MaDocGia", txtmadocgia1.Text)
+        };
+
+                qltt.ExecuteNonQuery(sql, parameters);
+
+                MessageBox.Show("Cập Nhật Thành Công");
+                TaiThongTinCaNhan();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi cập nhật: " + ex.Message);
+                throw;
             }
         }
         private void toolStripContainer1_ContentPanel_Load(object sender, EventArgs e)
@@ -132,7 +147,7 @@ namespace quanlythuvien
                     LoadLichSuMuonTra();
                 else
                     TimSachTheoTen(tensach);
-                e.SuppressKeyPress = true; 
+                e.SuppressKeyPress = true;
             }
         }
         private void dangxuat_Click(object sender, EventArgs e)
@@ -141,5 +156,20 @@ namespace quanlythuvien
             new dangnhap().ShowDialog();
             this.Close();
         }
+
+        private void btnGiaHan_Click(object sender, EventArgs e)
+        {
+            string maDocGia = txtmadocgia1.Text;
+            if (string.IsNullOrEmpty(maDocGia))
+            {
+                MessageBox.Show("Mã độc giả không hợp lệ.");
+                return;
+            }
+            this.Hide();
+            new GiaHanSachDG(maDocGia).ShowDialog();
+            this.Show();
+        }
+
+        
     }
 }

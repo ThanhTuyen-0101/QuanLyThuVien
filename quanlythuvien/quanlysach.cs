@@ -13,6 +13,7 @@ namespace quanlythuvien
 {
     public partial class quanlysach : Form
     {
+        
         public quanlysach()
         {
             InitializeComponent();
@@ -46,19 +47,6 @@ namespace quanlythuvien
                 txtsoluong.Text = row.Cells["SoLuong"].Value.ToString();
                 txtconlai.Text = row.Cells["SoLuongConLai"].Value.ToString();
             }
-        }                
-        private void quảnLýSáchToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new quanlysach().ShowDialog();
-            this.Show();
-        }
-
-        private void trangChủToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new trangchu().ShowDialog();
-            this.Show();
         }
 
         private void btnthemqls_Click(object sender, EventArgs e)
@@ -75,8 +63,8 @@ namespace quanlythuvien
 
             }
         }
-            private void btncapnhatqls_Click(object sender, EventArgs e)
-            {
+        private void btncapnhatqls_Click(object sender, EventArgs e)
+        {
             if (txtmasach.Text != "")
             {
                 try
@@ -125,7 +113,7 @@ namespace quanlythuvien
                 }
                 catch (SqlException ex)
                 {
-                    if (ex.Message.Contains("FK_")) 
+                    if (ex.Message.Contains("FK_"))
                         MessageBox.Show("Sách đang được mượn, không xóa được.");
                     else
                         MessageBox.Show("Lỗi SQL: " + ex.Message);
@@ -141,7 +129,7 @@ namespace quanlythuvien
         {
             if (e.KeyCode == Keys.Enter)
             {
-                taisach(txttimkiemqls.Text); 
+                taisach(txttimkiemqls.Text);
 
                 e.Handled = true;
                 e.SuppressKeyPress = true;
@@ -158,60 +146,112 @@ namespace quanlythuvien
 
         }
 
-        private void độcGiảToolStripMenuItem_Click(object sender, EventArgs e)
+        private void toolStripContainer1_TopToolStripPanel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btntrangchu_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new trangchu().ShowDialog();
+            this.Show();
+        }
+
+        private void btnsach_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new quanlysach().ShowDialog();
+            this.Show();
+        }
+
+        private void btndocgia_Click(object sender, EventArgs e)
         {
             this.Hide();
             new docgia().ShowDialog();
             this.Show();
         }
 
-        private void mượnTrảSáchToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnmuontra_Click(object sender, EventArgs e)
         {
             this.Hide();
             new muontra().ShowDialog();
             this.Show();
         }
 
-        private void báoCáoThốngKêToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnbaocao_Click(object sender, EventArgs e)
         {
             this.Hide();
             new baocao().ShowDialog();
             this.Show();
         }
 
-        private void tàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btntaikhoan_Click(object sender, EventArgs e)
         {
             this.Hide();
             new thongtinthuthu().ShowDialog();
             this.Show();
         }
 
-        private void dangxuat_Click(object sender, EventArgs e)
+        private void btndangxuat_Click(object sender, EventArgs e)
         {
             this.Hide();
             new dangnhap().ShowDialog();
             this.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new TacGia().ShowDialog();
-            this.Show();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void pbtheloai_Click(object sender, EventArgs e)
         {
             this.Hide();
             new TheLoai().ShowDialog();
             this.Show();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void lbtheloai_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new TheLoai().ShowDialog();
+            this.Show();
+        }
+
+        private void pbtacgia_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new TacGia().ShowDialog();
+            this.Show();
+        }
+
+        private void lbtacgia_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new TacGia().ShowDialog();
+            this.Show();
+        }
+
+        private void pbnhaxuatban_Click(object sender, EventArgs e)
         {
             this.Hide();
             new NhaXuatBan().ShowDialog();
             this.Show();
         }
+
+        private void lbnhaxuatban_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new NhaXuatBan().ShowDialog();
+            this.Show();
+        }
+       
+        private void lbsach_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }
