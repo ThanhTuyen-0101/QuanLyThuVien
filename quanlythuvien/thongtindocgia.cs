@@ -13,21 +13,22 @@ namespace quanlythuvien
 {
     public partial class thongtindocgia : Form
     {
+        private bool isReturning = false;
+
         public thongtindocgia()
         {
             InitializeComponent();
+            this.FormClosed += thongtindocgia_FormClosed;
         }
-        private void thongtindocgia_Load(object sender, EventArgs e)
+
+        private void thongtindocgia_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (string.IsNullOrEmpty(thongtindangnhap.MaDocGia))
+            if (!isReturning)
             {
-                MessageBox.Show("Vui lòng đăng nhập lại.");
-                this.Close();
-                return;
+                Application.Exit();
             }
-            TaiThongTinCaNhan();
-            LoadLichSuMuonTra();
         }
+
         private void TaiThongTinCaNhan()
         {
             string sql = "SELECT MaDocGia, HoTen, DiaChi, SoDienThoai, Email, GioiTinh, NgaySinh FROM DocGia WHERE MaDocGia = N'" + thongtindangnhap.MaDocGia.Replace("'", "''") + "'";
@@ -57,33 +58,51 @@ namespace quanlythuvien
             {
                 MessageBox.Show("Không tìm thấy thông tin độc giả.");
             }
-
         }
+
         private void LoadLichSuMuonTra()
         {
-            if (thongtindangnhap.MaDocGia == null || thongtindangnhap.MaDocGia == "")
+            if (string.IsNullOrEmpty(thongtindangnhap.MaDocGia))
             {
                 MessageBox.Show("Mã độc giả không hợp lệ. Vui lòng đăng nhập lại!");
-                Close();
+                isReturning = true;
+                this.Close();
                 return;
             }
-
-            string sql = "SELECT mt.MaDocGia, dg.HoTen, s.TieuDe, mt.NgayMuon, mt.NgayTra, mt.TrangThai, mt.GhiChu " +
-                         "FROM MuonTra mt JOIN DocGia dg ON mt.MaDocGia = dg.MaDocGia " +
-                         "JOIN Sach s ON mt.MaSach = s.MaSach " +
-                         "WHERE mt.MaDocGia = N'" + thongtindangnhap.MaDocGia + "'";
+            string sql = @"
+                SELECT mt.MaDocGia AS [Mã Độc Giả], 
+                       dg.HoTen AS [Họ Tên], 
+                       s.TieuDe AS [Tên Sách], 
+                       mt.NgayMuon AS [Ngày Mượn], 
+                       mt.NgayTra AS [Ngày Trả], 
+                       mt.TrangThai AS [Trạng Thái], 
+                       mt.GhiChu AS [Ghi Chú]
+                FROM MuonTra mt 
+                JOIN DocGia dg ON mt.MaDocGia = dg.MaDocGia 
+                JOIN Sach s ON mt.MaSach = s.MaSach 
+                WHERE mt.MaDocGia = N'" + thongtindangnhap.MaDocGia + "'";
 
             dgv.DataSource = qltt.ExecuteQuery(sql);
         }
 
         private void TimSachTheoTen(string tenSach)
         {
-            string sql = "SELECT s.MaSach, s.TieuDe, t.TenTacGia, tl.TenTheLoai, nxb.TenNhaXuatBan, s.NamXuatBan, s.ISBN, s.SoLuong, s.SoLuongConLai " +
-                     "FROM Sach s " +
-                     "JOIN TacGia t ON s.MaTacGia = t.MaTacGia " +
-                     "JOIN TheLoai tl ON s.MaTheLoai = tl.MaTheLoai " +
-                     "JOIN NhaXuatBan nxb ON s.MaNhaXuatBan = nxb.MaNhaXuatBan " +
-                     "WHERE s.TieuDe LIKE N'%" + tenSach.Replace("'", "''") + "%'";
+            string sql = @"
+                SELECT s.MaSach AS [Mã Sách], 
+                       s.TieuDe AS [Tiêu Đề], 
+                       t.TenTacGia AS [Tác Giả], 
+                       tl.TenTheLoai AS [Thể Loại], 
+                       nxb.TenNhaXuatBan AS [Nhà Xuất Bản], 
+                       s.NamXuatBan AS [Năm Xuất Bản], 
+                       s.ISBN AS [Mã ISBN], 
+                       s.SoLuong AS [Số Lượng], 
+                       s.SoLuongConLai AS [Còn Lại]
+                FROM Sach s 
+                JOIN TacGia t ON s.MaTacGia = t.MaTacGia 
+                JOIN TheLoai tl ON s.MaTheLoai = tl.MaTheLoai 
+                JOIN NhaXuatBan nxb ON s.MaNhaXuatBan = nxb.MaNhaXuatBan 
+                WHERE s.TieuDe LIKE N'%" + tenSach.Replace("'", "''") + "%'";
+
             DataTable dt = qltt.ExecuteQuery(sql);
             dgv.DataSource = dt;
 
@@ -92,6 +111,7 @@ namespace quanlythuvien
                 MessageBox.Show("Không tìm thấy sách phù hợp.");
             }
         }
+
         private void btncapnhat_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtmadocgia1.Text))
@@ -131,13 +151,14 @@ namespace quanlythuvien
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi cập nhật: " + ex.Message);
-                throw;
             }
         }
+
         private void toolStripContainer1_ContentPanel_Load(object sender, EventArgs e)
         {
 
         }
+
         private void txttimsach_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -149,12 +170,6 @@ namespace quanlythuvien
                     TimSachTheoTen(tensach);
                 e.SuppressKeyPress = true;
             }
-        }
-        private void dangxuat_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new dangnhap().ShowDialog();
-            this.Close();
         }
 
         private void btnGiaHan_Click(object sender, EventArgs e)
@@ -170,6 +185,23 @@ namespace quanlythuvien
             this.Show();
         }
 
-        
+        private void dangxuat_Click_1(object sender, EventArgs e)
+        {
+            isReturning = true;
+            Application.Restart();
+        }
+
+        private void thongtindocgia_Load_1(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(thongtindangnhap.MaDocGia))
+            {
+                MessageBox.Show("Vui lòng đăng nhập lại.");
+                isReturning = true;
+                this.Close();
+                return;
+            }
+            TaiThongTinCaNhan();
+            LoadLichSuMuonTra();
+        }
     }
 }

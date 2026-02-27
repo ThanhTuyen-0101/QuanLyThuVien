@@ -106,22 +106,22 @@
             // txttendg
             // 
             this.txttendg.BackColor = System.Drawing.SystemColors.Window;
-            this.txttendg.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txttendg.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(112)))), ((int)(((byte)(122)))));
+            this.txttendg.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txttendg.ForeColor = System.Drawing.Color.Black;
             this.txttendg.Location = new System.Drawing.Point(251, 18);
             this.txttendg.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txttendg.Name = "txttendg";
-            this.txttendg.Size = new System.Drawing.Size(259, 39);
+            this.txttendg.Size = new System.Drawing.Size(259, 44);
             this.txttendg.TabIndex = 36;
             // 
             // timkiem
             // 
-            this.timkiem.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timkiem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(112)))), ((int)(((byte)(122)))));
+            this.timkiem.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timkiem.ForeColor = System.Drawing.Color.Black;
             this.timkiem.Location = new System.Drawing.Point(251, 274);
             this.timkiem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.timkiem.Name = "timkiem";
-            this.timkiem.Size = new System.Drawing.Size(279, 39);
+            this.timkiem.Size = new System.Drawing.Size(279, 44);
             this.timkiem.TabIndex = 27;
             this.timkiem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.timkiem_KeyDown);
             // 
@@ -155,12 +155,12 @@
             // txtngaysinh
             // 
             this.txtngaysinh.BackColor = System.Drawing.SystemColors.Window;
-            this.txtngaysinh.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtngaysinh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(112)))), ((int)(((byte)(122)))));
+            this.txtngaysinh.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtngaysinh.ForeColor = System.Drawing.Color.Black;
             this.txtngaysinh.Location = new System.Drawing.Point(251, 139);
             this.txtngaysinh.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtngaysinh.Name = "txtngaysinh";
-            this.txtngaysinh.Size = new System.Drawing.Size(259, 39);
+            this.txtngaysinh.Size = new System.Drawing.Size(259, 44);
             this.txtngaysinh.TabIndex = 34;
             // 
             // capnhat
@@ -194,12 +194,12 @@
             // txtgioitinh
             // 
             this.txtgioitinh.BackColor = System.Drawing.SystemColors.Window;
-            this.txtgioitinh.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtgioitinh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(112)))), ((int)(((byte)(122)))));
+            this.txtgioitinh.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtgioitinh.ForeColor = System.Drawing.Color.Black;
             this.txtgioitinh.Location = new System.Drawing.Point(251, 200);
             this.txtgioitinh.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtgioitinh.Name = "txtgioitinh";
-            this.txtgioitinh.Size = new System.Drawing.Size(259, 39);
+            this.txtgioitinh.Size = new System.Drawing.Size(259, 44);
             this.txtgioitinh.TabIndex = 33;
             // 
             // flowLayoutPanel1
@@ -302,43 +302,43 @@
             // 
             // txtsdt
             // 
-            this.txtsdt.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtsdt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(112)))), ((int)(((byte)(122)))));
+            this.txtsdt.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtsdt.ForeColor = System.Drawing.Color.Black;
             this.txtsdt.Location = new System.Drawing.Point(853, 77);
             this.txtsdt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtsdt.Name = "txtsdt";
-            this.txtsdt.Size = new System.Drawing.Size(286, 39);
+            this.txtsdt.Size = new System.Drawing.Size(286, 44);
             this.txtsdt.TabIndex = 32;
             // 
             // txtemail
             // 
-            this.txtemail.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtemail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(112)))), ((int)(((byte)(122)))));
+            this.txtemail.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtemail.ForeColor = System.Drawing.Color.Black;
             this.txtemail.Location = new System.Drawing.Point(853, 140);
             this.txtemail.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtemail.Name = "txtemail";
-            this.txtemail.Size = new System.Drawing.Size(286, 39);
+            this.txtemail.Size = new System.Drawing.Size(286, 44);
             this.txtemail.TabIndex = 31;
             // 
             // txtdiachi
             // 
-            this.txtdiachi.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtdiachi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(112)))), ((int)(((byte)(122)))));
+            this.txtdiachi.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtdiachi.ForeColor = System.Drawing.Color.Black;
             this.txtdiachi.Location = new System.Drawing.Point(853, 15);
             this.txtdiachi.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtdiachi.Name = "txtdiachi";
-            this.txtdiachi.Size = new System.Drawing.Size(286, 39);
+            this.txtdiachi.Size = new System.Drawing.Size(286, 44);
             this.txtdiachi.TabIndex = 30;
             // 
             // txtmadg
             // 
             this.txtmadg.BackColor = System.Drawing.SystemColors.Window;
-            this.txtmadg.Font = new System.Drawing.Font("Cambria", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtmadg.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(112)))), ((int)(((byte)(122)))));
+            this.txtmadg.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtmadg.ForeColor = System.Drawing.Color.Black;
             this.txtmadg.Location = new System.Drawing.Point(251, 77);
             this.txtmadg.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtmadg.Name = "txtmadg";
-            this.txtmadg.Size = new System.Drawing.Size(259, 39);
+            this.txtmadg.Size = new System.Drawing.Size(259, 44);
             this.txtmadg.TabIndex = 29;
             // 
             // btndangxuat
@@ -495,8 +495,9 @@
             this.GridView.RowTemplate.Height = 24;
             this.GridView.Size = new System.Drawing.Size(1179, 715);
             this.GridView.TabIndex = 15;
+            this.GridView.SelectionChanged += new System.EventHandler(this.GridView_SelectionChanged);
             // 
-            // dg
+            // docgia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -505,8 +506,9 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.GridView);
-            this.Name = "dg";
+            this.Name = "docgia";
             this.Text = "dg";
+            this.Load += new System.EventHandler(this.docgia_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);

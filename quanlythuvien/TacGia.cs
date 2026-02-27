@@ -12,49 +12,26 @@ namespace quanlythuvien
 {
     public partial class TacGia : Form
     {
+        private bool isReturning = false;
+
         public TacGia()
         {
             InitializeComponent();
-        }
-        private void TacGia_Load(object sender, EventArgs e)
-        {
-            String sql = "SELECT * FROM TacGia";
-            DataTable dt = qltt.ExecuteQuery(sql);
-            this.dgvsach.DataSource = dt;
-            dgvsach.DataSource = dt;
+            this.FormClosed += TacGia_FormClosed;
         }
 
-        private void quảnLýSáchToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TacGia_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Hide();
-            new quanlysach().ShowDialog();
-            this.Show();
-        }
-        private void tàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new thongtinthuthu().ShowDialog();
-            this.Show();
-        }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new TheLoai().ShowDialog();
-            this.Show();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new NhaXuatBan().ShowDialog();
-            this.Show();
+            if (!isReturning)
+            {
+                Application.Exit();
+            }
         }
 
         private void btntrangchu_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            new trangchu().ShowDialog();
-            this.Show();
+            isReturning = true;
+            this.Close();
         }
 
         private void btnsach_Click(object sender, EventArgs e)
@@ -94,59 +71,70 @@ namespace quanlythuvien
 
         private void btndangxuat_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            new dangnhap().ShowDialog();
-            this.Close();
-        }
-
-        private void pbsach_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new quanlysach().ShowDialog();
-            this.Close();
+            isReturning = true;
+            Application.Restart();
         }
 
         private void lbsach_Click(object sender, EventArgs e)
         {
             this.Hide();
             new quanlysach().ShowDialog();
-            this.Close();
-        }
-
-        private void pbtheloai_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new TheLoai().ShowDialog();
-            this.Close();
+            this.Show();
         }
 
         private void lbtheloai_Click(object sender, EventArgs e)
         {
             this.Hide();
             new TheLoai().ShowDialog();
-            this.Close();
-        }
-
-        private void pbnhaxuatban_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new NhaXuatBan().ShowDialog();
-            this.Close();
+            this.Show();
         }
 
         private void lbnhaxuatban_Click(object sender, EventArgs e)
         {
             this.Hide();
             new NhaXuatBan().ShowDialog();
-            this.Close();
+            this.Show();
         }
-        
 
         private void label12_Click(object sender, EventArgs e)
         {
 
         }
 
-       
+        private void pbsach_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            new quanlysach().ShowDialog();
+            this.Show();
+        }
+
+        private void pbtheloai_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            new TheLoai().ShowDialog();
+            this.Show();
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pbnhaxuatban_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            new NhaXuatBan().ShowDialog();
+            this.Show();
+        }
+
+        private void TacGia_Load_1(object sender, EventArgs e)
+        {
+            string sql = "SELECT MaTacGia AS [MÃ TÁC GIẢ], TenTacGia AS [TÊN TÁC GIẢ] FROM TacGia";
+            DataTable dt = qltt.ExecuteQuery(sql);
+
+            dgvsach.DataSource = dt;
+            dgvsach.Font = new Font("Times New Roman", 10);
+            dgvsach.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
     }
 }

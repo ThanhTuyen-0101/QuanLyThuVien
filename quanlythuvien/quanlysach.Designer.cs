@@ -55,37 +55,37 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.lbnhaxuatban = new System.Windows.Forms.Label();
-            this.lbtacgia = new System.Windows.Forms.Label();
-            this.lbtheloai = new System.Windows.Forms.Label();
-            this.lbsach = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btndangxuat = new System.Windows.Forms.Button();
-            this.pbnhaxuatban = new System.Windows.Forms.PictureBox();
-            this.pbtacgia = new System.Windows.Forms.PictureBox();
-            this.pbtheloai = new System.Windows.Forms.PictureBox();
-            this.pbsach = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btntrangchu = new System.Windows.Forms.Button();
             this.btnsach = new System.Windows.Forms.Button();
             this.btndocgia = new System.Windows.Forms.Button();
             this.btnmuontra = new System.Windows.Forms.Button();
             this.btnbaocao = new System.Windows.Forms.Button();
             this.btntaikhoan = new System.Windows.Forms.Button();
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lbnhaxuatban = new System.Windows.Forms.Label();
+            this.pbnhaxuatban = new System.Windows.Forms.PictureBox();
+            this.lbtacgia = new System.Windows.Forms.Label();
+            this.pbtacgia = new System.Windows.Forms.PictureBox();
+            this.lbtheloai = new System.Windows.Forms.Label();
+            this.pbtheloai = new System.Windows.Forms.PictureBox();
+            this.lbsach = new System.Windows.Forms.Label();
+            this.pbsach = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btndangxuat = new System.Windows.Forms.Button();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvsach)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbnhaxuatban)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtacgia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtheloai)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbsach)).BeginInit();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
@@ -95,13 +95,14 @@
             this.dgvsach.BackgroundColor = System.Drawing.Color.White;
             this.dgvsach.ColumnHeadersHeight = 29;
             this.dgvsach.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(218)))));
-            this.dgvsach.Location = new System.Drawing.Point(419, 588);
+            this.dgvsach.Location = new System.Drawing.Point(419, 647);
             this.dgvsach.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvsach.Name = "dgvsach";
             this.dgvsach.RowHeadersWidth = 51;
             this.dgvsach.RowTemplate.Height = 24;
             this.dgvsach.Size = new System.Drawing.Size(1260, 515);
             this.dgvsach.TabIndex = 12;
+            this.dgvsach.SelectionChanged += new System.EventHandler(this.dgvsach_SelectionChanged);
             // 
             // label5
             // 
@@ -406,189 +407,6 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(311, 594);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
-            // toolStripContainer1
-            // 
-            // 
-            // toolStripContainer1.ContentPanel
-            // 
-            this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(206)))), ((int)(((byte)(109)))));
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.panel2);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.panel1);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.groupBox1);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.dgvsach);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.label5);
-            this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1715, 1174);
-            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(1715, 1199);
-            this.toolStripContainer1.TabIndex = 1;
-            this.toolStripContainer1.Text = "toolStripContainer1";
-            // 
-            // toolStripContainer1.TopToolStripPanel
-            // 
-            this.toolStripContainer1.TopToolStripPanel.Click += new System.EventHandler(this.toolStripContainer1_TopToolStripPanel_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Black;
-            this.panel2.Controls.Add(this.lbnhaxuatban);
-            this.panel2.Controls.Add(this.pbnhaxuatban);
-            this.panel2.Controls.Add(this.lbtacgia);
-            this.panel2.Controls.Add(this.pbtacgia);
-            this.panel2.Controls.Add(this.lbtheloai);
-            this.panel2.Controls.Add(this.pbtheloai);
-            this.panel2.Controls.Add(this.lbsach);
-            this.panel2.Controls.Add(this.pbsach);
-            this.panel2.Location = new System.Drawing.Point(400, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1299, 251);
-            this.panel2.TabIndex = 33;
-            // 
-            // lbnhaxuatban
-            // 
-            this.lbnhaxuatban.AutoSize = true;
-            this.lbnhaxuatban.BackColor = System.Drawing.Color.Transparent;
-            this.lbnhaxuatban.Font = new System.Drawing.Font("Times New Roman", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbnhaxuatban.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbnhaxuatban.Location = new System.Drawing.Point(1004, 209);
-            this.lbnhaxuatban.Name = "lbnhaxuatban";
-            this.lbnhaxuatban.Size = new System.Drawing.Size(230, 42);
-            this.lbnhaxuatban.TabIndex = 34;
-            this.lbnhaxuatban.Text = "Nhà Xuất Bản";
-            this.lbnhaxuatban.Click += new System.EventHandler(this.lbnhaxuatban_Click);
-            // 
-            // lbtacgia
-            // 
-            this.lbtacgia.AutoSize = true;
-            this.lbtacgia.BackColor = System.Drawing.Color.Transparent;
-            this.lbtacgia.Font = new System.Drawing.Font("Times New Roman", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbtacgia.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbtacgia.Location = new System.Drawing.Point(748, 209);
-            this.lbtacgia.Name = "lbtacgia";
-            this.lbtacgia.Size = new System.Drawing.Size(133, 42);
-            this.lbtacgia.TabIndex = 32;
-            this.lbtacgia.Text = "Tác Giả";
-            this.lbtacgia.Click += new System.EventHandler(this.lbtacgia_Click);
-            // 
-            // lbtheloai
-            // 
-            this.lbtheloai.AutoSize = true;
-            this.lbtheloai.BackColor = System.Drawing.Color.Transparent;
-            this.lbtheloai.Font = new System.Drawing.Font("Times New Roman", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbtheloai.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbtheloai.Location = new System.Drawing.Point(435, 209);
-            this.lbtheloai.Name = "lbtheloai";
-            this.lbtheloai.Size = new System.Drawing.Size(150, 42);
-            this.lbtheloai.TabIndex = 30;
-            this.lbtheloai.Text = "Thể Loại";
-            this.lbtheloai.Click += new System.EventHandler(this.lbtheloai_Click);
-            // 
-            // lbsach
-            // 
-            this.lbsach.AutoSize = true;
-            this.lbsach.BackColor = System.Drawing.Color.Transparent;
-            this.lbsach.Font = new System.Drawing.Font("Times New Roman", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbsach.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbsach.Location = new System.Drawing.Point(145, 209);
-            this.lbsach.Name = "lbsach";
-            this.lbsach.Size = new System.Drawing.Size(89, 42);
-            this.lbsach.TabIndex = 2;
-            this.lbsach.Text = "Sách";
-            this.lbsach.Click += new System.EventHandler(this.lbsach_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.btndangxuat);
-            this.panel1.Controls.Add(this.pictureBox3);
-            this.panel1.Controls.Add(this.flowLayoutPanel1);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(401, 1107);
-            this.panel1.TabIndex = 32;
-            // 
-            // btndangxuat
-            // 
-            this.btndangxuat.Font = new System.Drawing.Font("Times New Roman", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btndangxuat.ForeColor = System.Drawing.Color.Black;
-            this.btndangxuat.Location = new System.Drawing.Point(186, 983);
-            this.btndangxuat.Name = "btndangxuat";
-            this.btndangxuat.Size = new System.Drawing.Size(160, 61);
-            this.btndangxuat.TabIndex = 30;
-            this.btndangxuat.Text = "Đăng xuất ";
-            this.btndangxuat.UseVisualStyleBackColor = true;
-            this.btndangxuat.Click += new System.EventHandler(this.btndangxuat_Click);
-            // 
-            // pbnhaxuatban
-            // 
-            this.pbnhaxuatban.BackColor = System.Drawing.Color.Transparent;
-            this.pbnhaxuatban.Image = global::quanlythuvien.Properties.Resources.user2;
-            this.pbnhaxuatban.Location = new System.Drawing.Point(1031, 12);
-            this.pbnhaxuatban.Name = "pbnhaxuatban";
-            this.pbnhaxuatban.Size = new System.Drawing.Size(178, 183);
-            this.pbnhaxuatban.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbnhaxuatban.TabIndex = 35;
-            this.pbnhaxuatban.TabStop = false;
-            // 
-            // pbtacgia
-            // 
-            this.pbtacgia.BackColor = System.Drawing.Color.Transparent;
-            this.pbtacgia.Image = global::quanlythuvien.Properties.Resources.woman_head;
-            this.pbtacgia.Location = new System.Drawing.Point(731, 0);
-            this.pbtacgia.Name = "pbtacgia";
-            this.pbtacgia.Size = new System.Drawing.Size(182, 183);
-            this.pbtacgia.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbtacgia.TabIndex = 33;
-            this.pbtacgia.TabStop = false;
-            // 
-            // pbtheloai
-            // 
-            this.pbtheloai.BackColor = System.Drawing.Color.Transparent;
-            this.pbtheloai.Image = global::quanlythuvien.Properties.Resources.book_bookmark;
-            this.pbtheloai.Location = new System.Drawing.Point(414, 14);
-            this.pbtheloai.Name = "pbtheloai";
-            this.pbtheloai.Size = new System.Drawing.Size(198, 174);
-            this.pbtheloai.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbtheloai.TabIndex = 31;
-            this.pbtheloai.TabStop = false;
-            // 
-            // pbsach
-            // 
-            this.pbsach.BackColor = System.Drawing.Color.Transparent;
-            this.pbsach.Image = global::quanlythuvien.Properties.Resources.book_brain;
-            this.pbsach.Location = new System.Drawing.Point(103, 14);
-            this.pbsach.Name = "pbsach";
-            this.pbsach.Size = new System.Drawing.Size(183, 174);
-            this.pbsach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbsach.TabIndex = 29;
-            this.pbsach.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::quanlythuvien.Properties.Resources.user1;
-            this.pictureBox1.Location = new System.Drawing.Point(38, 968);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(83, 76);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 31;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.Image = global::quanlythuvien.Properties.Resources.Screenshot_2026_01_25_104349_removebg_preview;
-            this.pictureBox3.Location = new System.Drawing.Point(35, 3);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(311, 248);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 28;
-            this.pictureBox3.TabStop = false;
-            // 
             // btntrangchu
             // 
             this.btntrangchu.BackColor = System.Drawing.Color.White;
@@ -679,14 +497,203 @@
             this.btntaikhoan.UseVisualStyleBackColor = true;
             this.btntaikhoan.Click += new System.EventHandler(this.btntaikhoan_Click);
             // 
-            // qls
+            // toolStripContainer1
+            // 
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this.toolStripContainer1.ContentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(206)))), ((int)(((byte)(109)))));
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.panel2);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.panel1);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.groupBox1);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.dgvsach);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.label5);
+            this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1699, 1159);
+            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.toolStripContainer1.Name = "toolStripContainer1";
+            this.toolStripContainer1.Size = new System.Drawing.Size(1699, 1159);
+            this.toolStripContainer1.TabIndex = 1;
+            this.toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // toolStripContainer1.TopToolStripPanel
+            // 
+            this.toolStripContainer1.TopToolStripPanel.Click += new System.EventHandler(this.toolStripContainer1_TopToolStripPanel_Click);
+            this.toolStripContainer1.TopToolStripPanelVisible = false;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Black;
+            this.panel2.Controls.Add(this.lbnhaxuatban);
+            this.panel2.Controls.Add(this.pbnhaxuatban);
+            this.panel2.Controls.Add(this.lbtacgia);
+            this.panel2.Controls.Add(this.pbtacgia);
+            this.panel2.Controls.Add(this.lbtheloai);
+            this.panel2.Controls.Add(this.pbtheloai);
+            this.panel2.Controls.Add(this.lbsach);
+            this.panel2.Controls.Add(this.pbsach);
+            this.panel2.Location = new System.Drawing.Point(400, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1299, 251);
+            this.panel2.TabIndex = 33;
+            // 
+            // lbnhaxuatban
+            // 
+            this.lbnhaxuatban.AutoSize = true;
+            this.lbnhaxuatban.BackColor = System.Drawing.Color.Transparent;
+            this.lbnhaxuatban.Font = new System.Drawing.Font("Times New Roman", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbnhaxuatban.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbnhaxuatban.Location = new System.Drawing.Point(1004, 209);
+            this.lbnhaxuatban.Name = "lbnhaxuatban";
+            this.lbnhaxuatban.Size = new System.Drawing.Size(230, 42);
+            this.lbnhaxuatban.TabIndex = 34;
+            this.lbnhaxuatban.Text = "Nhà Xuất Bản";
+            this.lbnhaxuatban.Click += new System.EventHandler(this.lbnhaxuatban_Click);
+            // 
+            // pbnhaxuatban
+            // 
+            this.pbnhaxuatban.BackColor = System.Drawing.Color.Transparent;
+            this.pbnhaxuatban.Image = global::quanlythuvien.Properties.Resources.user2;
+            this.pbnhaxuatban.Location = new System.Drawing.Point(1031, 12);
+            this.pbnhaxuatban.Name = "pbnhaxuatban";
+            this.pbnhaxuatban.Size = new System.Drawing.Size(178, 183);
+            this.pbnhaxuatban.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbnhaxuatban.TabIndex = 35;
+            this.pbnhaxuatban.TabStop = false;
+            this.pbnhaxuatban.Click += new System.EventHandler(this.pbnhaxuatban_Click_1);
+            // 
+            // lbtacgia
+            // 
+            this.lbtacgia.AutoSize = true;
+            this.lbtacgia.BackColor = System.Drawing.Color.Transparent;
+            this.lbtacgia.Font = new System.Drawing.Font("Times New Roman", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbtacgia.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbtacgia.Location = new System.Drawing.Point(748, 209);
+            this.lbtacgia.Name = "lbtacgia";
+            this.lbtacgia.Size = new System.Drawing.Size(133, 42);
+            this.lbtacgia.TabIndex = 32;
+            this.lbtacgia.Text = "Tác Giả";
+            this.lbtacgia.Click += new System.EventHandler(this.lbtacgia_Click);
+            // 
+            // pbtacgia
+            // 
+            this.pbtacgia.BackColor = System.Drawing.Color.Transparent;
+            this.pbtacgia.Image = global::quanlythuvien.Properties.Resources.woman_head;
+            this.pbtacgia.Location = new System.Drawing.Point(731, 0);
+            this.pbtacgia.Name = "pbtacgia";
+            this.pbtacgia.Size = new System.Drawing.Size(182, 183);
+            this.pbtacgia.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbtacgia.TabIndex = 33;
+            this.pbtacgia.TabStop = false;
+            this.pbtacgia.Click += new System.EventHandler(this.pbtacgia_Click_1);
+            // 
+            // lbtheloai
+            // 
+            this.lbtheloai.AutoSize = true;
+            this.lbtheloai.BackColor = System.Drawing.Color.Transparent;
+            this.lbtheloai.Font = new System.Drawing.Font("Times New Roman", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbtheloai.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbtheloai.Location = new System.Drawing.Point(435, 209);
+            this.lbtheloai.Name = "lbtheloai";
+            this.lbtheloai.Size = new System.Drawing.Size(150, 42);
+            this.lbtheloai.TabIndex = 30;
+            this.lbtheloai.Text = "Thể Loại";
+            this.lbtheloai.Click += new System.EventHandler(this.lbtheloai_Click);
+            // 
+            // pbtheloai
+            // 
+            this.pbtheloai.BackColor = System.Drawing.Color.Transparent;
+            this.pbtheloai.Image = global::quanlythuvien.Properties.Resources.book_bookmark;
+            this.pbtheloai.Location = new System.Drawing.Point(414, 14);
+            this.pbtheloai.Name = "pbtheloai";
+            this.pbtheloai.Size = new System.Drawing.Size(198, 174);
+            this.pbtheloai.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbtheloai.TabIndex = 31;
+            this.pbtheloai.TabStop = false;
+            this.pbtheloai.Click += new System.EventHandler(this.pbtheloai_Click_1);
+            // 
+            // lbsach
+            // 
+            this.lbsach.AutoSize = true;
+            this.lbsach.BackColor = System.Drawing.Color.Transparent;
+            this.lbsach.Font = new System.Drawing.Font("Times New Roman", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbsach.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbsach.Location = new System.Drawing.Point(145, 209);
+            this.lbsach.Name = "lbsach";
+            this.lbsach.Size = new System.Drawing.Size(89, 42);
+            this.lbsach.TabIndex = 2;
+            this.lbsach.Text = "Sách";
+            this.lbsach.Click += new System.EventHandler(this.lbsach_Click);
+            // 
+            // pbsach
+            // 
+            this.pbsach.BackColor = System.Drawing.Color.Transparent;
+            this.pbsach.Image = global::quanlythuvien.Properties.Resources.book_brain;
+            this.pbsach.Location = new System.Drawing.Point(103, 14);
+            this.pbsach.Name = "pbsach";
+            this.pbsach.Size = new System.Drawing.Size(183, 174);
+            this.pbsach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbsach.TabIndex = 29;
+            this.pbsach.TabStop = false;
+            this.pbsach.Click += new System.EventHandler(this.pbsach_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.btndangxuat);
+            this.panel1.Controls.Add(this.pictureBox3);
+            this.panel1.Controls.Add(this.flowLayoutPanel1);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(401, 1162);
+            this.panel1.TabIndex = 32;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::quanlythuvien.Properties.Resources.user1;
+            this.pictureBox1.Location = new System.Drawing.Point(38, 968);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(83, 76);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 31;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btndangxuat
+            // 
+            this.btndangxuat.Font = new System.Drawing.Font("Times New Roman", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btndangxuat.ForeColor = System.Drawing.Color.Black;
+            this.btndangxuat.Location = new System.Drawing.Point(186, 983);
+            this.btndangxuat.Name = "btndangxuat";
+            this.btndangxuat.Size = new System.Drawing.Size(160, 61);
+            this.btndangxuat.TabIndex = 30;
+            this.btndangxuat.Text = "Đăng xuất ";
+            this.btndangxuat.UseVisualStyleBackColor = true;
+            this.btndangxuat.Click += new System.EventHandler(this.btndangxuat_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.Image = global::quanlythuvien.Properties.Resources.Screenshot_2026_01_25_104349_removebg_preview;
+            this.pictureBox3.Location = new System.Drawing.Point(35, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(311, 248);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 28;
+            this.pictureBox3.TabStop = false;
+            // 
+            // quanlysach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1715, 1199);
+            this.ClientSize = new System.Drawing.Size(1699, 1159);
             this.Controls.Add(this.toolStripContainer1);
-            this.Name = "qls";
+            this.Name = "quanlysach";
             this.Text = "qls";
+            this.Load += new System.EventHandler(this.quanlysach_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvsach)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -697,11 +704,11 @@
             this.toolStripContainer1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbnhaxuatban)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtacgia)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtheloai)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbsach)).EndInit();
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);

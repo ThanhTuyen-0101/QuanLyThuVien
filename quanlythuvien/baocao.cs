@@ -12,12 +12,23 @@ namespace quanlythuvien
 {
     public partial class baocao : Form
     {
+        private bool isReturning = false;
+
         public baocao()
         {
             InitializeComponent();
             checkdangmuon.Checked = true;
+            this.FormClosed += baocao_FormClosed;
         }
-       
+
+        private void baocao_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (!isReturning)
+            {
+                Application.Exit();
+            }
+        }
+
         private void btnThongKe_Click(object sender, EventArgs e)
         {
             string sql = "";
@@ -27,26 +38,33 @@ namespace quanlythuvien
             {
                 sql = @"
             SELECT 
-                s.MaSach,
-                s.TieuDe,
-                COUNT(mt.MaSach) AS SoLanMuon
+                s.MaSach AS [MÃ SÁCH],
+                s.TieuDe AS [TIÊU ĐỀ],
+                COUNT(mt.MaSach) AS [SỐ LẦN MƯỢN]
             FROM MuonTra mt
             INNER JOIN Sach s ON mt.MaSach = s.MaSach
             GROUP BY s.MaSach, s.TieuDe
             HAVING COUNT(mt.MaSach) >= 3  
-            ORDER BY SoLanMuon DESC";
+            ORDER BY [SỐ LẦN MƯỢN] DESC";
             }
             else if (checkdangmuon.Checked)
             {
-                sql = "SELECT * FROM MuonTra WHERE TrangThai = N'Đang Mượn'";
+                sql = @"SELECT MaMuonTra AS [MÃ MƯỢN TRẢ], MaDocGia AS [MÃ ĐỘC GIẢ], MaSach AS [MÃ SÁCH], 
+                               NgayMuon AS [NGÀY MƯỢN], NgayTra AS [NGÀY TRẢ], TrangThai AS [TRẠNG THÁI], 
+                               GhiChu AS [GHI CHÚ] FROM MuonTra WHERE TrangThai = N'Đang Mượn'";
             }
             else
             {
-                sql = "SELECT * FROM MuonTra WHERE TrangThai = N'Đã Trả'";
+                sql = @"SELECT MaMuonTra AS [MÃ MƯỢN TRẢ], MaDocGia AS [MÃ ĐỘC GIẢ], MaSach AS [MÃ SÁCH], 
+                               NgayMuon AS [NGÀY MƯỢN], NgayTra AS [NGÀY TRẢ], TrangThai AS [TRẠNG THÁI], 
+                               GhiChu AS [GHI CHÚ] FROM MuonTra WHERE TrangThai = N'Đã Trả'";
             }
 
             dt = qltt.ExecuteQuery(sql);
             GridBaoCao.DataSource = dt;
+            GridBaoCao.Font = new Font("Times New Roman", 10);
+            GridBaoCao.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
             lbTong.Text = $"Tổng số sách: {dt.Rows.Count}";
 
             if (dt.Rows.Count == 0)
@@ -54,18 +72,17 @@ namespace quanlythuvien
                 MessageBox.Show("Không tìm thấy dữ liệu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
         private void btntrangchu_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            new trangchu().ShowDialog();
-            this.Show();
+            isReturning = true;
+            this.Close();
         }
 
         private void btndangxuat_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            new dangnhap().ShowDialog();
-            this.Close();
+            isReturning = true;
+            Application.Restart();
         }
 
         private void btnsach_Click(object sender, EventArgs e)
@@ -102,11 +119,11 @@ namespace quanlythuvien
             new thongtinthuthu().ShowDialog();
             this.Show();
         }
-        
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-
+            isReturning = true;
+            this.Close();
         }
     }
 }

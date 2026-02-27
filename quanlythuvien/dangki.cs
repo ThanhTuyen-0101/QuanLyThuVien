@@ -14,14 +14,25 @@ namespace quanlythuvien
 {
     public partial class dangki : Form
     {
+        private bool isReturning = false;
+
         public dangki()
         {
             InitializeComponent();
             dtpngaysinhdangki.Value = DateTime.Now.AddYears(-18);
             dtpngaysinhdangki.MaxDate = DateTime.Now;
             txtmatkhaudangki.UseSystemPasswordChar = true;
+            this.FormClosed += dangki_FormClosed;
         }
-        
+
+        private void dangki_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (!isReturning)
+            {
+                Application.Exit();
+            }
+        }
+
         private string SinhMaDocGiaMoi()
         {
             string sql = "SELECT TOP 1 MaDocGia FROM DocGia ORDER BY MaDocGia DESC";
@@ -36,52 +47,59 @@ namespace quanlythuvien
             }
             return maMoi;
         }
+
         private void btndangki_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txttendangnhapdangki.Text) ||
+                string.IsNullOrWhiteSpace(txthovatendangki.Text) ||
+                string.IsNullOrWhiteSpace(txtemaildangki.Text))
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ các thông tin bắt buộc!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string matKhau = txtmatkhaudangki.Text;
+
+            if (!kiemtramatkhau(matKhau))
+            {
+                MessageBox.Show("Mật khẩu yếu. Vui lòng đặt mật khẩu mạnh hơn (ít nhất 8 ký tự, gồm chữ hoa, chữ thường, số và ký tự đặc biệt).",
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string gioiTinh = rbnamdangki.Checked ? "Nam" : (rbnudangki.Checked ? "Nữ" : "");
+            string maDocGiaMoi = SinhMaDocGiaMoi();
+
+            string sql = @"
+            INSERT INTO DocGia
+            (MaDocGia, HoTen, TenDangNhap, MatKhau, NgaySinh, GioiTinh, DiaChi, SoDienThoai, Email)
+            VALUES
+            (@MaDocGia, @HoTen, @TenDangNhap, @MatKhau, @NgaySinh, @GioiTinh, @DiaChi, @SoDienThoai, @Email)";
+
+            SqlParameter[] parameters =
+            {
+                new SqlParameter("@MaDocGia", maDocGiaMoi),
+                new SqlParameter("@HoTen", txthovatendangki.Text.Trim()),
+                new SqlParameter("@TenDangNhap", txttendangnhapdangki.Text.Trim()),
+                new SqlParameter("@MatKhau", matKhau),
+                new SqlParameter("@NgaySinh", dtpngaysinhdangki.Value),
+                new SqlParameter("@GioiTinh", gioiTinh),
+                new SqlParameter("@DiaChi", txtdiachidangki.Text.Trim()),
+                new SqlParameter("@SoDienThoai", txtsodienthoaidangki.Text.Trim()),
+                new SqlParameter("@Email", txtemaildangki.Text.Trim())
+            };
+
             try
             {
-                string matKhau = txtmatkhaudangki.Text;
-
-                if (!kiemtramatkhau(matKhau))
-                {
-                    MessageBox.Show("Mật khẩu yếu. Vui lòng đặt mật khẩu mạnh hơn.",
-                        "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                string gioiTinh = rbnamdangki.Checked ? "Nam" : (rbnudangki.Checked ? "Nữ" : "");
-                string maDocGiaMoi = SinhMaDocGiaMoi();
-
-                string sql = @"
-        INSERT INTO DocGia
-        (MaDocGia, HoTen, TenDangNhap, MatKhau, NgaySinh, GioiTinh, DiaChi, SoDienThoai, Email)
-        VALUES
-        (@MaDocGia, @HoTen, @TenDangNhap, @MatKhau, @NgaySinh, @GioiTinh, @DiaChi, @SoDienThoai, @Email)";
-
-                SqlParameter[] parameters =
-                {
-        new SqlParameter("@MaDocGia", maDocGiaMoi),
-        new SqlParameter("@HoTen", txthovatendangki.Text),
-        new SqlParameter("@TenDangNhap", txttendangnhapdangki.Text),
-        new SqlParameter("@MatKhau", matKhau),
-        new SqlParameter("@NgaySinh", dtpngaysinhdangki.Value),
-        new SqlParameter("@GioiTinh", gioiTinh),
-        new SqlParameter("@DiaChi", txtdiachidangki.Text),
-        new SqlParameter("@SoDienThoai", txtsodienthoaidangki.Text),
-        new SqlParameter("@Email", txtemaildangki.Text)
-    };
                 qltt.ExecuteNonQuery(sql, parameters);
-                MessageBox.Show("Đăng ký thành công!", "Thông báo",
+                MessageBox.Show("Đăng ký thành công! Hệ thống sẽ chuyển bạn về trang Đăng nhập.", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                this.Hide();
-                new dangnhap().ShowDialog();
-                this.Show();
+                isReturning = true;
+                this.Close();
             }
-            finally
+            catch (Exception ex)
             {
-                txthovatendangki.Clear();
-                txttendangnhapdangki.Clear();
-                txtmatkhaudangki.Clear();
+                MessageBox.Show("Đăng ký thất bại! Có thể Tên đăng nhập hoặc Email này đã được sử dụng.\nChi tiết: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -95,16 +113,11 @@ namespace quanlythuvien
             bool hasSpecial = Regex.IsMatch(password, @"[!@#$%^&*(),.?""':;{}/|[\]\\]");
             return hasUpper && hasLower && hasDigit && hasSpecial;
         }
-        private void label3_Click(object sender, EventArgs e)
-        {
-        }
 
         private void btnthoat_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            new dangnhap().ShowDialog();
+            isReturning = true;
             this.Close();
         }
-        
     }
 }

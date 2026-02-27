@@ -13,22 +13,51 @@ namespace quanlythuvien
 {
     public partial class muontra : Form
     {
+        private bool isReturning = false;
+
         public muontra()
         {
             InitializeComponent();
             ComboxMaDG();
             ComboxMaSach();
-
+            this.FormClosed += muontra_FormClosed;
         }
 
-        private void muontra_Load(object sender, EventArgs e)
+        private void muontra_FormClosed(object sender, FormClosedEventArgs e)
         {
-            String sql = "SELECT * FROM MuonTra";
-            DataTable dt = qltt.ExecuteQuery(sql);
-            this.dataGridView1.DataSource = dt;
-            XoaTrang();
-
+            if (!isReturning)
+            {
+                Application.Exit();
+            }
         }
+
+        
+
+        private void TaiDuLieu(string keyword = "")
+        {
+            string sql;
+            DataTable dt;
+            if (string.IsNullOrEmpty(keyword))
+            {
+                sql = @"SELECT MaMuonTra AS [MÃ MƯỢN TRẢ], MaDocGia AS [MÃ ĐỘC GIẢ], MaSach AS [MÃ SÁCH], 
+                               NgayMuon AS [NGÀY MƯỢN], NgayTra AS [NGÀY TRẢ], TrangThai AS [TRẠNG THÁI], 
+                               GhiChu AS [GHI CHÚ] FROM MuonTra";
+                dt = qltt.ExecuteQuery(sql);
+            }
+            else
+            {
+                sql = @"SELECT MaMuonTra AS [MÃ MƯỢN TRẢ], MaDocGia AS [MÃ ĐỘC GIẢ], MaSach AS [MÃ SÁCH], 
+                               NgayMuon AS [NGÀY MƯỢN], NgayTra AS [NGÀY TRẢ], TrangThai AS [TRẠNG THÁI], 
+                               GhiChu AS [GHI CHÚ] FROM MuonTra WHERE MaDocGia LIKE @Keyword";
+                SqlParameter[] param = { new SqlParameter("@Keyword", "%" + keyword + "%") };
+                dt = qltt.ExecuteQuery(sql, param);
+            }
+
+            dataGridView1.DataSource = dt;
+            dataGridView1.Font = new Font("Times New Roman", 10);
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+
         private void XoaTrang()
         {
             txtDateMuon.Text = string.Empty;
@@ -36,28 +65,13 @@ namespace quanlythuvien
             Checktra.Checked = false;
             txtGhiChu.Text = string.Empty;
         }
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-                int maMuonTra = Convert.ToInt32(selectedRow.Cells["MaMuonTra"].Value);
-                this.lbMaPhieu.Text = $"Mã Phiếu:{maMuonTra}";
-                this.cbMaDG.Text = this.dataGridView1.SelectedRows[0].Cells["MaDocGia"].Value.ToString();
-                this.cbMaSach.Text = this.dataGridView1.SelectedRows[0].Cells["MaSach"].Value.ToString();
-                this.txtDateMuon.Text = this.dataGridView1.SelectedRows[0].Cells["NgayMuon"].Value.ToString();
-                this.txtDateTra.Text = this.dataGridView1.SelectedRows[0].Cells["NgayTra"].Value.ToString();
-                this.txtGhiChu.Text = this.dataGridView1.SelectedRows[0].Cells["GhiChu"].Value.ToString();
-            }
-        }
+
         private void ComboxMaDG()
         {
             try
             {
                 string sql = "SELECT MaDocGia FROM MuonTra";
-
                 DataTable dt = qltt.ExecuteQuery(sql);
-
                 cbMaDG.DataSource = dt;
                 cbMaDG.ValueMember = "MaDocGia";
                 cbMaDG.SelectedIndex = 0;
@@ -67,14 +81,13 @@ namespace quanlythuvien
                 MessageBox.Show("Lỗi khi tải dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void ComboxMaSach()
         {
             try
             {
                 string sql = "SELECT MaSach FROM MuonTra";
-
                 DataTable dt = qltt.ExecuteQuery(sql);
-
                 cbMaSach.DataSource = dt;
                 cbMaSach.ValueMember = "MaSach";
                 cbMaSach.SelectedIndex = 0;
@@ -95,32 +108,35 @@ namespace quanlythuvien
                     return;
                 }
 
-                string MaDocGia = cbMaDG.Text.Trim();
-                int MaSach = int.Parse(cbMaSach.Text.Trim());
-                DateTime NgayMuon = DateTime.Parse(txtDateMuon.Text.Trim());
-                string NgayMuonSQL = NgayMuon.ToString("yyyy-MM-dd");
+                DateTime ngayMuon = DateTime.Parse(txtDateMuon.Text.Trim());
+                object ngayTraObj = DBNull.Value;
 
-                string NgayTraSQL = "NULL";
                 if (!string.IsNullOrEmpty(txtDateTra.Text))
                 {
-                    DateTime NgayTra = DateTime.Parse(txtDateTra.Text.Trim());
-                    NgayTraSQL = $"'{NgayTra:yyyy-MM-dd}'";
+                    ngayTraObj = DateTime.Parse(txtDateTra.Text.Trim());
                 }
 
-                string TrangThai = Checktra.Checked ? "Đã Trả" : "Đang Mượn";
-                if (Checktra.Checked && NgayTraSQL == "NULL")
+                string trangThai = Checktra.Checked ? "Đã Trả" : "Đang Mượn";
+                if (Checktra.Checked && ngayTraObj == DBNull.Value)
                 {
-                    NgayTraSQL = $"'{DateTime.Now:yyyy-MM-dd}'";
+                    ngayTraObj = DateTime.Now.Date;
                 }
 
-                string GhiChu = txtGhiChu.Text.Replace("'", "''");
+                string sql = @"INSERT INTO MuonTra (MaDocGia, MaSach, NgayMuon, NgayTra, TrangThai, GhiChu) 
+                               VALUES (@MaDocGia, @MaSach, @NgayMuon, @NgayTra, @TrangThai, @GhiChu)";
 
-                string sql = $"INSERT INTO MuonTra (MaDocGia, MaSach, NgayMuon, NgayTra, TrangThai, GhiChu) " +
-                             $"VALUES (N'{MaDocGia}', {MaSach}, '{NgayMuonSQL}', {NgayTraSQL}, N'{TrangThai}', N'{GhiChu}')";
+                SqlParameter[] parameters = {
+                    new SqlParameter("@MaDocGia", cbMaDG.Text.Trim()),
+                    new SqlParameter("@MaSach", int.Parse(cbMaSach.Text.Trim())),
+                    new SqlParameter("@NgayMuon", ngayMuon),
+                    new SqlParameter("@NgayTra", ngayTraObj),
+                    new SqlParameter("@TrangThai", trangThai),
+                    new SqlParameter("@GhiChu", txtGhiChu.Text.Trim())
+                };
 
-                qltt.ExecuteNonQuery(sql);
+                qltt.ExecuteNonQuery(sql, parameters);
                 MessageBox.Show("Thêm thành công!");
-                muontra_Load(sender, e);
+                TaiDuLieu();
             }
             catch (Exception ex)
             {
@@ -138,50 +154,48 @@ namespace quanlythuvien
 
             try
             {
-                int MaMuonTra = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["MaMuonTra"].Value);
+                int maMuonTra = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["MÃ MƯỢN TRẢ"].Value);
+                DateTime ngayMuon = DateTime.Parse(txtDateMuon.Text.Trim());
+                object ngayTraObj = DBNull.Value;
 
-                string MaDocGia = cbMaDG.Text.Trim();
-                int MaSach = int.Parse(cbMaSach.Text.Trim());
-                DateTime NgayMuon = DateTime.Parse(txtDateMuon.Text.Trim());
-                string NgayMuonSQL = NgayMuon.ToString("yyyy-MM-dd");
-
-                string NgayTraSQL = "NULL";
                 if (!string.IsNullOrEmpty(txtDateTra.Text))
                 {
-                    DateTime NgayTra = DateTime.Parse(txtDateTra.Text.Trim());
-                    NgayTraSQL = $"'{NgayTra:yyyy-MM-dd}'";
+                    ngayTraObj = DateTime.Parse(txtDateTra.Text.Trim());
                 }
 
-                string TrangThai = Checktra.Checked ? "Đã Trả" : "Đang Mượn";
-                if (Checktra.Checked && NgayTraSQL == "NULL")
+                string trangThai = Checktra.Checked ? "Đã Trả" : "Đang Mượn";
+                if (Checktra.Checked && ngayTraObj == DBNull.Value)
                 {
-                    NgayTraSQL = $"'{DateTime.Now:yyyy-MM-dd}'";
+                    ngayTraObj = DateTime.Now.Date;
                 }
 
-                string GhiChu = txtGhiChu.Text.Replace("'", "''");
+                string sql = @"UPDATE MuonTra SET 
+                               MaDocGia = @MaDocGia, 
+                               MaSach = @MaSach, 
+                               NgayMuon = @NgayMuon, 
+                               NgayTra = @NgayTra, 
+                               TrangThai = @TrangThai, 
+                               GhiChu = @GhiChu 
+                               WHERE MaMuonTra = @MaMuonTra";
 
-                string sql = $"UPDATE MuonTra SET " +
-                             $"MaDocGia = N'{MaDocGia}', " +
-                             $"MaSach = {MaSach}, " +
-                             $"NgayMuon = '{NgayMuonSQL}', " +
-                             $"NgayTra = {NgayTraSQL}, " +
-                             $"TrangThai = N'{TrangThai}', " +
-                             $"GhiChu = N'{GhiChu}' " +
-                             $"WHERE MaMuonTra = {MaMuonTra}";
+                SqlParameter[] parameters = {
+                    new SqlParameter("@MaDocGia", cbMaDG.Text.Trim()),
+                    new SqlParameter("@MaSach", int.Parse(cbMaSach.Text.Trim())),
+                    new SqlParameter("@NgayMuon", ngayMuon),
+                    new SqlParameter("@NgayTra", ngayTraObj),
+                    new SqlParameter("@TrangThai", trangThai),
+                    new SqlParameter("@GhiChu", txtGhiChu.Text.Trim()),
+                    new SqlParameter("@MaMuonTra", maMuonTra)
+                };
 
-                qltt.ExecuteNonQuery(sql);
-                MessageBox.Show("Trả sách thành công!");
-                muontra_Load(sender, e);
+                qltt.ExecuteNonQuery(sql, parameters);
+                MessageBox.Show("Cập nhật thành công!");
+                TaiDuLieu();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
-        }
-
-        private static int ExecuteNonQuery(string sql, SqlParameter pMaDocGia, SqlParameter pMaSach, SqlParameter pNgayMuon, SqlParameter pNgayTra, SqlParameter pTrangThai, SqlParameter pGhiChu, SqlParameter pMaMuonTra)
-        {
-            throw new NotImplementedException();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -190,11 +204,12 @@ namespace quanlythuvien
             r = MessageBox.Show("Bạn có muốn thoát không?", "Chú ý", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
             if (r == DialogResult.Yes)
             {
+                isReturning = true;
                 this.Close();
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)// xóa 
+        private void button2_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
@@ -205,97 +220,26 @@ namespace quanlythuvien
             DialogResult dr = MessageBox.Show("Bạn chắc chắn muốn xóa?", "Xác nhận", MessageBoxButtons.YesNo);
             if (dr == DialogResult.Yes)
             {
-                int MaMuonTra = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["MaMuonTra"].Value);
-                string sql = $"DELETE FROM MuonTra WHERE MaMuonTra = {MaMuonTra}";
-                qltt.ExecuteNonQuery(sql);
+                int maMuonTra = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["MÃ MƯỢN TRẢ"].Value);
+                string sql = "DELETE FROM MuonTra WHERE MaMuonTra = @MaMuonTra";
+                SqlParameter[] param = { new SqlParameter("@MaMuonTra", maMuonTra) };
+                qltt.ExecuteNonQuery(sql, param);
                 MessageBox.Show("Xóa thành công!");
-                muontra_Load(sender, e);
+                TaiDuLieu();
             }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             string keyword = txtTimKiemMaDG.Text.Trim();
-            string sql;
-
-            if (string.IsNullOrEmpty(keyword))
-                sql = "SELECT * FROM MuonTra";
-            else
-                sql = $"SELECT * FROM MuonTra WHERE MaDocGia LIKE N'{keyword}%'";
-
-            dataGridView1.DataSource = qltt.ExecuteQuery(sql);
+            TaiDuLieu(keyword);
         }
 
-        private void Checktra_CheckedChanged(object sender, EventArgs e)
-        {
-            if (Checktra.Checked)
-            {
-                DateTime ngayMuon = DateTime.Parse(txtDateMuon.Text);
-                DateTime ngayTra = DateTime.Now;
-                TienPhatCalculator calc = new TienPhatCalculator();
-                double tienPhat = calc.TinhTienPhat(ngayMuon, ngayTra);
-                txtTienPhat.Text = tienPhat.ToString("N0");
-
-            }
-            else
-            {
-                txtTienPhat.Text = "0";
-            }
-        }
-
-
-
-        private void txtTienPhat_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void TinhTienPhat()
-        {
-            try
-            {
-
-
-                DateTime ngayMuon = DateTime.Parse(txtDateMuon.Text);
-                DateTime ngayTra = DateTime.Parse(txtDateTra.Text);
-
-                TimeSpan khoangThoiGian = ngayTra - ngayMuon;
-                int soNgayMuon = khoangThoiGian.Days;
-
-                double tienPhat = 0;
-                if (soNgayMuon > 7)
-                {
-                    int soNgayTre = soNgayMuon - 7;
-                    tienPhat = soNgayTre * 5000;
-                }
-
-                txtTienPhat.Text = tienPhat.ToString("N0");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi tính tiền phạt: " + ex.Message);
-            }
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtDateMuon_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
 
         private void btntrangchu_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            new trangchu().ShowDialog();
-            this.Show();
+            isReturning = true;
+            this.Close();
         }
 
         private void btnsach_Click(object sender, EventArgs e)
@@ -314,9 +258,7 @@ namespace quanlythuvien
 
         private void btnmuontra_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            new muontra().ShowDialog();
-            this.Show();
+
         }
 
         private void btnbaocao_Click(object sender, EventArgs e)
@@ -335,10 +277,45 @@ namespace quanlythuvien
 
         private void btndangxuat_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            new dangnhap().ShowDialog();
-            this.Close();
+            isReturning = true;
+            Application.Restart();
         }
-        
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                int maMuonTra = Convert.ToInt32(selectedRow.Cells["MÃ MƯỢN TRẢ"].Value);
+                this.lbMaPhieu.Text = $"Mã Phiếu:{maMuonTra}";
+                this.cbMaDG.Text = selectedRow.Cells["MÃ ĐỘC GIẢ"].Value.ToString();
+                this.cbMaSach.Text = selectedRow.Cells["MÃ SÁCH"].Value.ToString();
+                this.txtDateMuon.Text = selectedRow.Cells["NGÀY MƯỢN"].Value.ToString();
+                this.txtDateTra.Text = selectedRow.Cells["NGÀY TRẢ"].Value.ToString();
+                this.txtGhiChu.Text = selectedRow.Cells["GHI CHÚ"].Value.ToString();
+            }
+        }
+
+        private void Checktra_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (Checktra.Checked)
+            {
+                DateTime ngayMuon = DateTime.Parse(txtDateMuon.Text);
+                DateTime ngayTra = DateTime.Now;
+                TienPhatCalculator calc = new TienPhatCalculator();
+                double tienPhat = calc.TinhTienPhat(ngayMuon, ngayTra);
+                txtTienPhat.Text = tienPhat.ToString("N0");
+            }
+            else
+            {
+                txtTienPhat.Text = "0";
+            }
+        }
+
+        private void muontra_Load_1(object sender, EventArgs e)
+        {
+            TaiDuLieu();
+            XoaTrang();
+        }
     }
 }

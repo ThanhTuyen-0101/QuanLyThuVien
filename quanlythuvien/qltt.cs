@@ -5,18 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
+
 namespace quanlythuvien
 {
     public class qltt
     {
         protected static string _connectString =
-            "server=.;database=QuanLyThuVien;integrated security=SSPI";
+            ConfigurationManager.ConnectionStrings["ThuVienDB"].ConnectionString;
 
         // SELECT
         public static DataTable ExecuteQuery(string sql, params SqlParameter[] parameters)
         {
+            // Code giữ nguyên như cũ
             DataTable dt = new DataTable();
-
             using (SqlConnection connect = new SqlConnection(_connectString))
             using (SqlCommand command = new SqlCommand(sql, connect))
             {
@@ -29,7 +31,6 @@ namespace quanlythuvien
                     adapter.Fill(dt);
                 }
             }
-
             return dt;
         }
 

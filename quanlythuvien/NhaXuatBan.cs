@@ -12,23 +12,26 @@ namespace quanlythuvien
 {
     public partial class NhaXuatBan : Form
     {
+        private bool isReturning = false;
+
         public NhaXuatBan()
         {
             InitializeComponent();
+            this.FormClosed += NhaXuatBan_FormClosed;
         }
-        private void NhaXuatBan_Load(object sender, EventArgs e)
+
+        private void NhaXuatBan_FormClosed(object sender, FormClosedEventArgs e)
         {
-            String sql = "SELECT * FROM NhaXuatBan";
-            DataTable dt = qltt.ExecuteQuery(sql);
-            this.dgvsach.DataSource = dt;
-            dgvsach.DataSource = dt;
+            if (!isReturning)
+            {
+                Application.Exit();
+            }
         }
 
         private void btntragchu_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            new trangchu().ShowDialog();
-            this.Show();
+            isReturning = true;
+            this.Close();
         }
 
         private void btnsach_Click(object sender, EventArgs e)
@@ -68,34 +71,21 @@ namespace quanlythuvien
 
         private void btndangxuat_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            new dangnhap().ShowDialog();
-            this.Close();
-        }
-
-        private void pbtheloai_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new TheLoai().ShowDialog();
-            this.Show();
+            isReturning = true;
+            Application.Restart();
         }
 
         private void label14_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            new quanlysach().ShowDialog();
+            this.Show();
         }
 
         private void lbtheloai_Click(object sender, EventArgs e)
         {
             this.Hide();
             new TheLoai().ShowDialog();
-            this.Show();
-        }
-
-        private void pbtacgia_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new TacGia().ShowDialog();
             this.Show();
         }
 
@@ -106,26 +96,45 @@ namespace quanlythuvien
             this.Show();
         }
 
-        private void pbnhxuatban_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new NhaXuatBan().ShowDialog();
-            this.Show();
-        }
-
         private void lbnhaxuatban_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            new NhaXuatBan().ShowDialog();
-            this.Show();
+
         }
-        
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            new quanlysach().ShowDialog();
+            this.Show();
+        }
+
+        private void pbtheloai_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            new TheLoai().ShowDialog();
+            this.Show();
+        }
+
+        private void pbtacgia_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            new TacGia().ShowDialog();
+            this.Show();
+        }
+
+        private void pbnhxuatban_Click_1(object sender, EventArgs e)
+        {
 
         }
 
-        
+        private void NhaXuatBan_Load(object sender, EventArgs e)
+        {
+            string sql = "SELECT MaNhaXuatBan AS [MÃ NHÀ XUẤT BẢN], TenNhaXuatBan AS [TÊN NHÀ XUẤT BẢN] FROM NhaXuatBan";
+            DataTable dt = qltt.ExecuteQuery(sql);
+
+            dgvsach.DataSource = dt;
+            dgvsach.Font = new Font("Times New Roman", 10);
+            dgvsach.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
     }
 }

@@ -130,6 +130,7 @@
             this.pbnhaxuatban.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbnhaxuatban.TabIndex = 35;
             this.pbnhaxuatban.TabStop = false;
+            this.pbnhaxuatban.Click += new System.EventHandler(this.pbnhaxuatban_Click_1);
             // 
             // lbtacgia
             // 
@@ -154,6 +155,7 @@
             this.pbtacgia.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbtacgia.TabIndex = 33;
             this.pbtacgia.TabStop = false;
+            this.pbtacgia.Click += new System.EventHandler(this.pbtacgia_Click_1);
             // 
             // label1
             // 
@@ -178,6 +180,7 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 31;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // lbsach
             // 
@@ -202,6 +205,7 @@
             this.pbsach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbsach.TabIndex = 29;
             this.pbsach.TabStop = false;
+            this.pbsach.Click += new System.EventHandler(this.pbsach_Click_1);
             // 
             // btntrangchu
             // 
@@ -361,17 +365,18 @@
             this.panel7.Size = new System.Drawing.Size(1298, 855);
             this.panel7.TabIndex = 42;
             // 
-            // tl
+            // TheLoai
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(206)))), ((int)(((byte)(109)))));
-            this.ClientSize = new System.Drawing.Size(1673, 1152);
+            this.ClientSize = new System.Drawing.Size(1673, 1105);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel7);
-            this.Name = "tl";
+            this.Name = "TheLoai";
             this.Text = "tl";
+            this.Load += new System.EventHandler(this.TheLoai_Load_1);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbnhaxuatban)).EndInit();

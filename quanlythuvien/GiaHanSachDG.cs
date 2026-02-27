@@ -14,57 +14,13 @@ namespace quanlythuvien
     public partial class GiaHanSachDG : Form
     {
         private string maDocGia;
+
         public GiaHanSachDG(string maDocGia)
         {
             InitializeComponent();
             this.maDocGia = maDocGia;
         }
 
-        private void GiaHanSachDG_Load(object sender, EventArgs e)
-        {
-            LoadThongTin(this.maDocGia);
-        }
-
-        private void dvgGiaHanDG_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dvgGiaHanDG.SelectedRows.Count > 0)
-            {
-                DataGridViewRow row = dvgGiaHanDG.SelectedRows[0];
-
-                txtMaDocGia.Text = row.Cells["MaDocGia"].Value?.ToString();
-                txtMaSach.Text = row.Cells["MaSach"].Value?.ToString();
-                DateTime? ngayMuon = row.Cells["NgayMuon"].Value == null || row.Cells["NgayMuon"].Value == DBNull.Value
-                    ? (DateTime?)null
-                    : Convert.ToDateTime(row.Cells["NgayMuon"].Value);
-
-                DateTime? ngayTra = row.Cells["NgayTra"].Value == null || row.Cells["NgayTra"].Value == DBNull.Value || row.Cells["NgayTra"].Value.ToString() == ""
-                    ? (DateTime?)null
-                    : Convert.ToDateTime(row.Cells["NgayTra"].Value);
-                string trangThai = row.Cells["TrangThai"].Value?.ToString();
-                txtNgayMuon.Text = ngayMuon.HasValue ? ngayMuon.Value.ToString("dd/MM/yyyy") : "";
-                txtNgayTra.Text = ngayTra.HasValue ? ngayTra.Value.ToString("dd/MM/yyyy") : "";
-                txtNgayGiaHan.Text = "";
-                string dieuKien = "";
-                if (trangThai == "Đang Mượn")
-                {
-                    dieuKien = "Không đủ điều kiện";
-                }
-                else if (ngayMuon.HasValue && ngayTra.HasValue)
-                {
-                    int soNgay = (ngayTra.Value - ngayMuon.Value).Days;
-                    if (soNgay < 14)
-                        dieuKien = "Đủ điều kiện";
-                    else
-                        dieuKien = "Không đủ điều kiện";
-                }
-                else
-                {
-                    dieuKien = "Không đủ điều kiện";
-                }
-
-                txtDieuKien.Text = dieuKien;
-            }
-        }
         private void LoadThongTin(string maDocGia)
         {
             string sql = @"
@@ -76,6 +32,7 @@ namespace quanlythuvien
             DataTable dt = qltt.ExecuteQuery(sql);
             dvgGiaHanDG.DataSource = dt;
         }
+
         private void btnGiaHan_Click(object sender, EventArgs e)
         {
             if (txtDieuKien.Text != "Đủ điều kiện")
@@ -97,6 +54,56 @@ namespace quanlythuvien
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dvgGiaHanDG_SelectionChanged_1(object sender, EventArgs e)
+        {
+            if (dvgGiaHanDG.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = dvgGiaHanDG.SelectedRows[0];
+
+                txtMaDocGia.Text = row.Cells["MaDocGia"].Value?.ToString();
+                txtMaSach.Text = row.Cells["MaSach"].Value?.ToString();
+
+                DateTime? ngayMuon = row.Cells["NgayMuon"].Value == null || row.Cells["NgayMuon"].Value == DBNull.Value
+                    ? (DateTime?)null
+                    : Convert.ToDateTime(row.Cells["NgayMuon"].Value);
+
+                DateTime? ngayTra = row.Cells["NgayTra"].Value == null || row.Cells["NgayTra"].Value == DBNull.Value || row.Cells["NgayTra"].Value.ToString() == ""
+                    ? (DateTime?)null
+                    : Convert.ToDateTime(row.Cells["NgayTra"].Value);
+
+                string trangThai = row.Cells["TrangThai"].Value?.ToString();
+
+                txtNgayMuon.Text = ngayMuon.HasValue ? ngayMuon.Value.ToString("dd/MM/yyyy") : "";
+                txtNgayTra.Text = ngayTra.HasValue ? ngayTra.Value.ToString("dd/MM/yyyy") : "";
+                txtNgayGiaHan.Text = "";
+                string dieuKien = "";
+
+                if (trangThai == "Đang Mượn")
+                {
+                    dieuKien = "Không đủ điều kiện";
+                }
+                else if (ngayMuon.HasValue && ngayTra.HasValue)
+                {
+                    int soNgay = (ngayTra.Value - ngayMuon.Value).Days;
+                    if (soNgay < 14)
+                        dieuKien = "Đủ điều kiện";
+                    else
+                        dieuKien = "Không đủ điều kiện";
+                }
+                else
+                {
+                    dieuKien = "Không đủ điều kiện";
+                }
+
+                txtDieuKien.Text = dieuKien;
+            }
+        }
+
+        private void GiaHanSachDG_Load(object sender, EventArgs e)
+        {
+            LoadThongTin(this.maDocGia);
         }
     }
 }

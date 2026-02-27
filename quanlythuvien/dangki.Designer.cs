@@ -41,6 +41,7 @@
             this.txthovatendangki = new System.Windows.Forms.TextBox();
             this.rbnudangki = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.rbnamdangki = new System.Windows.Forms.RadioButton();
             this.label9 = new System.Windows.Forms.Label();
@@ -52,10 +53,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label11
@@ -82,7 +82,7 @@
             this.btnthoat.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnthoat.Size = new System.Drawing.Size(779, 63);
             this.btnthoat.TabIndex = 20;
-            this.btnthoat.Text = "Hủy";
+            this.btnthoat.Text = "Thoát";
             this.btnthoat.UseVisualStyleBackColor = false;
             this.btnthoat.Click += new System.EventHandler(this.btnthoat_Click);
             // 
@@ -199,6 +199,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(786, 869);
             this.panel2.TabIndex = 4;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.Image = global::quanlythuvien.Properties.Resources.Screenshot_2026_01_25_104349_removebg_preview;
+            this.pictureBox3.Location = new System.Drawing.Point(199, 372);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(383, 292);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 27;
+            this.pictureBox3.TabStop = false;
             // 
             // label1
             // 
@@ -353,18 +364,7 @@
             this.panel1.Size = new System.Drawing.Size(845, 869);
             this.panel1.TabIndex = 3;
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.Image = global::quanlythuvien.Properties.Resources.Screenshot_2026_01_25_104349_removebg_preview;
-            this.pictureBox3.Location = new System.Drawing.Point(199, 372);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(383, 292);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 27;
-            this.pictureBox3.TabStop = false;
-            // 
-            // DK
+            // dangki
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -373,13 +373,13 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Name = "DK";
-            this.Text = "DK";
+            this.Name = "dangki";
+            this.Text = "Form đăng kí";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

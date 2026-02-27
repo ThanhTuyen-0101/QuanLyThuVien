@@ -351,6 +351,7 @@
             this.Checktra.TabIndex = 6;
             this.Checktra.Text = "Đã trả";
             this.Checktra.UseVisualStyleBackColor = true;
+            this.Checktra.CheckedChanged += new System.EventHandler(this.Checktra_CheckedChanged_1);
             // 
             // label6
             // 
@@ -420,9 +421,9 @@
             // dataGridView1
             // 
             this.dataGridView1.AccessibleName = "BangThongTin";
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Black;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(418, 511);
+            this.dataGridView1.Location = new System.Drawing.Point(407, 486);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
@@ -430,6 +431,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1084, 596);
             this.dataGridView1.TabIndex = 35;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // groupBox1
             // 
@@ -533,18 +535,19 @@
             this.lbMaPhieu.TabIndex = 9;
             this.lbMaPhieu.Text = "Mã phiếu:";
             // 
-            // mt
+            // muontra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(206)))), ((int)(((byte)(109)))));
-            this.ClientSize = new System.Drawing.Size(1684, 1252);
+            this.ClientSize = new System.Drawing.Size(1503, 1106);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Name = "mt";
+            this.Name = "muontra";
             this.Text = "mt";
+            this.Load += new System.EventHandler(this.muontra_Load_1);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

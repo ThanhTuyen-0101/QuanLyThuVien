@@ -506,7 +506,7 @@
             this.btntaikhoan.UseVisualStyleBackColor = true;
             this.btntaikhoan.Click += new System.EventHandler(this.btntaikhoan_Click);
             // 
-            // TrangChuTV
+            // trangchu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -514,8 +514,8 @@
             this.ClientSize = new System.Drawing.Size(1733, 1083);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
-            this.Name = "TrangChuTV";
-            this.Text = "TrangChuTV";
+            this.Name = "trangchu";
+            this.Text = "Form trang chủ";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.pbnhaxuatban.ResumeLayout(false);
             this.pbnhaxuatban.PerformLayout();

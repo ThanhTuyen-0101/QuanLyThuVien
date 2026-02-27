@@ -12,31 +12,32 @@ namespace quanlythuvien
 {
     public partial class TheLoai : Form
     {
-        private void TheLoai_Load(object sender, EventArgs e)
+        private bool isReturning = false;
+
+        public TheLoai()
         {
-            String sql = "SELECT * FROM TheLoai";
-            DataTable dt = qltt.ExecuteQuery(sql);
-            this.dgvsach.DataSource = dt;
-            dgvsach.DataSource = dt;
+            InitializeComponent();
+            this.FormClosed += TheLoai_FormClosed;
         }
 
-        private void trangChủToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TheLoai_FormClosed(object sender, FormClosedEventArgs e)
         {
-
+            if (!isReturning)
+            {
+                Application.Exit();
+            }
         }
 
         private void btntrangchu_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            new trangchu().ShowDialog();
-            this.Show();
+            isReturning = true;
+            this.Close();
         }
 
         private void btndangxuat_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            new dangnhap().ShowDialog();
-            this.Close();
+            isReturning = true;
+            Application.Restart();
         }
 
         private void btnsach_Click(object sender, EventArgs e)
@@ -74,24 +75,10 @@ namespace quanlythuvien
             this.Show();
         }
 
-        private void pbsach_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new quanlysach().ShowDialog();
-            this.Show();
-        }
-
         private void lbsach_Click(object sender, EventArgs e)
         {
             this.Hide();
             new quanlysach().ShowDialog();
-            this.Show();
-        }
-
-        private void pbtacgia_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new TacGia().ShowDialog();
             this.Show();
         }
 
@@ -102,31 +89,52 @@ namespace quanlythuvien
             this.Show();
         }
 
-        private void pbnhaxuatban_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new NhaXuatBan().ShowDialog();
-            this.Show();
-        }
-
         private void lbnhaxuatban_Click(object sender, EventArgs e)
         {
             this.Hide();
             new NhaXuatBan().ShowDialog();
             this.Show();
         }
-        public TheLoai()
-        {
-            InitializeComponent();
-        }
-
-       
 
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
 
-        
+        private void pbsach_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            new quanlysach().ShowDialog();
+            this.Show();
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pbtacgia_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            new TacGia().ShowDialog();
+            this.Show();
+        }
+
+        private void pbnhaxuatban_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            new NhaXuatBan().ShowDialog();
+            this.Show();
+        }
+
+        private void TheLoai_Load_1(object sender, EventArgs e)
+        {
+            string sql = "SELECT MaTheLoai AS [MÃ THỂ LOẠI], TenTheLoai AS [TÊN THỂ LOẠI] FROM TheLoai";
+            DataTable dt = qltt.ExecuteQuery(sql);
+
+            dgvsach.DataSource = dt;
+            dgvsach.Font = new Font("Times New Roman", 10);
+            dgvsach.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
     }
 }

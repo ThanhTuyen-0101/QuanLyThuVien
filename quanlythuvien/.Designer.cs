@@ -120,6 +120,7 @@
             this.dvgGiaHanDG.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dvgGiaHanDG.Size = new System.Drawing.Size(1755, 436);
             this.dvgGiaHanDG.TabIndex = 26;
+            this.dvgGiaHanDG.SelectionChanged += new System.EventHandler(this.dvgGiaHanDG_SelectionChanged_1);
             // 
             // btnThoat
             // 
@@ -230,12 +231,12 @@
             this.label1.TabIndex = 17;
             this.label1.Text = "Phiếu Gia Hạn Sách";
             // 
-            // gh
+            // GiaHanSachDG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(206)))), ((int)(((byte)(109)))));
-            this.ClientSize = new System.Drawing.Size(1771, 987);
+            this.ClientSize = new System.Drawing.Size(1771, 951);
             this.Controls.Add(this.txtNgayGiaHan);
             this.Controls.Add(this.txtNgayTra);
             this.Controls.Add(this.txtNgayMuon);
@@ -252,8 +253,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "gh";
-            this.Text = "gh";
+            this.Name = "GiaHanSachDG";
+            this.Text = "Form phiếu gia hạn";
+            this.Load += new System.EventHandler(this.GiaHanSachDG_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dvgGiaHanDG)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

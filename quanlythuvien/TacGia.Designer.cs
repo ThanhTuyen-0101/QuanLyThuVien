@@ -130,6 +130,7 @@
             this.pbnhaxuatban.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbnhaxuatban.TabIndex = 35;
             this.pbnhaxuatban.TabStop = false;
+            this.pbnhaxuatban.Click += new System.EventHandler(this.pbnhaxuatban_Click_1);
             // 
             // label12
             // 
@@ -154,6 +155,7 @@
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 33;
             this.pictureBox5.TabStop = false;
+            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
             // 
             // lbtheloai
             // 
@@ -178,6 +180,7 @@
             this.pbtheloai.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbtheloai.TabIndex = 31;
             this.pbtheloai.TabStop = false;
+            this.pbtheloai.Click += new System.EventHandler(this.pbtheloai_Click_1);
             // 
             // lbsach
             // 
@@ -202,6 +205,7 @@
             this.pbsach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbsach.TabIndex = 29;
             this.pbsach.TabStop = false;
+            this.pbsach.Click += new System.EventHandler(this.pbsach_Click_1);
             // 
             // btntrangchu
             // 
@@ -361,17 +365,18 @@
             this.panel7.Size = new System.Drawing.Size(1298, 855);
             this.panel7.TabIndex = 39;
             // 
-            // tg
+            // TacGia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(206)))), ((int)(((byte)(109)))));
-            this.ClientSize = new System.Drawing.Size(1693, 1205);
+            this.ClientSize = new System.Drawing.Size(1693, 1105);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel7);
-            this.Name = "tg";
+            this.Name = "TacGia";
             this.Text = "tg";
+            this.Load += new System.EventHandler(this.TacGia_Load_1);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbnhaxuatban)).EndInit();

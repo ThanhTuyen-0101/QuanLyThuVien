@@ -147,6 +147,7 @@
             this.pbnhxuatban.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbnhxuatban.TabIndex = 35;
             this.pbnhxuatban.TabStop = false;
+            this.pbnhxuatban.Click += new System.EventHandler(this.pbnhxuatban_Click_1);
             // 
             // label12
             // 
@@ -171,6 +172,7 @@
             this.pbtacgia.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbtacgia.TabIndex = 33;
             this.pbtacgia.TabStop = false;
+            this.pbtacgia.Click += new System.EventHandler(this.pbtacgia_Click_1);
             // 
             // lbtheloai
             // 
@@ -195,6 +197,7 @@
             this.pbtheloai.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbtheloai.TabIndex = 31;
             this.pbtheloai.TabStop = false;
+            this.pbtheloai.Click += new System.EventHandler(this.pbtheloai_Click_1);
             // 
             // label14
             // 
@@ -361,18 +364,19 @@
             this.panel7.Size = new System.Drawing.Size(1298, 855);
             this.panel7.TabIndex = 36;
             // 
-            // nxb
+            // NhaXuatBan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(206)))), ((int)(((byte)(109)))));
-            this.ClientSize = new System.Drawing.Size(1672, 1199);
+            this.ClientSize = new System.Drawing.Size(1672, 1105);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.dgvsach);
             this.Controls.Add(this.panel7);
-            this.Name = "nxb";
+            this.Name = "NhaXuatBan";
             this.Text = "nxb";
+            this.Load += new System.EventHandler(this.NhaXuatBan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbnhxuatban)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtacgia)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtheloai)).EndInit();
