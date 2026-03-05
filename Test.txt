@@ -1,0 +1,226 @@
+using FlaUI.Core;
+using FlaUI.Core.AutomationElements;
+using FlaUI.Core.Input;
+using FlaUI.Core.WindowsAPI;
+using FlaUI.UIA3;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Linq;
+
+namespace UITest_Automation
+{
+    [TestClass]
+    public class LibraryAutomationTests
+    {
+        private readonly string appPath = @"D:\ANhu\Study\OfficialDocuments\Y3_S2\KiemThu\quanlythuvien\quanlythuvien\bin\Debug\quanlythuvien.exe";
+
+        [TestMethod]
+        public void KichBan1_DangNhap_ThuThu_ThanhCong()
+        {
+            using (var app = Application.Launch(appPath))
+            {
+                using (var automation = new UIA3Automation())
+                {
+                    var window = app.GetMainWindow(automation);
+                    Assert.IsNotNull(window, "Không mở được phần mềm.");
+
+                    var txtUser = window.FindFirstDescendant(cf => cf.ByAutomationId("txttendangnhap"))?.AsTextBox();
+                    var txtPass = window.FindFirstDescendant(cf => cf.ByAutomationId("txtmatkhaudangnhap"))?.AsTextBox();
+                    var btnLogin = window.FindFirstDescendant(cf => cf.ByAutomationId("btndagnhap"))?.AsButton();
+
+                    txtUser.Enter("Tuyen");
+                    txtPass.Enter("1234@Ntt");
+                    btnLogin.Click();
+
+                    System.Threading.Thread.Sleep(1500);
+                    Keyboard.Press(VirtualKeyShort.ENTER);
+                    System.Threading.Thread.Sleep(1500);
+
+                    var mainWindow = app.GetMainWindow(automation);
+                    Assert.IsTrue(mainWindow != null && mainWindow.Name != window.Name,
+                        "Đăng nhập thất bại, không chuyển được sang form Trang Chủ");
+
+                    app.Close();
+                }
+            }
+        }
+
+        [TestMethod]
+        public void KichBan2_ThemSachMoi_ThanhCong()
+        {
+            using (var app = Application.Launch(appPath))
+            {
+                using (var automation = new UIA3Automation())
+                {
+                    var window = app.GetMainWindow(automation);
+
+                    // --- BƯỚC 1: ĐĂNG NHẬP ---
+                    window.FindFirstDescendant(cf => cf.ByAutomationId("txttendangnhap"))?.AsTextBox().Enter("Tuyen");
+                    window.FindFirstDescendant(cf => cf.ByAutomationId("txtmatkhaudangnhap"))?.AsTextBox().Enter("1234@Ntt");
+                    window.FindFirstDescendant(cf => cf.ByAutomationId("btndagnhap"))?.AsButton().Click();
+
+                    System.Threading.Thread.Sleep(1500);
+                    Keyboard.Press(VirtualKeyShort.ENTER);
+                    System.Threading.Thread.Sleep(1500);
+
+                    // --- BƯỚC 2: VÀO FORM SÁCH ---
+                    var trangChu = app.GetMainWindow(automation);
+                    var btnSach = trangChu.FindFirstDescendant(cf => cf.ByAutomationId("btbnsach"))?.AsButton();
+                    btnSach?.Click();
+                    System.Threading.Thread.Sleep(1500);
+
+                    var formSach = app.GetMainWindow(automation);
+                    Assert.IsNotNull(formSach, "Không mở được Form Quản lý Sách");
+
+                    var dgvSach = formSach.FindFirstDescendant(cf => cf.ByAutomationId("dgvsach"));
+                    Assert.IsNotNull(dgvSach, "Không load được bảng dữ liệu sách!");
+
+                    // --- BƯỚC 3: ĐIỀN DỮ LIỆU ---
+                    string maRandom = System.DateTime.Now.ToString("HHmmss");
+                    string tenSachMoi = "Sách Auto Test " + maRandom;
+
+                    formSach.FindFirstDescendant(cf => cf.ByAutomationId("txttensach"))?.AsTextBox().Enter(tenSachMoi);
+                    formSach.FindFirstDescendant(cf => cf.ByAutomationId("txttacgia"))?.AsTextBox().Enter("1");
+                    formSach.FindFirstDescendant(cf => cf.ByAutomationId("txtnxb"))?.AsTextBox().Enter("1");
+                    formSach.FindFirstDescendant(cf => cf.ByAutomationId("txtnam"))?.AsTextBox().Enter("2024");
+                    formSach.FindFirstDescendant(cf => cf.ByAutomationId("txtmatheloai"))?.AsTextBox().Enter("1");
+                    formSach.FindFirstDescendant(cf => cf.ByAutomationId("txtisbn"))?.AsTextBox().Enter("ISBN-" + maRandom);
+                    formSach.FindFirstDescendant(cf => cf.ByAutomationId("txtsoluong"))?.AsTextBox().Enter("50");
+                    formSach.FindFirstDescendant(cf => cf.ByAutomationId("txtconlai"))?.AsTextBox().Enter("50");
+
+                    // Click Thêm
+                    var btnThem = formSach.FindFirstDescendant(cf => cf.ByAutomationId("btnthemqls"))?.AsButton();
+                    btnThem?.Click();
+                    System.Threading.Thread.Sleep(1500);
+                    Keyboard.Press(VirtualKeyShort.ENTER);
+                    System.Threading.Thread.Sleep(2000);
+
+                    // =========================================================
+                    // --- BƯỚC 4: XÁC MINH SÁCH HIỆN TRONG DANH SÁCH ---
+                    // =========================================================
+
+                    // Tìm kiếm sách vừa thêm
+                    var txtTimKiem = formSach.FindFirstDescendant(cf => cf.ByAutomationId("txttimkiemqls"))?.AsTextBox();
+                    Assert.IsNotNull(txtTimKiem, "Lỗi: Không tìm thấy ô tìm kiếm sách!");
+
+                    txtTimKiem.Click();
+                    txtTimKiem.Enter(tenSachMoi);
+                    System.Threading.Thread.Sleep(500);
+                    Keyboard.Press(VirtualKeyShort.ENTER);
+
+                    // CHỜ GRID LOAD + SCROLL LÊN ĐẦU
+                    formSach.Focus();
+                    System.Threading.Thread.Sleep(4000);
+                    Keyboard.Press(VirtualKeyShort.HOME);
+                    Keyboard.Press(VirtualKeyShort.DOWN); // Chọn dòng đầu tiên
+                    System.Threading.Thread.Sleep(1000);
+
+                    // DEBUG GRID STATE
+                    Console.WriteLine("=== DEBUG GRID ===");
+                    Console.WriteLine($"Grid Exist: {dgvSach != null}");
+                    Console.WriteLine($"Grid Enabled: {dgvSach?.IsEnabled}");
+
+                    // THỬ PRIORITY: DataGridView pattern (đã work với 2 rows)
+                    GridRow firstRow = null;
+                    var dgvRows = dgvSach?.AsDataGridView()?.Rows;
+                    if (dgvRows != null && dgvRows.Length > 0)
+                    {
+                        firstRow = dgvRows[0].AsGridRow();
+                        Console.WriteLine($"Tìm thấy {dgvRows.Length} rows qua DataGridView pattern");
+                    }
+
+                    Assert.IsNotNull(firstRow, "Test FAILED: Bảng trống, không tìm thấy sách sau khi lọc!");
+
+                    // 🔥 FIX CLICK: DÙNG KEYBOARD THAY VÌ MOUSE CLICK
+                    Keyboard.Press(VirtualKeyShort.ENTER); // Hoặc SPACE để chọn row
+                    System.Threading.Thread.Sleep(1500);
+
+                    // ALTERNATIVE: Click cell đầu tiên thay vì toàn row
+                    // var firstCell = firstRow.Cells.FirstOrDefault();
+                    // if (firstCell != null) firstCell.Click();
+
+                    // VERIFY DỮ LIỆU TỪ TEXTBOX (KHÔNG CẦN CLICK NỮA)
+                    var txtTenSachDoiChieu = formSach.FindFirstDescendant(cf => cf.ByAutomationId("txttensach"))?.AsTextBox();
+                    string tenSachThucTe = txtTenSachDoiChieu?.Text ?? "";
+
+                    Assert.AreEqual(tenSachMoi, tenSachThucTe, $"Dữ liệu không khớp! Expected: '{tenSachMoi}', Actual: '{tenSachThucTe}'");
+
+                    Console.WriteLine($"PASS: Xác minh thành công - '{tenSachThucTe}'");
+
+                    app.Close();
+                }
+            }
+        }
+
+
+
+
+        [TestMethod]
+        public void KichBan3_KiemTra_TinhPhiPhat_MuonTraSach()
+        {
+            using (var app = Application.Launch(appPath))
+            {
+                using (var automation = new UIA3Automation())
+                {
+                    var window = app.GetMainWindow(automation);
+
+                    // Đăng nhập
+                    window.FindFirstDescendant(cf => cf.ByAutomationId("txttendangnhap"))?.AsTextBox().Enter("Tuyen");
+                    window.FindFirstDescendant(cf => cf.ByAutomationId("txtmatkhaudangnhap"))?.AsTextBox().Enter("1234@Ntt");
+                    window.FindFirstDescendant(cf => cf.ByAutomationId("btndagnhap"))?.AsButton().Click();
+                    System.Threading.Thread.Sleep(1500);
+                    Keyboard.Press(VirtualKeyShort.ENTER);
+                    System.Threading.Thread.Sleep(1500);
+
+                    // Vào form Mượn Trả
+                    var trangChu = app.GetMainWindow(automation);
+                    var btnMuonTra = trangChu.FindFirstDescendant(cf => cf.ByAutomationId("btnmuontra"))?.AsButton();
+                    btnMuonTra?.Click();
+                    System.Threading.Thread.Sleep(1500);
+
+                    var formMuonTra = app.GetMainWindow(automation);
+                    var txtNgayMuon = formMuonTra.FindFirstDescendant(cf => cf.ByAutomationId("txtDateMuon"))?.AsTextBox();
+                    var chkTraSach = formMuonTra.FindFirstDescendant(cf => cf.ByAutomationId("Checktra"))?.AsCheckBox();
+                    var txtTienPhat = formMuonTra.FindFirstDescendant(cf => cf.ByAutomationId("txtTienPhat"))?.AsTextBox();
+
+                    Assert.IsNotNull(chkTraSach, "Không tìm thấy Checkbox Trả sách");
+                    Assert.IsNotNull(txtNgayMuon, "Không tìm thấy txtDateMuon");
+                    Assert.IsNotNull(txtTienPhat, "Không tìm thấy txtTienPhat");
+
+                    // 🔥 FIX 1: CLICK VÀO TEXTBOX TRƯỚC KHI SET DATE
+                    txtNgayMuon.Click();
+                    string ngayMuonQuaHan = System.DateTime.Now.AddDays(-30).ToString("dd/MM/yyyy");
+                    txtNgayMuon.Enter(ngayMuonQuaHan); // Enter thay vì Text=
+
+                    // 🔥 FIX 2: TAB RA ĐỂ TRIGGER LOSTFOCUS + CALCULATION
+                    Keyboard.Press(VirtualKeyShort.TAB);
+                    System.Threading.Thread.Sleep(1000);
+
+                    // Check Trả sách
+                    chkTraSach.Click();
+                    System.Threading.Thread.Sleep(2000); // Chờ tính phí
+
+                    // 🔥 FIX 3: TRIGGER TÍNH TOÁN THÊM (nếu cần)
+                    Keyboard.Press(VirtualKeyShort.TAB);
+                    System.Threading.Thread.Sleep(500);
+
+                    // Đọc kết quả
+                    string tienPhatHienTai = txtTienPhat.Text.Trim();
+                    Console.WriteLine($"Ngày mượn: {ngayMuonQuaHan}");
+                    Console.WriteLine($"Tiền phạt: '{tienPhatHienTai}'");
+
+                    // Assert linh hoạt hơn
+                    Assert.IsTrue(
+                        !string.IsNullOrEmpty(tienPhatHienTai) &&
+                        tienPhatHienTai != "0" &&
+                        double.TryParse(tienPhatHienTai, out double phi) && phi > 0,
+                        $"Lỗi logic: Ngày quá hạn 30 ngày nhưng tiền phạt vẫn '{tienPhatHienTai}'!");
+
+                    Console.WriteLine("PASS: Tính phí phạt thành công!");
+                    app.Close();
+                }
+            }
+        }
+
+    }
+}

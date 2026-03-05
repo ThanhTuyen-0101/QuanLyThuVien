@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QLTV.BusinessLogic;
 
 namespace quanlythuvien
 {
@@ -186,60 +187,66 @@ namespace quanlythuvien
                 string maSach = cbMaSach.Text.Trim();
 
                 DateTime ngayMuon = DateTime.Parse(txtDateMuon.Text.Trim());
+
+                // GỌI SERVICE ĐỂ XỬ LÝ LOGIC
+                var service = new MuonTraService();
+                var ketQua = service.XuLySua(
+                    selectedRowCount: dataGridView1.SelectedRows.Count,
+                    txtDateMuon: txtDateMuon.Text,
+                    txtDateTra: txtDateTra.Text,
+                    checkTra: Checktra.Checked,
+                    trangThaiCu: trangThaiCu
+                );
+
+                // Xử lý theo mã kết quả
+                if (ketQua.MaKetQua == "CHUA_CHON_DONG")
+                {
+                    MessageBox.Show(ketQua.ThongBaoNguoiDung);
+                    return;
+                }
+                if (ketQua.MaKetQua == "NGAY_TRA_NHO_HON_NGAY_MUON")
+                {
+                    MessageBox.Show(ketQua.ThongBaoNguoiDung, "Lỗi Logic", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Đến đây là OK -> tiến hành UPDATE DB
                 object ngayTraObj = DBNull.Value;
-
-                if (!string.IsNullOrEmpty(txtDateTra.Text))
-                {
-                    DateTime ngayTra = DateTime.Parse(txtDateTra.Text.Trim());
-                    // --- KIỂM TRA LOGIC NGÀY THÁNG ---
-                    if (Checktra.Checked && ngayTra < ngayMuon)
-                    {
-                        MessageBox.Show("Ngày trả không được nhỏ hơn ngày mượn!", "Lỗi Logic", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    ngayTraObj = ngayTra;
-                }
-
-                string trangThaiMoi = Checktra.Checked ? "Đã Trả" : "Đang Mượn";
-                if (Checktra.Checked && ngayTraObj == DBNull.Value)
-                {
-                    ngayTraObj = DateTime.Now.Date;
-                }
+                if (ketQua.NgayTra.HasValue)
+                    ngayTraObj = ketQua.NgayTra.Value;
 
                 string sql = @"UPDATE MuonTra SET 
-                               MaDocGia = @MaDocGia, 
-                               MaSach = @MaSach, 
-                               NgayMuon = @NgayMuon, 
-                               NgayTra = @NgayTra, 
-                               TrangThai = @TrangThai, 
-                               GhiChu = @GhiChu 
-                               WHERE MaMuonTra = @MaMuonTra";
+                           MaDocGia = @MaDocGia, 
+                           MaSach = @MaSach, 
+                           NgayMuon = @NgayMuon, 
+                           NgayTra = @NgayTra, 
+                           TrangThai = @TrangThai, 
+                           GhiChu = @GhiChu 
+                       WHERE MaMuonTra = @MaMuonTra";
 
                 SqlParameter[] parameters = {
-                    new SqlParameter("@MaDocGia", cbMaDG.Text.Trim()),
-                    new SqlParameter("@MaSach", int.Parse(maSach)),
-                    new SqlParameter("@NgayMuon", ngayMuon),
-                    new SqlParameter("@NgayTra", ngayTraObj),
-                    new SqlParameter("@TrangThai", trangThaiMoi),
-                    new SqlParameter("@GhiChu", txtGhiChu.Text.Trim()),
-                    new SqlParameter("@MaMuonTra", maMuonTra)
-                };
+            new SqlParameter("@MaDocGia", cbMaDG.Text.Trim()),
+            new SqlParameter("@MaSach", int.Parse(maSach)),
+            new SqlParameter("@NgayMuon", ketQua.NgayMuon),
+            new SqlParameter("@NgayTra", ngayTraObj),
+            new SqlParameter("@TrangThai", ketQua.TrangThaiMoi),
+            new SqlParameter("@GhiChu", txtGhiChu.Text.Trim()),
+            new SqlParameter("@MaMuonTra", maMuonTra)
+        };
 
                 qltt.ExecuteNonQuery(sql, parameters);
 
-                // --- 4. CẬP NHẬT LẠI KHO KHI TRẢ SÁCH ---
-                if (trangThaiCu == "Đang Mượn" && trangThaiMoi == "Đã Trả")
+                // CẬP NHẬT KHO DỰA TRÊN KẾT QUẢ SERVICE
+                if (ketQua.TangKho)
                 {
-                    // Người dùng mang trả -> Cộng lại 1 cuốn vào kho
                     qltt.ExecuteNonQuery("UPDATE Sach SET SoLuongConLai = SoLuongConLai + 1 WHERE MaSach = " + maSach);
                 }
-                else if (trangThaiCu == "Đã Trả" && trangThaiMoi == "Đang Mượn")
+                else if (ketQua.GiamKho)
                 {
-                    // Thủ thư lỡ bấm nhầm Đã trả, giờ sửa lại thành Đang Mượn -> Trừ đi 1 cuốn
                     qltt.ExecuteNonQuery("UPDATE Sach SET SoLuongConLai = SoLuongConLai - 1 WHERE MaSach = " + maSach);
                 }
 
-                MessageBox.Show("Cập nhật thành công!");
+                MessageBox.Show(ketQua.ThongBaoNguoiDung);
                 TaiDuLieu();
             }
             catch (Exception ex)
@@ -247,7 +254,6 @@ namespace quanlythuvien
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
-
         private void btnThoat_Click(object sender, EventArgs e)
         {
             DialogResult r;
@@ -407,6 +413,11 @@ namespace quanlythuvien
         {
             TaiDuLieu();
             XoaTrang();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

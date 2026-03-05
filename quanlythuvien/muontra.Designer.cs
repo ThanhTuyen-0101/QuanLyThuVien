@@ -89,7 +89,7 @@
             // 
             this.pictureBox1.Image = global::quanlythuvien.Properties.Resources.user1;
             this.pictureBox1.Location = new System.Drawing.Point(25, 620);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(55, 49);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -101,7 +101,7 @@
             this.btndangxuat.Font = new System.Drawing.Font("Times New Roman", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btndangxuat.ForeColor = System.Drawing.Color.Black;
             this.btndangxuat.Location = new System.Drawing.Point(124, 629);
-            this.btndangxuat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btndangxuat.Margin = new System.Windows.Forms.Padding(2);
             this.btndangxuat.Name = "btndangxuat";
             this.btndangxuat.Size = new System.Drawing.Size(107, 39);
             this.btndangxuat.TabIndex = 30;
@@ -114,7 +114,7 @@
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.Image = global::quanlythuvien.Properties.Resources.Screenshot_2026_01_25_104349_removebg_preview;
             this.pictureBox3.Location = new System.Drawing.Point(23, 2);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(207, 179);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -130,7 +130,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnbaocao);
             this.flowLayoutPanel1.Controls.Add(this.btbntaikhoan);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(23, 185);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(207, 380);
             this.flowLayoutPanel1.TabIndex = 0;
@@ -143,7 +143,7 @@
             this.btntrangchu.Image = global::quanlythuvien.Properties.Resources.house_lock__3_;
             this.btntrangchu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btntrangchu.Location = new System.Drawing.Point(2, 2);
-            this.btntrangchu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btntrangchu.Margin = new System.Windows.Forms.Padding(2);
             this.btntrangchu.Name = "btntrangchu";
             this.btntrangchu.Size = new System.Drawing.Size(205, 43);
             this.btntrangchu.TabIndex = 0;
@@ -230,7 +230,7 @@
             // 
             this.txtTienPhat.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTienPhat.Location = new System.Drawing.Point(137, 153);
-            this.txtTienPhat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTienPhat.Margin = new System.Windows.Forms.Padding(2);
             this.txtTienPhat.Name = "txtTienPhat";
             this.txtTienPhat.Size = new System.Drawing.Size(142, 30);
             this.txtTienPhat.TabIndex = 16;
@@ -476,6 +476,7 @@
             this.groupBox1.TabIndex = 34;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // txtDateMuon
             // 
@@ -559,7 +560,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "muontra";
             this.Text = "mt";
             this.Load += new System.EventHandler(this.muontra_Load_1);

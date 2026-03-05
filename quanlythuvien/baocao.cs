@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using QLTV.BusinessLogic;
+using System;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace quanlythuvien
 {
     public partial class baocao : Form
     {
+        private readonly ThongKeService thongKeService = new ThongKeService();
         private bool isReturning = false;
 
         public baocao()
@@ -29,101 +26,54 @@ namespace quanlythuvien
             }
         }
 
+        // ✅ FIX 3: TÊN METHOD ĐÚNG + 3 PARAM (Yêu thích/Đang mượn/Đã trả)
         private void btnThongKe_Click(object sender, EventArgs e)
         {
-            string sql = "";
-            DataTable dt;
+            // Tên checkbox thật (thay checkdattr a nếu khác)
+            var ketQua = thongKeService.XuLyThongKe(  // ✅ XuLyThongKe (không phải XyLy)
+                checkyeuthich.Checked,      // 1️⃣ Yêu thích
+                checkdangmuon.Checked,      // 2️⃣ Đang mượn
+                checkdatra.Checked);        // 3️⃣ Đã trả ← THÊM PARAM NÀY
 
-            if (checkyeuthich.Checked)
+            if (ketQua.MaKetQua != "OK")
             {
-                sql = @"
-            SELECT 
-                s.MaSach AS [MÃ SÁCH],
-                s.TieuDe AS [TIÊU ĐỀ],
-                COUNT(mt.MaSach) AS [SỐ LẦN MƯỢN]
-            FROM MuonTra mt
-            INNER JOIN Sach s ON mt.MaSach = s.MaSach
-            GROUP BY s.MaSach, s.TieuDe
-            HAVING COUNT(mt.MaSach) >= 3  
-            ORDER BY [SỐ LẦN MƯỢN] DESC";
-            }
-            else if (checkdangmuon.Checked)
-            {
-                sql = @"SELECT MaMuonTra AS [MÃ MƯỢN TRẢ], MaDocGia AS [MÃ ĐỘC GIẢ], MaSach AS [MÃ SÁCH], 
-                               NgayMuon AS [NGÀY MƯỢN], NgayTra AS [NGÀY TRẢ], TrangThai AS [TRẠNG THÁI], 
-                               GhiChu AS [GHI CHÚ] FROM MuonTra WHERE TrangThai = N'Đang Mượn'";
-            }
-            else
-            {
-                sql = @"SELECT MaMuonTra AS [MÃ MƯỢN TRẢ], MaDocGia AS [MÃ ĐỘC GIẢ], MaSach AS [MÃ SÁCH], 
-                               NgayMuon AS [NGÀY MƯỢN], NgayTra AS [NGÀY TRẢ], TrangThai AS [TRẠNG THÁI], 
-                               GhiChu AS [GHI CHÚ] FROM MuonTra WHERE TrangThai = N'Đã Trả'";
+                MessageBox.Show(ketQua.ThongBaoNguoiDung, "Lỗi thống kê",
+                               MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-            dt = qltt.ExecuteQuery(sql);
-            GridBaoCao.DataSource = dt;
-            GridBaoCao.Font = new Font("Times New Roman", 10);
-            GridBaoCao.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-
-            lbTong.Text = $"Tổng số sách: {dt.Rows.Count}";
-
-            if (dt.Rows.Count == 0)
+            try
             {
-                MessageBox.Show("Không tìm thấy dữ liệu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DataTable dt = qltt.ExecuteQuery(ketQua.SqlQuery);  // ✅ qltt OK
+
+                GridBaoCao.DataSource = dt;
+                GridBaoCao.Font = new Font("Times New Roman", 10);
+                GridBaoCao.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+                int tong = dt.Rows.Count;
+                lbTong.Text = $"Tổng số sách: {tong}";
+
+                if (tong == 0)
+                {
+                    MessageBox.Show("Không tìm thấy dữ liệu.", "Thông báo",
+                                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi truy vấn: {ex.Message}", "Lỗi DB",
+                               MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void btntrangchu_Click(object sender, EventArgs e)
-        {
-            isReturning = true;
-            this.Close();
-        }
-
-        private void btndangxuat_Click(object sender, EventArgs e)
-        {
-            isReturning = true;
-            Application.Restart();
-        }
-
-        private void btnsach_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new quanlysach().ShowDialog();
-            this.Show();
-        }
-
-        private void btndocgia_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new docgia().ShowDialog();
-            this.Show();
-        }
-
-        private void btnmuontra_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new muontra().ShowDialog();
-            this.Show();
-        }
-
-        private void btnbaocao_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new baocao().ShowDialog();
-            this.Show();
-        }
-
-        private void btntaikhoan_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new thongtinthuthu().ShowDialog();
-            this.Show();
-        }
-
-        private void btnThoat_Click(object sender, EventArgs e)
-        {
-            isReturning = true;
-            this.Close();
-        }
+        // Các button khác GIỮ NGUYÊN
+        private void btntrangchu_Click(object sender, EventArgs e) { isReturning = true; this.Close(); }
+        private void btndangxuat_Click(object sender, EventArgs e) { isReturning = true; Application.Restart(); }
+        private void btnsach_Click(object sender, EventArgs e) { this.Hide(); new quanlysach().ShowDialog(); this.Show(); }
+        private void btndocgia_Click(object sender, EventArgs e) { this.Hide(); new docgia().ShowDialog(); this.Show(); }
+        private void btnmuontra_Click(object sender, EventArgs e) { this.Hide(); new muontra().ShowDialog(); this.Show(); }
+        private void btnbaocao_Click(object sender, EventArgs e) { this.Hide(); new baocao().ShowDialog(); this.Show(); }
+        private void btntaikhoan_Click(object sender, EventArgs e) { this.Hide(); new thongtinthuthu().ShowDialog(); this.Show(); }
+        private void btnThoat_Click(object sender, EventArgs e) { isReturning = true; this.Close(); }
     }
 }
