@@ -31,8 +31,6 @@ namespace quanlythuvien
             }
         }
 
-        
-
         private void TaiDuLieu(string keyword = "")
         {
             string sql;
@@ -64,13 +62,14 @@ namespace quanlythuvien
             txtDateTra.Text = string.Empty;
             Checktra.Checked = false;
             txtGhiChu.Text = string.Empty;
+            txtTienPhat.Text = "0";
         }
 
         private void ComboxMaDG()
         {
             try
             {
-                string sql = "SELECT MaDocGia FROM MuonTra";
+                string sql = "SELECT MaDocGia FROM DocGia";
                 DataTable dt = qltt.ExecuteQuery(sql);
                 cbMaDG.DataSource = dt;
                 cbMaDG.ValueMember = "MaDocGia";
@@ -78,7 +77,7 @@ namespace quanlythuvien
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi tải dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi khi tải dữ liệu độc giả: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -86,7 +85,7 @@ namespace quanlythuvien
         {
             try
             {
-                string sql = "SELECT MaSach FROM MuonTra";
+                string sql = "SELECT MaSach FROM Sach";
                 DataTable dt = qltt.ExecuteQuery(sql);
                 cbMaSach.DataSource = dt;
                 cbMaSach.ValueMember = "MaSach";
@@ -94,11 +93,11 @@ namespace quanlythuvien
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi tải dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi khi tải dữ liệu sách: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnTao_Click(object sender, EventArgs e)
         {
             try
             {
@@ -108,12 +107,32 @@ namespace quanlythuvien
                     return;
                 }
 
+                // --- 1. KIỂM TRA LOGIC TỒN KHO ---
+                string maSach = cbMaSach.Text.Trim();
+                DataTable dtSach = qltt.ExecuteQuery("SELECT SoLuongConLai FROM Sach WHERE MaSach = " + maSach);
+                if (dtSach.Rows.Count > 0)
+                {
+                    int soLuongCon = Convert.ToInt32(dtSach.Rows[0]["SoLuongConLai"]);
+                    if (soLuongCon <= 0)
+                    {
+                        MessageBox.Show("Sách này đã hết trong kho, không thể cho mượn!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; // Chặn không cho thêm
+                    }
+                }
+
                 DateTime ngayMuon = DateTime.Parse(txtDateMuon.Text.Trim());
                 object ngayTraObj = DBNull.Value;
 
                 if (!string.IsNullOrEmpty(txtDateTra.Text))
                 {
-                    ngayTraObj = DateTime.Parse(txtDateTra.Text.Trim());
+                    DateTime ngayTra = DateTime.Parse(txtDateTra.Text.Trim());
+                    // --- 2. KIỂM TRA LOGIC NGÀY THÁNG ---
+                    if (ngayTra < ngayMuon)
+                    {
+                        MessageBox.Show("Ngày trả không được nhỏ hơn ngày mượn!", "Lỗi Logic", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    ngayTraObj = ngayTra;
                 }
 
                 string trangThai = Checktra.Checked ? "Đã Trả" : "Đang Mượn";
@@ -127,7 +146,7 @@ namespace quanlythuvien
 
                 SqlParameter[] parameters = {
                     new SqlParameter("@MaDocGia", cbMaDG.Text.Trim()),
-                    new SqlParameter("@MaSach", int.Parse(cbMaSach.Text.Trim())),
+                    new SqlParameter("@MaSach", int.Parse(maSach)),
                     new SqlParameter("@NgayMuon", ngayMuon),
                     new SqlParameter("@NgayTra", ngayTraObj),
                     new SqlParameter("@TrangThai", trangThai),
@@ -135,12 +154,20 @@ namespace quanlythuvien
                 };
 
                 qltt.ExecuteNonQuery(sql, parameters);
+
+                // --- 3. CẬP NHẬT TRỪ SỐ LƯỢNG KHO ---
+                if (trangThai == "Đang Mượn")
+                {
+                    qltt.ExecuteNonQuery("UPDATE Sach SET SoLuongConLai = SoLuongConLai - 1 WHERE MaSach = " + maSach);
+                }
+
                 MessageBox.Show("Thêm thành công!");
                 TaiDuLieu();
+                XoaTrang();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message);
+                MessageBox.Show("Lỗi định dạng ngày tháng hoặc dữ liệu: " + ex.Message);
             }
         }
 
@@ -155,15 +182,25 @@ namespace quanlythuvien
             try
             {
                 int maMuonTra = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["MÃ MƯỢN TRẢ"].Value);
+                string trangThaiCu = dataGridView1.SelectedRows[0].Cells["TRẠNG THÁI"].Value.ToString();
+                string maSach = cbMaSach.Text.Trim();
+
                 DateTime ngayMuon = DateTime.Parse(txtDateMuon.Text.Trim());
                 object ngayTraObj = DBNull.Value;
 
                 if (!string.IsNullOrEmpty(txtDateTra.Text))
                 {
-                    ngayTraObj = DateTime.Parse(txtDateTra.Text.Trim());
+                    DateTime ngayTra = DateTime.Parse(txtDateTra.Text.Trim());
+                    // --- KIỂM TRA LOGIC NGÀY THÁNG ---
+                    if (Checktra.Checked && ngayTra < ngayMuon)
+                    {
+                        MessageBox.Show("Ngày trả không được nhỏ hơn ngày mượn!", "Lỗi Logic", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    ngayTraObj = ngayTra;
                 }
 
-                string trangThai = Checktra.Checked ? "Đã Trả" : "Đang Mượn";
+                string trangThaiMoi = Checktra.Checked ? "Đã Trả" : "Đang Mượn";
                 if (Checktra.Checked && ngayTraObj == DBNull.Value)
                 {
                     ngayTraObj = DateTime.Now.Date;
@@ -180,15 +217,28 @@ namespace quanlythuvien
 
                 SqlParameter[] parameters = {
                     new SqlParameter("@MaDocGia", cbMaDG.Text.Trim()),
-                    new SqlParameter("@MaSach", int.Parse(cbMaSach.Text.Trim())),
+                    new SqlParameter("@MaSach", int.Parse(maSach)),
                     new SqlParameter("@NgayMuon", ngayMuon),
                     new SqlParameter("@NgayTra", ngayTraObj),
-                    new SqlParameter("@TrangThai", trangThai),
+                    new SqlParameter("@TrangThai", trangThaiMoi),
                     new SqlParameter("@GhiChu", txtGhiChu.Text.Trim()),
                     new SqlParameter("@MaMuonTra", maMuonTra)
                 };
 
                 qltt.ExecuteNonQuery(sql, parameters);
+
+                // --- 4. CẬP NHẬT LẠI KHO KHI TRẢ SÁCH ---
+                if (trangThaiCu == "Đang Mượn" && trangThaiMoi == "Đã Trả")
+                {
+                    // Người dùng mang trả -> Cộng lại 1 cuốn vào kho
+                    qltt.ExecuteNonQuery("UPDATE Sach SET SoLuongConLai = SoLuongConLai + 1 WHERE MaSach = " + maSach);
+                }
+                else if (trangThaiCu == "Đã Trả" && trangThaiMoi == "Đang Mượn")
+                {
+                    // Thủ thư lỡ bấm nhầm Đã trả, giờ sửa lại thành Đang Mượn -> Trừ đi 1 cuốn
+                    qltt.ExecuteNonQuery("UPDATE Sach SET SoLuongConLai = SoLuongConLai - 1 WHERE MaSach = " + maSach);
+                }
+
                 MessageBox.Show("Cập nhật thành công!");
                 TaiDuLieu();
             }
@@ -198,7 +248,7 @@ namespace quanlythuvien
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void btnThoat_Click(object sender, EventArgs e)
         {
             DialogResult r;
             r = MessageBox.Show("Bạn có muốn thoát không?", "Chú ý", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
@@ -209,7 +259,7 @@ namespace quanlythuvien
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnXoa_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
@@ -221,20 +271,30 @@ namespace quanlythuvien
             if (dr == DialogResult.Yes)
             {
                 int maMuonTra = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["MÃ MƯỢN TRẢ"].Value);
+                string trangThai = dataGridView1.SelectedRows[0].Cells["TRẠNG THÁI"].Value.ToString();
+                string maSach = dataGridView1.SelectedRows[0].Cells["MÃ SÁCH"].Value.ToString();
+
                 string sql = "DELETE FROM MuonTra WHERE MaMuonTra = @MaMuonTra";
                 SqlParameter[] param = { new SqlParameter("@MaMuonTra", maMuonTra) };
                 qltt.ExecuteNonQuery(sql, param);
+
+                // Nếu xóa phiếu đang mượn đi, phải trả lại sách cho kho
+                if (trangThai == "Đang Mượn")
+                {
+                    qltt.ExecuteNonQuery("UPDATE Sach SET SoLuongConLai = SoLuongConLai + 1 WHERE MaSach = " + maSach);
+                }
+
                 MessageBox.Show("Xóa thành công!");
                 TaiDuLieu();
+                XoaTrang();
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void btnTimKiem_Click(object sender, EventArgs e)
         {
             string keyword = txtTimKiemMaDG.Text.Trim();
             TaiDuLieu(keyword);
         }
-
 
         private void btntrangchu_Click(object sender, EventArgs e)
         {
@@ -293,18 +353,49 @@ namespace quanlythuvien
                 this.txtDateMuon.Text = selectedRow.Cells["NGÀY MƯỢN"].Value.ToString();
                 this.txtDateTra.Text = selectedRow.Cells["NGÀY TRẢ"].Value.ToString();
                 this.txtGhiChu.Text = selectedRow.Cells["GHI CHÚ"].Value.ToString();
+
+                string trangThai = selectedRow.Cells["TRẠNG THÁI"].Value.ToString();
+                Checktra.Checked = (trangThai == "Đã Trả");
             }
         }
 
+        // TỰ ĐỘNG TÍNH PHÍ PHẠT KHI CHECK "ĐÃ TRẢ"
         private void Checktra_CheckedChanged_1(object sender, EventArgs e)
         {
             if (Checktra.Checked)
             {
-                DateTime ngayMuon = DateTime.Parse(txtDateMuon.Text);
-                DateTime ngayTra = DateTime.Now;
-                TienPhatCalculator calc = new TienPhatCalculator();
-                double tienPhat = calc.TinhTienPhat(ngayMuon, ngayTra);
-                txtTienPhat.Text = tienPhat.ToString("N0");
+                try
+                {
+                    DateTime ngayMuon = DateTime.Parse(txtDateMuon.Text);
+                    DateTime ngayTra = DateTime.Now; // Mặc định là hôm nay
+
+                    //  Nếu thủ thư đã điền tay ngày trả, phải lấy theo ngày đó
+                    if (!string.IsNullOrEmpty(txtDateTra.Text))
+                    {
+                        ngayTra = DateTime.Parse(txtDateTra.Text);
+                    }
+                    else
+                    {
+                        // Nếu đang rỗng, tự động điền ngày hôm nay vào ô DateTra
+                        txtDateTra.Text = ngayTra.ToString("dd/MM/yyyy");
+                    }
+
+                    // Nếu ngày trả < ngày mượn, không tính phạt và để hàm Thêm/Sửa báo lỗi
+                    if (ngayTra < ngayMuon)
+                    {
+                        txtTienPhat.Text = "0";
+                        return;
+                    }
+
+                    TienPhatCalculator calc = new TienPhatCalculator();
+                    double tienPhat = calc.TinhTienPhat(ngayMuon, ngayTra);
+                    txtTienPhat.Text = tienPhat.ToString("N0");
+                }
+                catch
+                {
+                    // Lỗi định dạng ngày, tạm thời bỏ qua không tính phạt
+                    txtTienPhat.Text = "0";
+                }
             }
             else
             {
