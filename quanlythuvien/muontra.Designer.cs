@@ -39,7 +39,6 @@
             this.btnmuontra = new System.Windows.Forms.Button();
             this.btnbaocao = new System.Windows.Forms.Button();
             this.btbntaikhoan = new System.Windows.Forms.Button();
-            this.txtTienPhat = new System.Windows.Forms.TextBox();
             this.lableTienPhat = new System.Windows.Forms.Label();
             this.btnSua = new System.Windows.Forms.Button();
             this.cbMaSach = new System.Windows.Forms.ComboBox();
@@ -64,6 +63,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbMaPhieu = new System.Windows.Forms.Label();
+            this.txtTienPhat = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -89,7 +89,7 @@
             // 
             this.pictureBox1.Image = global::quanlythuvien.Properties.Resources.user1;
             this.pictureBox1.Location = new System.Drawing.Point(25, 620);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(55, 49);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -100,8 +100,8 @@
             // 
             this.btndangxuat.Font = new System.Drawing.Font("Times New Roman", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btndangxuat.ForeColor = System.Drawing.Color.Black;
-            this.btndangxuat.Location = new System.Drawing.Point(124, 629);
-            this.btndangxuat.Margin = new System.Windows.Forms.Padding(2);
+            this.btndangxuat.Location = new System.Drawing.Point(83, 403);
+            this.btndangxuat.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btndangxuat.Name = "btndangxuat";
             this.btndangxuat.Size = new System.Drawing.Size(107, 39);
             this.btndangxuat.TabIndex = 30;
@@ -113,8 +113,8 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.Image = global::quanlythuvien.Properties.Resources.Screenshot_2026_01_25_104349_removebg_preview;
-            this.pictureBox3.Location = new System.Drawing.Point(23, 2);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox3.Location = new System.Drawing.Point(15, 1);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(207, 179);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -129,8 +129,8 @@
             this.flowLayoutPanel1.Controls.Add(this.btnmuontra);
             this.flowLayoutPanel1.Controls.Add(this.btnbaocao);
             this.flowLayoutPanel1.Controls.Add(this.btbntaikhoan);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(23, 185);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 118);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(207, 380);
             this.flowLayoutPanel1.TabIndex = 0;
@@ -142,8 +142,8 @@
             this.btntrangchu.ForeColor = System.Drawing.Color.Black;
             this.btntrangchu.Image = global::quanlythuvien.Properties.Resources.house_lock__3_;
             this.btntrangchu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btntrangchu.Location = new System.Drawing.Point(2, 2);
-            this.btntrangchu.Margin = new System.Windows.Forms.Padding(2);
+            this.btntrangchu.Location = new System.Drawing.Point(1, 1);
+            this.btntrangchu.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btntrangchu.Name = "btntrangchu";
             this.btntrangchu.Size = new System.Drawing.Size(205, 43);
             this.btntrangchu.TabIndex = 0;
@@ -157,7 +157,7 @@
             this.btnsach.ForeColor = System.Drawing.Color.Black;
             this.btnsach.Image = global::quanlythuvien.Properties.Resources.book_brain__1_;
             this.btnsach.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsach.Location = new System.Drawing.Point(2, 66);
+            this.btnsach.Location = new System.Drawing.Point(2, 64);
             this.btnsach.Margin = new System.Windows.Forms.Padding(2, 19, 2, 2);
             this.btnsach.Name = "btnsach";
             this.btnsach.Size = new System.Drawing.Size(205, 46);
@@ -172,7 +172,7 @@
             this.btndocgia.ForeColor = System.Drawing.Color.Black;
             this.btndocgia.Image = global::quanlythuvien.Properties.Resources.department__1_;
             this.btndocgia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btndocgia.Location = new System.Drawing.Point(2, 133);
+            this.btndocgia.Location = new System.Drawing.Point(2, 131);
             this.btndocgia.Margin = new System.Windows.Forms.Padding(2, 19, 2, 2);
             this.btndocgia.Name = "btndocgia";
             this.btndocgia.Size = new System.Drawing.Size(205, 46);
@@ -187,7 +187,7 @@
             this.btnmuontra.ForeColor = System.Drawing.Color.Black;
             this.btnmuontra.Image = global::quanlythuvien.Properties.Resources.onboarding;
             this.btnmuontra.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnmuontra.Location = new System.Drawing.Point(2, 200);
+            this.btnmuontra.Location = new System.Drawing.Point(2, 198);
             this.btnmuontra.Margin = new System.Windows.Forms.Padding(2, 19, 2, 2);
             this.btnmuontra.Name = "btnmuontra";
             this.btnmuontra.Size = new System.Drawing.Size(205, 46);
@@ -202,7 +202,7 @@
             this.btnbaocao.ForeColor = System.Drawing.Color.Black;
             this.btnbaocao.Image = global::quanlythuvien.Properties.Resources.trading__1_;
             this.btnbaocao.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnbaocao.Location = new System.Drawing.Point(2, 267);
+            this.btnbaocao.Location = new System.Drawing.Point(2, 265);
             this.btnbaocao.Margin = new System.Windows.Forms.Padding(2, 19, 2, 2);
             this.btnbaocao.Name = "btnbaocao";
             this.btnbaocao.Size = new System.Drawing.Size(205, 46);
@@ -217,7 +217,7 @@
             this.btbntaikhoan.ForeColor = System.Drawing.Color.Black;
             this.btbntaikhoan.Image = global::quanlythuvien.Properties.Resources.people_roof;
             this.btbntaikhoan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btbntaikhoan.Location = new System.Drawing.Point(2, 334);
+            this.btbntaikhoan.Location = new System.Drawing.Point(2, 332);
             this.btbntaikhoan.Margin = new System.Windows.Forms.Padding(2, 19, 2, 2);
             this.btbntaikhoan.Name = "btbntaikhoan";
             this.btbntaikhoan.Size = new System.Drawing.Size(205, 46);
@@ -225,15 +225,6 @@
             this.btbntaikhoan.Text = "TÀI KHOẢN";
             this.btbntaikhoan.UseVisualStyleBackColor = true;
             this.btbntaikhoan.Click += new System.EventHandler(this.btbntaikhoan_Click);
-            // 
-            // txtTienPhat
-            // 
-            this.txtTienPhat.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTienPhat.Location = new System.Drawing.Point(137, 153);
-            this.txtTienPhat.Margin = new System.Windows.Forms.Padding(2);
-            this.txtTienPhat.Name = "txtTienPhat";
-            this.txtTienPhat.Size = new System.Drawing.Size(142, 30);
-            this.txtTienPhat.TabIndex = 16;
             // 
             // lableTienPhat
             // 
@@ -550,19 +541,29 @@
             this.lbMaPhieu.TabIndex = 9;
             this.lbMaPhieu.Text = "Mã phiếu:";
             // 
+            // txtTienPhat
+            // 
+            this.txtTienPhat.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTienPhat.Location = new System.Drawing.Point(137, 152);
+            this.txtTienPhat.Margin = new System.Windows.Forms.Padding(1);
+            this.txtTienPhat.Name = "txtTienPhat";
+            this.txtTienPhat.Size = new System.Drawing.Size(142, 30);
+            this.txtTienPhat.TabIndex = 16;
+            // 
             // muontra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(206)))), ((int)(((byte)(109)))));
             this.ClientSize = new System.Drawing.Size(1002, 675);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.Name = "muontra";
-            this.Text = "mt";
+            this.Text = "Form mượn trả ";
             this.Load += new System.EventHandler(this.muontra_Load_1);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -590,7 +591,6 @@
         private System.Windows.Forms.Button btnmuontra;
         private System.Windows.Forms.Button btnbaocao;
         private System.Windows.Forms.Button btbntaikhoan;
-        private System.Windows.Forms.TextBox txtTienPhat;
         private System.Windows.Forms.Label lableTienPhat;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.ComboBox cbMaSach;
@@ -615,5 +615,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lbMaPhieu;
+        private System.Windows.Forms.TextBox txtTienPhat;
     }
 }

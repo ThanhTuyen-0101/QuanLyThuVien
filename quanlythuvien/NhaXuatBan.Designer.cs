@@ -368,6 +368,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(206)))), ((int)(((byte)(109)))));
             this.ClientSize = new System.Drawing.Size(1672, 1105);
             this.Controls.Add(this.panel1);
@@ -375,7 +376,7 @@
             this.Controls.Add(this.dgvsach);
             this.Controls.Add(this.panel7);
             this.Name = "NhaXuatBan";
-            this.Text = "nxb";
+            this.Text = "Form nhà xuất bản";
             this.Load += new System.EventHandler(this.NhaXuatBan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbnhxuatban)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbtacgia)).EndInit();

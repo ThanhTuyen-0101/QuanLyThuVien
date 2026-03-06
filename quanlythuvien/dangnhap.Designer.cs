@@ -104,6 +104,7 @@
             this.txtmatkhaudangnhap.ForeColor = System.Drawing.Color.Black;
             this.txtmatkhaudangnhap.Location = new System.Drawing.Point(297, 575);
             this.txtmatkhaudangnhap.Name = "txtmatkhaudangnhap";
+            this.txtmatkhaudangnhap.PasswordChar = '*';
             this.txtmatkhaudangnhap.Size = new System.Drawing.Size(360, 39);
             this.txtmatkhaudangnhap.TabIndex = 29;
             // 
@@ -175,6 +176,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(206)))), ((int)(((byte)(109)))));
             this.ClientSize = new System.Drawing.Size(863, 962);
             this.Controls.Add(this.label6);

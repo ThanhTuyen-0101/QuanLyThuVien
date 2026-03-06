@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace quanlythuvien
 {
@@ -56,18 +57,52 @@ namespace quanlythuvien
 
         private void btnthem_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtmadg.Text) || string.IsNullOrWhiteSpace(txttendg.Text) ||
+                string.IsNullOrWhiteSpace(txtdiachi.Text) || string.IsNullOrWhiteSpace(txtsdt.Text) ||
+                string.IsNullOrWhiteSpace(txtemail.Text) || string.IsNullOrWhiteSpace(txtngaysinh.Text))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string phonePattern = @"^0\d{9}$";
+            if (!Regex.IsMatch(txtsdt.Text.Trim(), phonePattern))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtsdt.Focus();
+                return;
+            }
+
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (!Regex.IsMatch(txtemail.Text.Trim(), emailPattern))
+            {
+                MessageBox.Show("Email không hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtemail.Focus();
+                return;
+            }
+
+            DateTime ngaySinh;
+            if (!DateTime.TryParseExact(txtngaysinh.Text.Trim(), "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out ngaySinh))
+            {
+                MessageBox.Show("Ngày sinh không hợp lệ! (dd/MM/yyyy)", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtngaysinh.Focus();
+                return;
+            }
+
             try
             {
                 string sql = @"
                 INSERT INTO DocGia
-                (MaDocGia, HoTen, NgaySinh, GioiTinh, DiaChi, SoDienThoai, Email)
-                VALUES (@MaDocGia, @HoTen, @NgaySinh, @GioiTinh, @DiaChi, @SoDienThoai, @Email)";
+                (MaDocGia, HoTen, TenDangNhap, MatKhau, NgaySinh, GioiTinh, DiaChi, SoDienThoai, Email)
+                VALUES (@MaDocGia, @HoTen, @TenDangNhap, @MatKhau, @NgaySinh, @GioiTinh, @DiaChi, @SoDienThoai, @Email)";
 
                 SqlParameter[] parameters = new SqlParameter[]
                 {
                     new SqlParameter("@MaDocGia", txtmadg.Text.Trim()),
                     new SqlParameter("@HoTen", txttendg.Text.Trim()),
-                    new SqlParameter("@NgaySinh", txtngaysinh.Text.Trim()),
+                    new SqlParameter("@TenDangNhap", txtmadg.Text.Trim()),
+                    new SqlParameter("@MatKhau", "123456"),
+                    new SqlParameter("@NgaySinh", ngaySinh),
                     new SqlParameter("@GioiTinh", txtgioitinh.Text.Trim()),
                     new SqlParameter("@DiaChi", txtdiachi.Text.Trim()),
                     new SqlParameter("@SoDienThoai", txtsdt.Text.Trim()),
@@ -76,6 +111,17 @@ namespace quanlythuvien
 
                 qltt.ExecuteNonQuery(sql, parameters);
                 MessageBox.Show("Thêm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (SqlException sqlEx)
+            {
+                if (sqlEx.Number == 2627 || sqlEx.Number == 2601)
+                {
+                    MessageBox.Show("Mã độc giả, Email hoặc thông tin duy nhất đã tồn tại!", "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi cơ sở dữ liệu: " + sqlEx.Message, "Lỗi SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
@@ -95,6 +141,38 @@ namespace quanlythuvien
                 return;
             }
 
+            if (string.IsNullOrWhiteSpace(txttendg.Text) || string.IsNullOrWhiteSpace(txtdiachi.Text) ||
+                string.IsNullOrWhiteSpace(txtsdt.Text) || string.IsNullOrWhiteSpace(txtemail.Text) ||
+                string.IsNullOrWhiteSpace(txtngaysinh.Text))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string phonePattern = @"^0\d{9}$";
+            if (!Regex.IsMatch(txtsdt.Text.Trim(), phonePattern))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtsdt.Focus();
+                return;
+            }
+
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (!Regex.IsMatch(txtemail.Text.Trim(), emailPattern))
+            {
+                MessageBox.Show("Email không hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtemail.Focus();
+                return;
+            }
+
+            DateTime ngaySinh;
+            if (!DateTime.TryParseExact(txtngaysinh.Text.Trim(), "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out ngaySinh))
+            {
+                MessageBox.Show("Ngày sinh không hợp lệ! (dd/MM/yyyy)", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtngaysinh.Focus();
+                return;
+            }
+
             string sql = @"UPDATE DocGia
                            SET HoTen = @HoTen,
                                NgaySinh = @NgaySinh,
@@ -107,7 +185,7 @@ namespace quanlythuvien
             SqlParameter[] parameters =
             {
                 new SqlParameter("@HoTen", SqlDbType.NVarChar) { Value = txttendg.Text.Trim() },
-                new SqlParameter("@NgaySinh", SqlDbType.Date) { Value = txtngaysinh.Text.Trim() },
+                new SqlParameter("@NgaySinh", SqlDbType.Date) { Value = ngaySinh },
                 new SqlParameter("@GioiTinh", SqlDbType.NVarChar) { Value = txtgioitinh.Text.Trim() },
                 new SqlParameter("@DiaChi", SqlDbType.NVarChar) { Value = txtdiachi.Text.Trim() },
                 new SqlParameter("@SoDienThoai", SqlDbType.VarChar) { Value = txtsdt.Text.Trim() },
@@ -126,6 +204,17 @@ namespace quanlythuvien
                 else
                 {
                     MessageBox.Show("Không tìm thấy độc giả cần cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                if (sqlEx.Number == 2627 || sqlEx.Number == 2601)
+                {
+                    MessageBox.Show("Email hoặc thông tin duy nhất đã tồn tại cho một độc giả khác!", "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi cơ sở dữ liệu: " + sqlEx.Message, "Lỗi SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -157,17 +246,21 @@ namespace quanlythuvien
                         SqlParameter[] param2 = { new SqlParameter("@MaDocGia", txtmadg.Text.Trim()) };
                         qltt.ExecuteNonQuery(sql, param2);
 
-                        MessageBox.Show("Xóa Thành Công");
+                        MessageBox.Show("Xóa Thành Công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         taidocgia();
+                    }
+                    catch (SqlException sqlEx)
+                    {
+                        MessageBox.Show("Lỗi cơ sở dữ liệu khi xóa: " + sqlEx.Message, "Lỗi SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Xóa Thất Bại: " + ex.Message, "Lỗi");
+                        MessageBox.Show("Xóa Thất Bại: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Bạn chưa chọn...", "Thông báo");
+                    MessageBox.Show("Bạn chưa chọn độc giả để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -184,8 +277,9 @@ namespace quanlythuvien
 
         private void btntrangchu_Click(object sender, EventArgs e)
         {
-            isReturning = true;
-            this.Close();
+            this.Hide();
+            new trangchu().ShowDialog();
+            this.Show();
         }
 
         private void btnsach_Click(object sender, EventArgs e)
@@ -233,7 +327,16 @@ namespace quanlythuvien
             {
                 this.txtmadg.Text = this.GridView.SelectedRows[0].Cells["MÃ ĐỘC GIẢ"].Value.ToString();
                 this.txttendg.Text = this.GridView.SelectedRows[0].Cells["HỌ TÊN"].Value.ToString();
-                this.txtngaysinh.Text = this.GridView.SelectedRows[0].Cells["NGÀY SINH"].Value.ToString();
+
+                if (DateTime.TryParse(this.GridView.SelectedRows[0].Cells["NGÀY SINH"].Value.ToString(), out DateTime date))
+                {
+                    this.txtngaysinh.Text = date.ToString("dd/MM/yyyy");
+                }
+                else
+                {
+                    this.txtngaysinh.Text = this.GridView.SelectedRows[0].Cells["NGÀY SINH"].Value.ToString();
+                }
+
                 this.txtgioitinh.Text = this.GridView.SelectedRows[0].Cells["GIỚI TÍNH"].Value.ToString();
                 this.txtdiachi.Text = this.GridView.SelectedRows[0].Cells["ĐỊA CHỈ"].Value.ToString();
                 this.txtsdt.Text = this.GridView.SelectedRows[0].Cells["SỐ ĐIỆN THOẠI"].Value.ToString();
