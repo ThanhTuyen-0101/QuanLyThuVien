@@ -76,7 +76,6 @@ namespace quanlythuvien
                 this.Close();
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtmathuthu2.Text))
@@ -151,9 +150,34 @@ namespace quanlythuvien
                 {
                     MessageBox.Show("Email hoặc thông tin duy nhất này đã tồn tại trong hệ thống. Vui lòng kiểm tra lại!", "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                else if (sqlEx.Number == 547)
+                {
+                    string errorMsg = sqlEx.Message;
+
+                    if (errorMsg.Contains("CK_ThuThu_GioiTinh"))
+                    {
+                        MessageBox.Show("Giới tính không hợp lệ! Vui lòng chỉ nhập 'Nam', 'Nữ' hoặc 'Khác'.", "Lỗi ràng buộc", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else if (errorMsg.Contains("CK_ThuThu_NgaySinh"))
+                    {
+                        MessageBox.Show("Ngày sinh không hợp lệ! Ngày sinh không thể lớn hơn ngày hiện tại.", "Lỗi ràng buộc", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else if (errorMsg.Contains("CK_ThuThu_SDT"))
+                    {
+                        MessageBox.Show("Số điện thoại bị từ chối bởi cơ sở dữ liệu. Vui lòng kiểm tra lại.", "Lỗi ràng buộc", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else if (errorMsg.Contains("CK_ThuThu_Email"))
+                    {
+                        MessageBox.Show("Định dạng Email bị từ chối bởi cơ sở dữ liệu.", "Lỗi ràng buộc", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Dữ liệu nhập vào vi phạm quy định của cơ sở dữ liệu. Vui lòng kiểm tra lại.", "Lỗi ràng buộc", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
                 else
                 {
-                    MessageBox.Show("Lỗi cơ sở dữ liệu: " + sqlEx.Message, "Lỗi SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Lỗi cơ sở dữ liệu SQL: " + sqlEx.Message, "Lỗi SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -161,7 +185,6 @@ namespace quanlythuvien
                 MessageBox.Show("Đã xảy ra lỗi không xác định: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btntrangchu_Click(object sender, EventArgs e)
         {
             this.Hide();

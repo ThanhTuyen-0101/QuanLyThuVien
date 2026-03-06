@@ -104,6 +104,7 @@
             this.txtmatkhaudangnhap.ForeColor = System.Drawing.Color.Black;
             this.txtmatkhaudangnhap.Location = new System.Drawing.Point(297, 575);
             this.txtmatkhaudangnhap.Name = "txtmatkhaudangnhap";
+            this.txtmatkhaudangnhap.PasswordChar = '*';
             this.txtmatkhaudangnhap.Size = new System.Drawing.Size(360, 39);
             this.txtmatkhaudangnhap.TabIndex = 29;
             // 

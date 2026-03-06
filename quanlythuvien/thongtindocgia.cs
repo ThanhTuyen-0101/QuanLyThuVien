@@ -187,9 +187,34 @@ namespace quanlythuvien
                 {
                     MessageBox.Show("Email hoặc thông tin duy nhất đã tồn tại cho một độc giả khác!", "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                else if (sqlEx.Number == 547)
+                {
+                    string errorMsg = sqlEx.Message;
+
+                    if (errorMsg.Contains("CK_DocGia_GioiTinh"))
+                    {
+                        MessageBox.Show("Giới tính không hợp lệ! Vui lòng chỉ nhập 'Nam', 'Nữ' hoặc 'Khác'.", "Lỗi ràng buộc", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else if (errorMsg.Contains("CK_DocGia_NgaySinh"))
+                    {
+                        MessageBox.Show("Ngày sinh không hợp lệ! Ngày sinh không thể lớn hơn ngày hiện tại.", "Lỗi ràng buộc", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else if (errorMsg.Contains("CK_DocGia_SDT"))
+                    {
+                        MessageBox.Show("Số điện thoại bị từ chối bởi cơ sở dữ liệu. Vui lòng kiểm tra lại.", "Lỗi ràng buộc", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else if (errorMsg.Contains("CK_DocGia_Email"))
+                    {
+                        MessageBox.Show("Định dạng Email bị từ chối bởi cơ sở dữ liệu.", "Lỗi ràng buộc", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Dữ liệu nhập vào vi phạm quy định của cơ sở dữ liệu. Vui lòng kiểm tra lại.", "Lỗi ràng buộc", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
                 else
                 {
-                    MessageBox.Show("Lỗi cơ sở dữ liệu: " + sqlEx.Message, "Lỗi SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Lỗi cơ sở dữ liệu SQL: " + sqlEx.Message, "Lỗi SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -197,7 +222,6 @@ namespace quanlythuvien
                 MessageBox.Show("Lỗi khi cập nhật: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void toolStripContainer1_ContentPanel_Load(object sender, EventArgs e)
         {
 

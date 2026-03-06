@@ -215,6 +215,7 @@
             this.txtlmk.Location = new System.Drawing.Point(282, 556);
             this.txtlmk.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtlmk.Name = "txtlmk";
+            this.txtlmk.PasswordChar = '*';
             this.txtlmk.Size = new System.Drawing.Size(384, 44);
             this.txtlmk.TabIndex = 26;
             this.txtlmk.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtlmk_KeyDown);
@@ -239,6 +240,7 @@
             this.txtmk.Location = new System.Drawing.Point(282, 463);
             this.txtmk.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtmk.Name = "txtmk";
+            this.txtmk.PasswordChar = '*';
             this.txtmk.Size = new System.Drawing.Size(384, 44);
             this.txtmk.TabIndex = 24;
             // 
