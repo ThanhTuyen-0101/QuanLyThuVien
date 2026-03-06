@@ -689,10 +689,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1699, 1159);
             this.Controls.Add(this.toolStripContainer1);
             this.Name = "quanlysach";
-            this.Text = "qls";
+            this.Text = "Form quản lý sách";
             this.Load += new System.EventHandler(this.quanlysach_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvsach)).EndInit();
             this.groupBox1.ResumeLayout(false);

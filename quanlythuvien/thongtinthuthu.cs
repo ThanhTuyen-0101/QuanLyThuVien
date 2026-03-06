@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -80,46 +81,92 @@ namespace quanlythuvien
         {
             if (string.IsNullOrEmpty(txtmathuthu2.Text))
             {
-                MessageBox.Show("Chưa có mã thủ thư.", "Lỗi");
+                MessageBox.Show("Chưa có mã thủ thư để cập nhật.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txttenthuthu2.Text) ||
+                string.IsNullOrWhiteSpace(txtdiachi2.Text) ||
+                string.IsNullOrWhiteSpace(txtsodienthoai2.Text) ||
+                string.IsNullOrWhiteSpace(txtemail2.Text) ||
+                string.IsNullOrWhiteSpace(txtngaysinh2.Text))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin (Họ tên, Địa chỉ, SĐT, Email, Ngày sinh)!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string phonePattern = @"^0\d{9}$";
+            if (!Regex.IsMatch(txtsodienthoai2.Text.Trim(), phonePattern))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ!\nVui lòng nhập đúng 10 số và bắt đầu bằng số 0.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtsodienthoai2.Focus();
+                return;
+            }
+
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (!Regex.IsMatch(txtemail2.Text.Trim(), emailPattern))
+            {
+                MessageBox.Show("Email không hợp lệ!\nVui lòng nhập đúng định dạng (VD: ten@gmail.com).", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtemail2.Focus();
+                return;
+            }
+
+            DateTime ngaySinh;
+            if (!DateTime.TryParseExact(txtngaysinh2.Text.Trim(), "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out ngaySinh))
+            {
+                MessageBox.Show("Ngày sinh không hợp lệ!\nVui lòng nhập đúng định dạng dd/MM/yyyy (VD: 01/01/1980).", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtngaysinh2.Focus();
                 return;
             }
 
             try
             {
                 string sql = @"
-                    UPDATE ThuThu SET 
-                        HoTen = @HoTen, 
-                        DiaChi = @DiaChi, 
-                        SoDienThoai = @SoDienThoai, 
-                        Email = @Email, 
-                        NgaySinh = @NgaySinh, 
-                        GioiTinh = @GioiTinh 
-                    WHERE MaThuThu = @MaThuThu";
+            UPDATE ThuThu SET 
+                HoTen = @HoTen, 
+                DiaChi = @DiaChi, 
+                SoDienThoai = @SoDienThoai, 
+                Email = @Email, 
+                NgaySinh = @NgaySinh, 
+                GioiTinh = @GioiTinh 
+            WHERE MaThuThu = @MaThuThu";
 
                 SqlParameter[] parameters = {
-                    new SqlParameter("@HoTen", txttenthuthu2.Text.Trim()),
-                    new SqlParameter("@DiaChi", txtdiachi2.Text.Trim()),
-                    new SqlParameter("@SoDienThoai", txtsodienthoai2.Text.Trim()),
-                    new SqlParameter("@Email", txtemail2.Text.Trim()),
-                    new SqlParameter("@NgaySinh", DateTime.ParseExact(txtngaysinh2.Text, "dd/MM/yyyy", null)),
-                    new SqlParameter("@GioiTinh", txtgioitinh2.Text.Trim()),
-                    new SqlParameter("@MaThuThu", txtmathuthu2.Text.Trim())
-                };
+            new SqlParameter("@HoTen", txttenthuthu2.Text.Trim()),
+            new SqlParameter("@DiaChi", txtdiachi2.Text.Trim()),
+            new SqlParameter("@SoDienThoai", txtsodienthoai2.Text.Trim()),
+            new SqlParameter("@Email", txtemail2.Text.Trim()),
+            new SqlParameter("@NgaySinh", ngaySinh),
+            new SqlParameter("@GioiTinh", txtgioitinh2.Text.Trim()),
+            new SqlParameter("@MaThuThu", txtmathuthu2.Text.Trim())
+        };
 
                 qltt.ExecuteNonQuery(sql, parameters);
-                MessageBox.Show("Cập nhật thành công!", "Thông báo");
+                MessageBox.Show("Cập nhật thông tin thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 TaiThongTinCaNhanThuThu();
+            }
+            catch (SqlException sqlEx)
+            {
+                if (sqlEx.Number == 2627 || sqlEx.Number == 2601)
+                {
+                    MessageBox.Show("Email hoặc thông tin duy nhất này đã tồn tại trong hệ thống. Vui lòng kiểm tra lại!", "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi cơ sở dữ liệu: " + sqlEx.Message, "Lỗi SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi cập nhật, kiểm tra lại định dạng ngày sinh (dd/MM/yyyy). \nChi tiết: " + ex.Message, "Lỗi");
+                MessageBox.Show("Đã xảy ra lỗi không xác định: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btntrangchu_Click(object sender, EventArgs e)
         {
-            isReturning = true;
-            this.Close();
+            this.Hide();
+            new trangchu().ShowDialog();
+            this.Show();
         }
 
         private void btndangxuat_Click(object sender, EventArgs e)

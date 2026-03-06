@@ -246,7 +246,6 @@ C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlyth
 C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.exe
 C:\Users\tuyen\Downloads\N1\N1\N1\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.pdb
 C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.csproj.AssemblyReference.cache
-C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.exe.config
 C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.baocao.resources
 C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.dangki.resources
 C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.dangnhap.resources
@@ -273,3 +272,4 @@ C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\bin\D
 C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\bin\Debug\log4net.xml
 C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.GiaHanSachDG.resources
 C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlyth.F1FB591B.Up2Date
+C:\Users\tuyen\Downloads\Code\Môn thầy dân\quanlythuvien\quanlythuvien\obj\Debug\quanlythuvien.exe.config

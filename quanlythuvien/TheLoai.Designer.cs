@@ -369,13 +369,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(206)))), ((int)(((byte)(109)))));
             this.ClientSize = new System.Drawing.Size(1673, 1105);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel7);
             this.Name = "TheLoai";
-            this.Text = "tl";
+            this.Text = "Form thể loại";
             this.Load += new System.EventHandler(this.TheLoai_Load_1);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

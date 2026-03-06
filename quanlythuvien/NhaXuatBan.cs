@@ -30,8 +30,9 @@ namespace quanlythuvien
 
         private void btntragchu_Click(object sender, EventArgs e)
         {
-            isReturning = true;
-            this.Close();
+            this.Hide();
+            new trangchu().ShowDialog();
+            this.Show();
         }
 
         private void btnsach_Click(object sender, EventArgs e)

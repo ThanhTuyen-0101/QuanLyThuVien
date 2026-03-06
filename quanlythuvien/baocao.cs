@@ -75,8 +75,9 @@ namespace quanlythuvien
 
         private void btntrangchu_Click(object sender, EventArgs e)
         {
-            isReturning = true;
-            this.Close();
+            this.Hide();
+            new trangchu().ShowDialog();
+            this.Show();
         }
 
         private void btndangxuat_Click(object sender, EventArgs e)

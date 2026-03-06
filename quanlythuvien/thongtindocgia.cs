@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace quanlythuvien
 {
@@ -116,7 +117,39 @@ namespace quanlythuvien
         {
             if (string.IsNullOrWhiteSpace(txtmadocgia1.Text))
             {
-                MessageBox.Show("Bạn chưa chọn dòng cần sửa.");
+                MessageBox.Show("Bạn chưa có thông tin để sửa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txttendocgia1.Text) || string.IsNullOrWhiteSpace(txtdiachi1.Text) ||
+                string.IsNullOrWhiteSpace(txtsodienthoai1.Text) || string.IsNullOrWhiteSpace(txtemail1.Text) ||
+                string.IsNullOrWhiteSpace(txtngaysinh1.Text))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string phonePattern = @"^0\d{9}$";
+            if (!Regex.IsMatch(txtsodienthoai1.Text.Trim(), phonePattern))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtsodienthoai1.Focus();
+                return;
+            }
+
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (!Regex.IsMatch(txtemail1.Text.Trim(), emailPattern))
+            {
+                MessageBox.Show("Email không hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtemail1.Focus();
+                return;
+            }
+
+            DateTime ngaySinh;
+            if (!DateTime.TryParseExact(txtngaysinh1.Text.Trim(), "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out ngaySinh))
+            {
+                MessageBox.Show("Ngày sinh không hợp lệ! (dd/MM/yyyy)", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtngaysinh1.Focus();
                 return;
             }
 
@@ -134,23 +167,34 @@ namespace quanlythuvien
 
                 SqlParameter[] parameters =
                 {
-            new SqlParameter("@HoTen", txttendocgia1.Text),
-            new SqlParameter("@NgaySinh", DateTime.ParseExact(txtngaysinh1.Text, "dd/MM/yyyy", null)),
-            new SqlParameter("@DiaChi", txtdiachi1.Text),
-            new SqlParameter("@SoDienThoai", txtsodienthoai1.Text),
-            new SqlParameter("@Email", txtemail1.Text),
-            new SqlParameter("@GioiTinh", txtgioitinh1.Text),
-            new SqlParameter("@MaDocGia", txtmadocgia1.Text)
-        };
+                    new SqlParameter("@HoTen", txttendocgia1.Text.Trim()),
+                    new SqlParameter("@NgaySinh", ngaySinh),
+                    new SqlParameter("@DiaChi", txtdiachi1.Text.Trim()),
+                    new SqlParameter("@SoDienThoai", txtsodienthoai1.Text.Trim()),
+                    new SqlParameter("@Email", txtemail1.Text.Trim()),
+                    new SqlParameter("@GioiTinh", txtgioitinh1.Text.Trim()),
+                    new SqlParameter("@MaDocGia", txtmadocgia1.Text.Trim())
+                };
 
                 qltt.ExecuteNonQuery(sql, parameters);
 
-                MessageBox.Show("Cập Nhật Thành Công");
+                MessageBox.Show("Cập Nhật Thành Công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 TaiThongTinCaNhan();
+            }
+            catch (SqlException sqlEx)
+            {
+                if (sqlEx.Number == 2627 || sqlEx.Number == 2601)
+                {
+                    MessageBox.Show("Email hoặc thông tin duy nhất đã tồn tại cho một độc giả khác!", "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi cơ sở dữ liệu: " + sqlEx.Message, "Lỗi SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi cập nhật: " + ex.Message);
+                MessageBox.Show("Lỗi khi cập nhật: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

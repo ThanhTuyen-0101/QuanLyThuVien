@@ -39,13 +39,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtMaXacNhan = new System.Windows.Forms.TextBox();
             this.txtlmk = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtmk = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txttendangnhapqmk = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtMaXacNhan = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel1.SuspendLayout();
@@ -195,6 +195,18 @@
             this.panel1.Size = new System.Drawing.Size(739, 775);
             this.panel1.TabIndex = 14;
             // 
+            // txtMaXacNhan
+            // 
+            this.txtMaXacNhan.BackColor = System.Drawing.Color.White;
+            this.txtMaXacNhan.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMaXacNhan.ForeColor = System.Drawing.Color.Black;
+            this.txtMaXacNhan.Location = new System.Drawing.Point(282, 355);
+            this.txtMaXacNhan.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtMaXacNhan.Name = "txtMaXacNhan";
+            this.txtMaXacNhan.Size = new System.Drawing.Size(384, 44);
+            this.txtMaXacNhan.TabIndex = 27;
+            this.txtMaXacNhan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMaXacNhan_KeyDown);
+            // 
             // txtlmk
             // 
             this.txtlmk.BackColor = System.Drawing.Color.White;
@@ -264,29 +276,18 @@
             this.label1.Size = new System.Drawing.Size(0, 36);
             this.label1.TabIndex = 1;
             // 
-            // txtMaXacNhan
-            // 
-            this.txtMaXacNhan.BackColor = System.Drawing.Color.White;
-            this.txtMaXacNhan.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMaXacNhan.ForeColor = System.Drawing.Color.Black;
-            this.txtMaXacNhan.Location = new System.Drawing.Point(282, 355);
-            this.txtMaXacNhan.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtMaXacNhan.Name = "txtMaXacNhan";
-            this.txtMaXacNhan.Size = new System.Drawing.Size(384, 44);
-            this.txtMaXacNhan.TabIndex = 27;
-            this.txtMaXacNhan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMaXacNhan_KeyDown);
-            // 
             // quenmatkhau
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(206)))), ((int)(((byte)(109)))));
-            this.ClientSize = new System.Drawing.Size(1523, 894);
+            this.ClientSize = new System.Drawing.Size(1460, 876);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.panel1);
             this.Name = "quenmatkhau";
-            this.Text = "qmk";
+            this.Text = "Form quên mật khẩu";
             this.Load += new System.EventHandler(this.quenmatkhau_Load_1);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
